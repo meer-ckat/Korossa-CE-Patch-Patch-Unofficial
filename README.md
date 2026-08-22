@@ -1,6 +1,6 @@
 # Korossa CE Patch Patch (Unofficial)
 
-well you come here, then fix my- uhh our mod. yeah. and don't see my other repositries. they're fucking shit and my privacy.
+well you come here, then fix my- uhh our mod. yeah. and don't see my other repositries. they're fucking shit and my privacy. &#x20;
 
 > Steam 워크샵: https://steamcommunity.com/sharedfiles/filedetails/?id=3699697076
 > GitHub: https://github.com/meer-ckat/Korossa-CE-Patch-Patch-Unofficial
