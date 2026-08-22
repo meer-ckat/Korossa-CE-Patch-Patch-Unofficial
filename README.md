@@ -1,10 +1,9 @@
 # Korossa CE Patch Patch (Unofficial)
 
-RimWorld 모드 **[Korossa: Scorched Brass](https://steamcommunity.com/sharedfiles/filedetails/?id=3429142659)** 를
-**[Combat Extended](https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044)** 에 맞춰 패치하는 비공식 패치입니다.
+well you come here, then fix my- uhh our mod. yeah. and don't see my other repositries. they're fucking shit and my privacy.
 
 > Steam 워크샵: https://steamcommunity.com/sharedfiles/filedetails/?id=3699697076
-> GitHub: https://github.com/meer-ckat/GooGooGaaGaa
+> GitHub: https://github.com/meer-ckat/Korossa-CE-Patch-Patch-Unofficial
 
 **패치할 수 있는 능력자는 직접 고쳐서 Pull Request 보내주세요.** 그게 이 저장소가 존재하는 이유입니다.
 
@@ -22,7 +21,7 @@ RimWorld 모드 **[Korossa: Scorched Brass](https://steamcommunity.com/sharedfil
 
    ```
    cd ".../RimWorld/Mods"
-   git clone https://github.com/meer-ckat/GooGooGaaGaa.git KORCEpatch
+   git clone https://github.com/meer-ckat/Korossa-CE-Patch-Patch-Unofficial.git KORCEpatch
    ```
 
 3. 모드 목록 순서: **Combat Extended → Korossa: Scorched Brass → 이 패치**

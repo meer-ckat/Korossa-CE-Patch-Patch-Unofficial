@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
-	<name>Korossa CE Patch Patch (Unofficial)</name>
+	<name>korossa CE patch patch (Unofficial)</name>
 	<author>gemini-2.5, Gemini-3.0, Claude Sonnet 4.6, Claude Sonnet 5, 5.6 Sol, Fable 5, Claude Opus 4.8, space engineer, gyun0631, Meer</author>
-	<url>https://github.com/meer-ckat/Korossa-CE-Patch-Patch-Unofficial</url>
+	<url></url>
 	<supportedVersions>
 	<li>1.6</li>
 	</supportedVersions>
 	<packageId>korossa.CE.Unofficial</packageId>
-	<description>well you come here, then fix my- uhh our mod. yeah. and don't see my other repositries. they're fucking shit and my privacy.</description>
+	<description>클로드 GPT 딸깍딸깍 코로사 모더 starlellok의 코로사 CE 패치를 패치했습니다. 아직도 고쳐지고 있음 아직도 고쳐지고 있음 PATCH PATCH PATCH. \n Do not use with original CE Patch Mod. starlellok CE 패치 모드와 같이 사용하지 말 것. [단독 모드]</description>
 	<modDependencies>
 		<li>
 			<packageId>gyun.0.6.3.1</packageId>
