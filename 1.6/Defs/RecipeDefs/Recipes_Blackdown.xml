@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Blackdown R.300 전용탄 제작 레시피. AmmoSet을 CE 기본(.300 AAC Blackout)에서
+       전용 AmmoSet_Blackdown_KOR로 분리했기 때문에 별도 제작 경로가 필요함
+       (안 넣으면 탄약 조달 수단이 없어짐). 2차 폭발(Flame/EMP) 효과가 있어
+       404VL 특수탄과 동일하게 ComponentIndustrial을 요구. -->
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_Blackdown_FMJ</defName>
+    <label>블랙다운 R.300 (FMJ) 20발 제작</label>
+    <description>블랙다운 R.300 FMJ 20발을 제작합니다.</description>
+    <jobString>블랙다운 R.300 FMJ 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_Blackdown_FMJ>20</Ammo_Blackdown_FMJ>
+    </products>
+    <workAmount>5000</workAmount>
+    <skillRequirements>
+      <Crafting>4</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_Blackdown_AP</defName>
+    <label>블랙다운 R.300 (AP) 20발 제작</label>
+    <description>블랙다운 R.300 AP 20발을 제작합니다.</description>
+    <jobString>블랙다운 R.300 AP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_Blackdown_AP>20</Ammo_Blackdown_AP>
+    </products>
+    <workAmount>7000</workAmount>
+    <skillRequirements>
+      <Crafting>6</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

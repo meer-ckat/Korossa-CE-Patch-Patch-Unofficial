@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- 착용형 발사기는 바닐라 Verb_LaunchProjectileStatic으로 ProjectileCE를 발사할 수 없다.
+       CE 공식 apparel pack과 같은 Verb_ShootCEOneUseStatic을 사용해
+       ApparelReloadable의 충전/파괴 동작을 보존한다. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_LAW"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <label>로켓 발사</label>
+          <verbClass>CombatExtended.Verb_ShootCEOneUseStatic</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <onlyManualCast>true</onlyManualCast>
+          <range>30</range>
+          <!-- CE 공식 M72 LAW와 같은 안전거리. -->
+          <minRange>5</minRange>
+          <warmupTime>1.5</warmupTime>
+          <noiseRadius>4</noiseRadius>
+          <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+          <soundCast>Shot_IncendiaryLauncher</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>14</muzzleFlashScale>
+          <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <defaultProjectile>Bullet_M72LAW</defaultProjectile>
+          <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_LAW"]/statBases</xpath>
+    <value>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.20</ShotSpread>
+      <SwayFactor>1.24</SwayFactor>
+      <Bulk>6.3</Bulk>
+    </value>
+  </Operation>
+
+  <!-- DRAGON의 2발 ApparelReloadable과 DR_rocket 재장전은 유지하고 CE 유도탄으로 교체.
+       OneUseStatic은 발사 후 장비 자체를 SelfConsume하므로 다회 충전식에는 사용하지 않는다. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_DRAGON"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <label>미사일 발사</label>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <defaultProjectile>Bullet_KOR_Dragon_HEAT_CE</defaultProjectile>
+          <hasStandardCommand>true</hasStandardCommand>
+          <warmupTime>4.5</warmupTime>
+          <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+          <range>65</range>
+          <minRange>6</minRange>
+          <ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+          <soundCast>Misslemoter</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <onlyManualCast>true</onlyManualCast>
+          <stopBurstWithoutLos>false</stopBurstWithoutLos>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <muzzleFlashScale>14</muzzleFlashScale>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_DRAGON"]/statBases</xpath>
+    <value>
+      <SightsEfficiency>0.90</SightsEfficiency>
+      <ShotSpread>0.08</ShotSpread>
+      <SwayFactor>1.10</SwayFactor>
+      <Bulk>14</Bulk>
+    </value>
+  </Operation>
+
+  <!-- ===================== CE AmmoUser 전환 (2026-08-10) =====================
+       ApparelReloadable(2발 충전식)을 제거하고 CE 표준 AmmoUser(실 탄약 아이템)로 교체.
+       발사체는 그대로(Bullet_KOR_Dragon_HEAT_CE) 유지.
+       ※ apparel + AmmoUser 조합은 비표준이라 인게임 검증 필요 (미검증 시 되돌릴 것). -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_DRAGON"]/comps/li[@Class="CompProperties_ApparelReloadable"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_DRAGON"]/comps</xpath>
+    <value>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>2</magazineSize>
+        <reloadTime>8.0</reloadTime>
+        <ammoSet>AmmoSet_KOR_DragonHEAT</ammoSet>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- PF (Anti-Tank Rocket Launcher) : 5발 충전식 110mm 텐덤 HEAT 로켓(무유도).
+       DRAGON과 동일하게 Verb_LaunchProjectileStaticCE 사용 - OneUseStatic은 발사 후
+       장비를 SelfConsume하므로 다회 충전식(ApparelReloadable)에는 부적합. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_PF"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <label>로켓 발사</label>
+          <verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+          <defaultProjectile>Bullet_KOR_PF_HEAT_CE</defaultProjectile>
+          <hasStandardCommand>true</hasStandardCommand>
+          <warmupTime>2.0</warmupTime>
+          <ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+          <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+          <range>39.9</range>
+          <minRange>4</minRange>
+          <ticksBetweenBurstShots>20</ticksBetweenBurstShots>
+          <soundCast>Shot_IncendiaryLauncher</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <onlyManualCast>true</onlyManualCast>
+          <stopBurstWithoutLos>false</stopBurstWithoutLos>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <muzzleFlashScale>12</muzzleFlashScale>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_apparel_PF"]/statBases</xpath>
+    <value>
+      <SightsEfficiency>0.75</SightsEfficiency>
+      <ShotSpread>0.14</ShotSpread>
+      <SwayFactor>1.20</SwayFactor>
+      <Bulk>8</Bulk>
+    </value>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Blackdown(R.300) 전용 탄약. 원래는 CE 기본 내장 AmmoSet_300AACBlackout(.300 AAC
+       Blackout, 다른 CE 호환 무기들과 공유하는 칼리버)을 그대로 썼으나, Blackdown만
+       개별 강화하기 위해 전용 AmmoSet으로 분리. CE 기본 .300 AAC Blackout FMJ/AP
+       수치(damage 16/10, armorPenetrationSharp 5.5/11, armorPenetrationBlunt 36.46)를
+       베이스로 삼고 사용자 요청치(RHA +7mm, MPa +10, 데미지 +6)를 더함.
+       404VL(Blackout)과 동일하게 FMJ=Flame, AP=EMP 2차 폭발 효과 부여. -->
+
+  <!-- ===================== AMMO CATEGORY / THINGS ===================== -->
+  <ThingCategoryDef>
+    <defName>Ammo_Blackdown_KOR</defName>
+    <label>Blackdown R.300</label>
+    <parent>AmmoRifles</parent>
+    <iconPath>Things/Ammo/KOR/756x40_FMJ/756x40_FMJ_c</iconPath>
+  </ThingCategoryDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_Blackdown_KORBase" ParentName="AmmoBase" Abstract="True">
+    <description>약쟁이 여우들과 옆집 늑대들과는 가급적 친하게 지내려 하지만, 서로의 이해관계가 충돌하고 무력 시위가 계속된다면 결국 우리만의 방식으로 이해시켜야 할 때도 있습니다. 특히 대기업의 보조금이라도 받는 건지, 터무니없이 저렴한 가격에 장갑차보다 단단한 방탄복을 갖춰 입는 옆집 늑대들을 상대로 계속 고전을 면치 못했고, 결국 .300 AAC Blackout을 기반으로 한 미친 듯이 단단한 전용 탄약이 개발되었습니다.\n\n붉은 눈이 내립니다...</description>
+    <statBases>
+      <Mass>0.1</Mass>
+      <Bulk>0.05</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_Blackdown_KOR</li>
+    </thingCategories>
+    <stackLimit>250</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_Blackdown_KORBase">
+    <defName>Ammo_Blackdown_FMJ</defName>
+    <label>Blackdown R.300 FMJ</label>
+    <statBases>
+      <MarketValue>1.5</MarketValue>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_FMJ</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_Blackdown_KORBase">
+    <defName>Ammo_Blackdown_AP</defName>
+    <label>Blackdown R.300 AP</label>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_AP</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILES ===================== -->
+
+  <ThingDef Name="BlackdownKORbulletBase" ParentName="BaseBulletCE" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/404VL</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>180</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+    </projectile>
+  </ThingDef>
+
+  <!-- FMJ: CE 기본값(damage16/armorPenSharp5.5/Blunt36.46) + 요청 상향(+6dmg/+7mmRHA/+10MPa). -->
+  <ThingDef ParentName="BlackdownKORbulletBase">
+    <defName>Bullet_Blackdown_FMJ</defName>
+    <label>Blackdown R.300 FMJ bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>22</damageAmountBase>
+      <armorPenetrationSharp>12.5</armorPenetrationSharp>
+      <armorPenetrationBlunt>46.46</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+      <!-- 2026-07-28 하향: 이 무기(KJW_Blackdown)는 burstShotCount 15의 연사
+           화기라 버스트 한 번에 2차폭발이 최대 15회 중첩 - 낱발 위력을 낮춰
+           물량으로 뻥튀기되는 총 위력을 눌러줌(15/1.2 -> 9/0.9). -->
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>9</damageAmountBase>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <explosiveRadius>0.9</explosiveRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="BlackdownKORbulletBase">
+    <defName>Bullet_Blackdown_AP</defName>
+    <label>Blackdown R.300 AP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>16</damageAmountBase>
+      <armorPenetrationSharp>25</armorPenetrationSharp>
+      <armorPenetrationBlunt>46.46</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+      <!-- 2026-07-28 하향: FMJ Flame과 동일 사유 - 버스트 15발 중첩 감안해 다운. -->
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>10</damageAmountBase>
+        <explosiveDamageType>EMP</explosiveDamageType>
+        <explosiveRadius>1.5</explosiveRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_Blackdown_KOR</defName>
+    <label>Blackdown R.300</label>
+    <ammoTypes>
+      <Ammo_Blackdown_FMJ>Bullet_Blackdown_FMJ</Ammo_Blackdown_FMJ>
+      <Ammo_Blackdown_AP>Bullet_Blackdown_AP</Ammo_Blackdown_AP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

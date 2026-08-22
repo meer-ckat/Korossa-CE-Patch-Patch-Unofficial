@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CE 한국어 팩에 누락된 AmmoSet 번역 - KORCEpatch에서 사용하는 caliber 한정 -->
+<LanguageData>
+
+  <AmmoSet_357Magnum.label>.357 매그넘</AmmoSet_357Magnum.label>
+  <AmmoSet_357Magnum_Lever.label>.357 매그넘 / .38 스페셜</AmmoSet_357Magnum_Lever.label>
+  <AmmoSet_300AACBlackout.label>.300 AAC 블랙아웃</AmmoSet_300AACBlackout.label>
+  <AmmoSet_20x102mmNATO.label>20x102mm NATO</AmmoSet_20x102mmNATO.label>
+
+</LanguageData>

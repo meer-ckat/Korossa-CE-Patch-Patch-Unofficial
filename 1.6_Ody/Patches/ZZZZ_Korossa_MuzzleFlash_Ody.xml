@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: CE 변환으로 사라진 원본 총구화염(embedded muzzle flash) 복구용 매핑.
+
+     원본 Korossa는 총구화염을 발사체(Bullet_*)의 CompProperties_ProjectileEffecter로
+     구현했지만, CE의 ProjectileCE는 바닐라 Projectile을 상속하지 않아 그 comp가 호출되지
+     않는다. 게다가 CE 변환은 defaultProjectile을 CE 표준 탄약으로 바꾸므로 원본 발사체
+     자체를 더 이상 쏘지 않는다.
+
+     그래서 연출의 소속을 "탄약"에서 "무기"로 옮긴다. 아래 modExtension을 읽어
+     KorossaCEpatch.dll(MuzzleFlashPatch.cs)이 CE 사격 1발마다 해당 Effecter를 재생한다.
+
+     매핑 근거: 각 무기의 *원본* verbs/li/defaultProjectile이 달고 있던 effecterDef를
+     그대로 가져왔다. 즉 CE 적용 전과 동일한 화염이 나온다.
+
+     ※ 이 파일은 무기 CE 변환(MakeGunCECompatible)보다 나중에 로드돼야 안전하므로
+       파일명을 ZZZZ_로 시작한다.
+
+     (Odyssey 전용 무기 - 1.6_Ody 폴더라 별도 조건 불필요.
+      CIWS는 Korossa_Pointdefensegun_CE Def 안에 modExtension을 직접 넣었다)
+-->
+<Patch>
+
+  <!-- KOR_SLMuzzleFlash : 3종 -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[
+      defName="KJW_OSW" or
+      defName="KJW_SCAR_TAC" or
+      defName="KJW_TACTICOOL"
+    ]</xpath>
+    <value>
+      <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+        <effecter>KOR_SLMuzzleFlash</effecter>
+      </li>
+    </value>
+  </Operation>
+</Patch>

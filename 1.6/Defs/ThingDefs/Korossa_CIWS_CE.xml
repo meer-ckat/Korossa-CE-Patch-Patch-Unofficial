@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <ThingDef ParentName="BaseTurretGun">
+        <defName>Korossa_Pointdefensegun_CE</defName>
+        <label>점방어 시스템</label>
+        <description>30mm AHEAD 탄환을 발사하는 근접 대공 시스템입니다. 우발적 발포를 방지하기 위해 유인 시스템을 채택했습니다.</description>
+
+        <graphicData>
+            <texPath>Things/Building/PDA_turret/CIWS_gun</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>2.5</drawSize>
+        </graphicData>
+
+        <statBases>
+            <SightsEfficiency>2.00</SightsEfficiency>
+            <ShotSpread>0.03</ShotSpread>
+            <SwayFactor>0.80</SwayFactor>
+            <Bulk>18</Bulk>
+            <Mass>18</Mass>
+            <RangedWeapon_Cooldown>0.12</RangedWeapon_Cooldown>
+        </statBases>
+
+        <verbs>
+            <li Class="CombatExtended.VerbPropertiesCE">
+                <recoilAmount>0.60</recoilAmount>
+                <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_30x113mmBGrenade_HE_TFuzed</defaultProjectile>
+                <warmupTime>0.8</warmupTime>
+                <range>85</range>
+                <ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+                <burstShotCount>15</burstShotCount>
+                <soundCast>MINI</soundCast>
+                <soundCastTail>MINI_tail</soundCastTail>
+                <muzzleFlashScale>20</muzzleFlashScale>
+                <recoilPattern>Mounted</recoilPattern>
+                <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+            </li>
+
+            <li Class="CombatExtended.VerbProperties_CIWSSkyfaller">
+                <verbClass>CombatExtended.VerbCIWSSkyfaller</verbClass>
+                <recoilAmount>0.60</recoilAmount>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_30x113mmBGrenade_HE_TFuzed</defaultProjectile>
+                <warmupTime>0.15</warmupTime>
+                <range>125</range>
+                <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+                <burstShotCount>6</burstShotCount>
+                <soundCast>MINI</soundCast>
+                <soundCastTail>MINI_tail</soundCastTail>
+                <muzzleFlashScale>20</muzzleFlashScale>
+                <recoilPattern>Mounted</recoilPattern>
+            </li>
+        </verbs>
+
+        <comps>
+            <li Class="CombatExtended.CompProperties_AmmoUser">
+                <magazineSize>800</magazineSize>
+                <reloadTime>8</reloadTime>
+                <ammoSet>AmmoSet_30x113mmB</ammoSet>
+            </li>
+
+            <li Class="CombatExtended.CompProperties_FireModes">
+                <aimedBurstShotCount>5</aimedBurstShotCount>
+                <aiUseBurstMode>true</aiUseBurstMode>
+                <aiAimMode>AimedShot</aiAimMode>
+            </li>
+
+            <li>
+                <compClass>CombatExtended.CompVerbDisabler</compClass>
+            </li>
+        </comps>
+
+        <weaponTags Inherit="false">
+            <li>TurretGun</li>
+        </weaponTags>
+
+        <!-- 원본 Korossa_Pointdefensegun은 Bullet_PDA_KJW에 붙은
+             CompProperties_ProjectileEffecter로 KOR_biggest_MuzzleFlash를 냈다.
+             CE 발사체는 그 comp를 타지 않으므로 무기 쪽에서 재생하도록 옮긴다.
+             (KorossaCEpatch.dll / MuzzleFlashPatch.cs) -->
+        <modExtensions>
+            <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+                <effecter>KOR_biggest_MuzzleFlash</effecter>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+</Defs>

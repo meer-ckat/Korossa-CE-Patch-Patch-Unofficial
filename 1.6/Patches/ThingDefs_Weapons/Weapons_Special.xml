@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 레이저/레버액션 2종(Lasgun/Saddlegun)을 MakeGunCECompatible로 CE 변환,
+     끝에 Lasgun/Saddlegun/AMR 3개 defName 공통 근접 툴 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_Lasgun (에너지 라이플). CE 변환. -->
+	<!-- KJW_Lasgun (레이저) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Lasgun</defName>
+		<statBases>
+			<SightsEfficiency>1.00</SightsEfficiency>
+			<ShotSpread>0.05</ShotSpread>
+			<SwayFactor>0.80</SwayFactor>
+			<Bulk>3.0</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>50</range>
+			<soundCast>Laser</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Saddlegun (레버액션) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Saddlegun</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>0.90</SwayFactor>
+			<Bulk>3.5</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Saddlegun_KJW</defaultProjectile>
+			<warmupTime>1.7</warmupTime>
+			<range>45</range>
+			<soundCast>Lever_fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_357Magnum_Lever</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_Lasgun" or
+			defName="KJW_Saddlegun" or
+			defName="KJW_AMR"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: SMG 9종(MPX/MPX_spc/MPX_TAC/SPC/mpsd/TJNC/TACTJNC/Urmmmiforgor/ILLEGAL)을
+     MakeGunCECompatible로 CE 변환, 끝에 9종 공통 근접 툴(grip/muzzle) 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_MPX (베이스라인 SMG). CE 변환 - 9x19mm 30발. -->
+	<!-- KJW_MPX : 베이스라인 올라운더 SMG. 모든 지표 평균, 역할의 기준점 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_MPX</defName>
+		<statBases>
+			<SightsEfficiency>0.74</SightsEfficiency>
+			<ShotSpread>0.15</ShotSpread>
+			<SwayFactor>0.78</SwayFactor>
+			<Bulk>2.7</Bulk>
+			<Mass>2.6</Mass>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.15</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW</defaultProjectile>
+			<warmupTime>0.45</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>26</range>
+			<soundCast>SMG</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.3</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_MPX_spc : SBR/컴팩트. 핸들링·연사↑ 정확도·사거리↓, 근접 돌격용 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_MPX_spc</defName>
+		<statBases>
+			<SightsEfficiency>0.68</SightsEfficiency> <!-- 단축형, 조준↓ -->
+			<ShotSpread>0.18</ShotSpread> <!-- 짧은 총열, 정확도↓ -->
+			<SwayFactor>0.72</SwayFactor> <!-- 짧고 가벼워 흔들림↓ -->
+			<Bulk>2.4</Bulk>
+			<Mass>2.3</Mass>
+			<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown> <!-- 스냅사격↑ -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.3</recoilAmount> <!-- 단총열, 반동↑ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW</defaultProjectile>
+			<warmupTime>0.35</warmupTime> <!-- 빠른 조준 -->
+			<burstShotCount>7</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots> <!-- 발사속도↑ -->
+			<range>22</range> <!-- 단총열, 사거리↓ -->
+			<soundCast>SMG</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>10</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.2</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_MPX_TAC : 광학+소음. 정밀·저반동 but 아음속탄으로 사거리↓ (소음 대가) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_MPX_TAC</defName>
+		<statBases>
+			<SightsEfficiency>0.82</SightsEfficiency> <!-- 광학, 조준↑ -->
+			<ShotSpread>0.13</ShotSpread> <!-- 정밀형 -->
+			<SwayFactor>0.80</SwayFactor>
+			<Bulk>3.0</Bulk> <!-- 부착물, 벌크↑ -->
+			<Mass>2.8</Mass>
+			<RangedWeapon_Cooldown>0.95</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.0</recoilAmount> <!-- 소음기, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW_SL</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>23</range> <!-- 아음속·소음, 사거리 페널티 -->
+			<soundCast>Pistol_silenced</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale> <!-- 소음, 화염↓ -->
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.6</reloadTime>
+			<ammoSet>AmmoSet_9x19mmParaSD</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_SPC : PCC형 통제 특화. 저반동·긴 버스트·사거리↑, 대신 무겁고 핸들링↓ -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_SPC</defName>
+		<statBases>
+			<SightsEfficiency>0.78</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.85</SwayFactor> <!-- 무게로 흔들림↑ -->
+			<Bulk>3.2</Bulk>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown> <!-- 무거워 쿨다운↑ -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.0</recoilAmount> <!-- 중량, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW</defaultProjectile>
+			<warmupTime>0.55</warmupTime>
+			<burstShotCount>8</burstShotCount> <!-- 통제형 긴 연사 -->
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>28</range> <!-- SMG 중 최장 -->
+			<soundCast>SMG</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.6</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_mpsd (MP5SD) : 통합소음. 최저반동·최고 정숙성, 대신 SMG 중 최단 사거리 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_mpsd</defName>
+		<statBases>
+			<SightsEfficiency>0.76</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>0.74</SwayFactor>
+			<Bulk>3.0</Bulk>
+			<Mass>3.2</Mass> <!-- 일체형 소음기, 무게↑ -->
+			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.9</recoilAmount> <!-- 통합소음기, 반동 흡수 최고 -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW_SL</defaultProjectile>
+			<warmupTime>0.45</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>21</range> <!-- 아음속 통합소음, 사거리 페널티 최대 -->
+			<soundCast>SOVIET_silenced</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>3</muzzleFlashScale> <!-- 통합소음, 화염 거의 없음 -->
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmParaSD</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_TJNC : 초소형 버스트 SMG. 4점사·소탄창·빠른 재장전, 근접 특화(반동·사거리↓) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_TJNC</defName>
+		<statBases>
+			<SightsEfficiency>0.66</SightsEfficiency> <!-- 초소형, 조준↓ -->
+			<ShotSpread>0.19</ShotSpread>
+			<SwayFactor>0.70</SwayFactor> <!-- 초경량, 흔들림↓ -->
+			<Bulk>2.3</Bulk>
+			<Mass>2.2</Mass>
+			<RangedWeapon_Cooldown>0.7</RangedWeapon_Cooldown> <!-- 빠른 스냅 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.4</recoilAmount> <!-- 초소형, 반동↑ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_TJNC_KJW</defaultProjectile>
+			<warmupTime>0.35</warmupTime>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots> <!-- 초고속 점사 -->
+			<range>20</range>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3.0</reloadTime> <!-- 소탄창, 빠른 재장전 -->
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_TACTJNC : TJNC 택티컬. 광학+소음으로 정밀·저반동, 대신 사거리 최단급 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_TACTJNC</defName>
+		<statBases>
+			<SightsEfficiency>0.76</SightsEfficiency> <!-- 광학, 조준↑ -->
+			<ShotSpread>0.16</ShotSpread> <!-- 부착물로 소폭 개선 -->
+			<SwayFactor>0.74</SwayFactor>
+			<Bulk>2.6</Bulk>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.1</recoilAmount> <!-- 소음기, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_TJNC_KJW</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<burstShotCount>4</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>19</range> <!-- 소음·초소형, 사거리 페널티 -->
+			<soundCast>Pistol_silenced</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>4</muzzleFlashScale> <!-- 소음, 화염↓ -->
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3.1</reloadTime>
+			<ammoSet>AmmoSet_9x19mmParaSD</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Urmmmiforgor (PDW) : 300BLK PDW, 기존 차별화 유지 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Urmmmiforgor</defName>
+		<statBases>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.77</SwayFactor>
+			<Bulk>2.7</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Urmmmiforgor_KJW</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<range>40</range>
+			<soundCast>NATOsmall_silenced</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_300AACBlackout</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_ILLEGAL (불법소총) : 조악한 자작총, 기존 하향 유지 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_ILLEGAL</defName>
+		<statBases>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.77</SwayFactor>
+			<Bulk>2.7</Bulk>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_illegal_KJW</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<range>19.9</range>
+			<soundCast>Nailgun_two</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>2</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_MPX" or
+			defName="KJW_MPX_spc" or
+			defName="KJW_MPX_TAC" or
+			defName="KJW_SPC" or
+			defName="KJW_mpsd" or
+			defName="KJW_TJNC" or
+			defName="KJW_TACTJNC" or
+			defName="KJW_Urmmmiforgor" or
+			defName="KJW_ILLEGAL"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef/tradeTags/li[text()="CE_AutoEnableCrafting_GWAmmoBench"]</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef/tradeTags/li[text()="CE_AutoEnableCrafting_GWAmmoBench"]</xpath>
+			<value>
+				<li>CE_AutoEnableCrafting_FabricationBench</li>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

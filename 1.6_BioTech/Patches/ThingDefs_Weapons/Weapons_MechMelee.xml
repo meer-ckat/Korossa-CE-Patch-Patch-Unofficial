@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 메크 총기들에 근접 툴(stock/barrel/muzzle)을 부여.
+     장갑차량 계열(Sheridan/LUNCHBOX 계열/ADvulcan/haebyung의 총열 개머리판)은
+     차체 MPa 근접 버프와 동일한 방향으로 강화, 나머지 보병형 메크 총기는 원본 유지.
+     대상 외 무기(coax_lunchbox/TOW_mech/Flamethrower)는 제외. -->
+<Patch>
+
+	<!-- 기존 8종 tools 블록 제거 (있으면). PatchOperationConditional의 단일 블록을
+	     버프/비버프 두 그룹으로 분리하기 위해 우선 제거 후 그룹별로 다시 추가한다. -->
+	<Operation Class="PatchOperationConditional">
+	<xpath>Defs/ThingDef[defName="KOR_Sheridan_gun" or defName="Gun_LUNCHBOX" or defName="KOR_ADvulcan" or defName="mechmg3_krs" or defName="mechsmg_krs" or defName="mechAR_krs" or defName="Gun_HIBIKI" or defName="Gun_haebyung" or defName="KOR_Sheridan_M2HB"]/tools</xpath>
+
+        <match Class="PatchOperationRemove">
+            <xpath>Defs/ThingDef[defName="KOR_Sheridan_gun" or defName="Gun_LUNCHBOX" or defName="KOR_ADvulcan" or defName="mechmg3_krs" or defName="mechsmg_krs" or defName="mechAR_krs" or defName="Gun_HIBIKI" or defName="Gun_haebyung" or defName="KOR_Sheridan_M2HB"]/tools</xpath>
+        </match>
+    </Operation>
+
+	<!--
+		그룹 A (버프): 장갑차량/중화기 계열 - KOR_Sheridan_gun(주포 동축), Gun_LUNCHBOX,
+		KOR_ADvulcan, Gun_haebyung, 그리고 KOR_Sheridan_M2HB(차장 M2HB 터렛, 종전까지
+		tools가 아예 없어 "근접공격 보호구 관통"이 공란으로 표시되던 문제를 겸해 수정).
+		stock/barrel/muzzle 모두 차체 충각(ram) 버프와 동일한 물리 근거(MPa 위주)로 상향.
+	-->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="KOR_Sheridan_gun" or defName="Gun_LUNCHBOX" or defName="KOR_ADvulcan" or defName="Gun_haebyung" or defName="KOR_Sheridan_M2HB"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>52</power>
+					<cooldownTime>2.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>10.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>30</power>
+					<cooldownTime>3.02</cooldownTime>
+					<armorPenetrationBlunt>10.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>45</power>
+					<cooldownTime>2.55</cooldownTime>
+					<armorPenetrationBlunt>10.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- 그룹 B (원본 유지): 보병형 메크 총기 - mechmg3_krs/mechsmg_krs/mechAR_krs/Gun_HIBIKI -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="mechmg3_krs" or defName="mechsmg_krs" or defName="mechAR_krs" or defName="Gun_HIBIKI"]</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

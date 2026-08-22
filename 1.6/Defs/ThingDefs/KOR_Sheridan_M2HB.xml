@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>KOR_Sheridan_M2HB</defName>
+    <label>M2HB 대공기관총</label>
+    <description>"1918년, 종말까지." 152mm와 5.56mm로는 부족했나요? 땅 위에 서고자 하는 염치 없는 존재들을 mg 단위로 분해시키는 데 효과적입니다. 안타깝게도 고저 장치에 고질병이 있어 하늘을 보지 못하는 대공기관총입니다.</description>
+    <graphicData>
+      <texPath>Things/Weapon/KOR/Sheridan_M2HB/Sheridan_M2HB</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>3</drawSize>
+    </graphicData>
+    <equipmentType>Primary</equipmentType>
+    <weaponTags>
+      <li>KOR_Sheridan_M2HB</li>
+    </weaponTags>
+    <statBases>
+      <MarketValue>1000</MarketValue>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <range>75</range>
+        <burstShotCount>16</burstShotCount>
+        <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+      </li>
+    </verbs>
+
+    <!-- 이 패치 모드가 새로 만든 무기라 원본 발사체가 없어 총구화염이 아예 없었다.
+         (KorossaCEpatch.dll / MuzzleFlashPatch.cs가 CE 사격 1발마다 재생)
+
+         Effecter: 같은 .50 BMG인 원본 KJW_M2a(Bullet_M2_KJW)와 동일한 KOR_Big_MuzzleFlash.
+
+         offsetOverride: 이 무기는 Mech_Sheridan의 CompProperties_TurretGun으로
+         PawnRenderNode_TurretGun / overrideMeshSize (1,1) 로 폰 몸통 중심에 1칸 크기로
+         그려진다. 스프라이트(512x512)에서 총구 끝은 위쪽 y=17 → 중심에서 약 0.47칸.
+         반면 KOR_Big_MuzzleFlash의 기본 offsetTowardsTarget은 보병 총기 기준 1.6칸이라
+         화염이 총구보다 1칸 넘게 앞에 떴다. 실제 총구 위치인 0.5로 고정. -->
+    <modExtensions>
+      <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+        <effecter>KOR_Big_MuzzleFlash</effecter>
+        <offsetOverride>0.5</offsetOverride>
+      </li>
+    </modExtensions>
+  </ThingDef>
+</Defs>

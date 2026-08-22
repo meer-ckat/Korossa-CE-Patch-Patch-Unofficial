@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RoyalTitlePermitDef[defName="KOR_ATweapons_Tier2"]/royalAid/itemsToDrop</xpath>
+		<value>
+			<itemsToDrop>
+				<Ammo_127mmMissile_HEAT>5</Ammo_127mmMissile_HEAT>
+			</itemsToDrop>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/RoyalTitlePermitDef[defName="KOR_ATweapons_Tier3"]/royalAid/itemsToDrop</xpath>
+		<value>
+			<itemsToDrop>
+				<MGM_51_Missile>5</MGM_51_Missile>
+				<Korossa_apparel_DRAGON>2</Korossa_apparel_DRAGON>
+			</itemsToDrop>
+		</value>
+	</Operation>
+
+</Patch>

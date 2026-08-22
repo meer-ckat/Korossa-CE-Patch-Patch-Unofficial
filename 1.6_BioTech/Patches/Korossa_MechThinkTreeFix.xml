@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Only Sheridan and TOW explicitly selected Korossa's reload-aware tree.
+    Assign it to every other Korossa mech race so combat acquisition and reload
+    behavior do not vary merely because a race inherited vanilla Mechanoid.
+  -->
+  <Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Biotech">
+    <xpath>/Defs/ThingDef[
+      defName="Mech_LUNCHBOX" or
+      defName="Mech_ADlunchbox" or
+      defName="Mech_Flamelunchbox" or
+      defName="Mech_HIBIKI" or
+      defName="Mech_haebyung" or
+      defName="Mech_krsgoliath"
+    ]/race</xpath>
+    <value>
+      <thinkTreeMain>Mech_kor_reload</thinkTreeMain>
+    </value>
+  </Operation>
+
+  <!-- Keep the custom copy aligned with RimWorld 1.6's Odyssey behavior. -->
+  <Operation Class="PatchOperationConditional" MayRequire="Ludeon.RimWorld.Biotech">
+    <xpath>/Defs/ThinkTreeDef[defName="Mech_kor_reload"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalDeactivated"]</xpath>
+    <nomatch Class="PatchOperationInsert">
+      <xpath>/Defs/ThinkTreeDef[defName="Mech_kor_reload"]/thinkRoot/subNodes/li[@Class="ThinkNode_Subtree" and treeDef="Downed"]</xpath>
+      <value>
+        <li Class="ThinkNode_ConditionalDeactivated" MayRequire="Ludeon.RimWorld.Odyssey">
+          <subNodes>
+            <li Class="JobGiver_Deactivated" />
+          </subNodes>
+        </li>
+      </value>
+    </nomatch>
+  </Operation>
+
+  <!--
+    Korossa's Mech_kor_reload is based on the vanilla Mechanoid think tree, but
+    omits the vanilla fallback that lets non-player-controlled mechs acquire and
+    fight nearby hostiles.  Mechs without a Lord (notably dev-spawned enemies)
+    therefore fall straight through to wandering and never use their weapons.
+  -->
+  <Operation Class="PatchOperationConditional" MayRequire="Ludeon.RimWorld.Biotech">
+    <xpath>/Defs/ThinkTreeDef[defName="Mech_kor_reload"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalPlayerControlledMech" and invert="true"]/subNodes/li[@Class="JobGiver_AIFightEnemies"]</xpath>
+    <nomatch Class="PatchOperationInsert">
+      <xpath>/Defs/ThinkTreeDef[defName="Mech_kor_reload"]/thinkRoot/subNodes/li[@Class="ThinkNode_Tagger" and tagToGive="Idle"]</xpath>
+      <value>
+        <li Class="ThinkNode_ConditionalPlayerControlledMech">
+          <invert>true</invert>
+          <subNodes>
+            <li Class="JobGiver_AIFightEnemies">
+              <targetAcquireRadius>90</targetAcquireRadius>
+              <targetKeepRadius>100</targetKeepRadius>
+            </li>
+          </subNodes>
+        </li>
+      </value>
+    </nomatch>
+  </Operation>
+
+</Patch>

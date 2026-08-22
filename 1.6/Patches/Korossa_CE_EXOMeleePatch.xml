@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- =========================================================================
+	     EXOSUIT 전용 중화기(KJW_AMR / AMAR_Kinetic / ATM_EXO / AMHMG / HVMMG / SG_EXO /
+	     Rsevenhundred) 의 근접 툴 CE 변환.
+	     랜지드는 CE화됐으나 근접 툴이 바닐라 Tool이라 armorPenetration이 없어 근접 관통 0.
+	     → CombatExtended.ToolCE로 교체 + 관통(Blunt=MPa) 부여.
+	     값: 모드 근접 관례(power x 0.344). power 9 → armorPenetrationBlunt 3.1.
+	     7종 툴 구조가 동일해 한 번에 교체.
+	     ========================================================================= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KJW_AMR" or defName="KJW_AMAR_Kinetic" or defName="KJW_ATM_EXO" or defName="KJW_AMHMG" or defName="KJW_HVMMG" or defName="KJW_SG_EXO" or defName="KJW_Rsevenhundred"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>3.1</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+						<li>Poke</li>
+					</capacities>
+					<power>9</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>3.1</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

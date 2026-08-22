@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 레시피: 7.56x40mm FMJ 500발 제작. Korossa_weapon_MERC 연구 선행. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_756x40Kor_FMJ</defName>
+    <label>7.56x40mm (FMJ) 500발 제작</label>
+    <description>7.56x40mm FMJ 500발을 제작합니다.</description>
+    <jobString>7.56x40mm FMJ 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_756x40Kor_FMJ>500</Ammo_756x40Kor_FMJ>
+    </products>
+    <workAmount>4900</workAmount>
+  </RecipeDef>
+
+  <!-- 신규 레시피: 7.56x40mm AP 500발 제작. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_756x40Kor_AP</defName>
+    <label>7.56x40mm (AP) 500발 제작</label>
+    <description>7.56x40mm AP 500발을 제작합니다.</description>
+    <jobString>7.56x40mm AP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_756x40Kor_AP>500</Ammo_756x40Kor_AP>
+    </products>
+    <workAmount>6900</workAmount>
+  </RecipeDef>
+
+  <!-- 신규 레시피: 7.56x40mm HP 500발 제작. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_756x40Kor_HP</defName>
+    <label>7.56x40mm (HP) 500발 제작</label>
+    <description>7.56x40mm HP 500발을 제작합니다.</description>
+    <jobString>7.56x40mm HP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_756x40Kor_HP>500</Ammo_756x40Kor_HP>
+    </products>
+    <workAmount>5400</workAmount>
+  </RecipeDef>
+
+  <!-- 신규 레시피: 7.56x40mm Sabot 500발 제작(우라늄 관통자, Crafting10 요구). -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_756x40Kor_Sabot</defName>
+    <label>7.56x40mm (Sabot) 500발 제작</label>
+    <description>7.56x40mm Sabot 500발을 제작합니다.</description>
+    <jobString>7.56x40mm Sabot 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Uranium</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Uranium</li>
+        <li>Chemfuel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_756x40Kor_Sabot>500</Ammo_756x40Kor_Sabot>
+    </products>
+    <workAmount>11200</workAmount>
+    <skillRequirements>
+      <Crafting>10</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

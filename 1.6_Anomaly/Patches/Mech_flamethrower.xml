@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일(Anomaly DLC): KOR_Flamethrower CE 변환, Mech_Flamelunchbox 탄약/장갑
+     보정, KOR_Flamethrower 근접 툴 부여. -->
+<Patch>
+
+	<!-- 대상: KOR_Flamethrower. CE 변환 - Prometheum 연료 240 용량 화염방사기. -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KOR_Flamethrower</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>5.0</ShotSpread>
+			<SwayFactor>1.38</SwayFactor>
+			<Bulk>10</Bulk>
+			<Mass>3.0</Mass>
+			<RangedWeapon_Cooldown>0.39</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.33</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Flamethrower_Prometheum</defaultProjectile>
+			<ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+			<warmupTime>0.6</warmupTime>
+			<range>25</range>
+			<minRange>9</minRange>
+			<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+			<burstShotCount>40</burstShotCount>
+			<soundCast>HissFlamethrower</soundCast>
+			<muzzleFlashScale>0</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>240</magazineSize>
+			<reloadTime>15</reloadTime>
+			<ammoSet>AmmoSet_Flamethrower</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>10</aimedBurstShotCount>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- Mech_Flamelunchbox : 로드아웃 목록에 없어 연료(탄약) 미공급 → 추가 -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/PawnKindDef[defName="Mech_Flamelunchbox"]</xpath>
+		<value>
+			<li Class="CombatExtended.LoadoutPropertiesExtension">
+				<primaryMagazineCount>
+					<min>2</min>
+					<max>3</max>
+				</primaryMagazineCount>
+			</li>
+		</value>
+	</Operation>
+
+	<!--
+		Flamelunchbox uses the same Centurion/LUNCHBOX chassis, but its vanilla
+		percentage armor (0.95 sharp / 0.25 blunt) was being read by CE as less
+		than 1 mm.  Match the regular LUNCHBOX's 30 mm hull and weak-point ratios.
+	-->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Flamelunchbox"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Flamelunchbox"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+	</Operation>
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_Flamelunchbox"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.53</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.53</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Foot</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+						<parts>
+							<li>ArtificialBrain</li>
+							<li>Reactor</li>
+							<li>FluidReprocessor</li>
+							<li>BulbTurret</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Flamelunchbox"]/statBases</xpath>
+		<value>
+			<CarryWeight>150</CarryWeight>
+			<CarryBulk>100</CarryBulk>
+			<Suppressability>0</Suppressability>
+			<SmokeSensitivity>0.5</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- KOR_Flamethrower 근접 툴 패치 (tools 있으면 교체, 없으면 추가) -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="KOR_Flamethrower"]/tools</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>Defs/ThingDef[defName="KOR_Flamethrower"]/tools</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="KOR_Flamethrower"]</xpath>
+			<value>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>stock</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<chanceFactor>1.5</chanceFactor>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5</power>
+						<cooldownTime>2.02</cooldownTime>
+						<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+					</li>
+					<li Class="CombatExtended.ToolCE">
+						<label>muzzle</label>
+						<capacities>
+							<li>Poke</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>1.55</cooldownTime>
+						<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+						<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+					</li>
+				</tools>
+			</value>
+		</nomatch>
+	</Operation>
+</Patch> 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 탄약군: 120mm 대인로켓, Gun_rocketpod_lunchbox(ADlunchbox 로켓포드) 전용.
+       HE 단일 종류 + HE/EMP 이중 폭발 투사체 + AmmoSet으로 구성. -->
+  <!-- ===================== AMMO CATEGORY ===================== -->
+  <ThingCategoryDef>
+    <defName>Ammo_120mmrocket</defName>
+    <label>120mm Rocket</label>
+    <parent>AmmoMissiles</parent>
+  </ThingCategoryDef>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_120mmrocketBase" ParentName="AmmoBase" Abstract="True">
+    <description>A huge, beautiful 120mm anti-personnel rocket. Blast and fragmentation vaporize infantry, but it is useless against armored vehicles.</description>
+    <statBases>
+      <!-- 8발 예비탄이 CarryWeight 160을 전부 초과하지 않도록 운용 질량 정상화. -->
+      <Mass>12.0</Mass>
+      <Bulk>12</Bulk>
+      <MarketValue>40</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_120mmrocket</li>
+    </thingCategories>
+    <stackLimit>4</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_120mmrocketBase">
+    <defName>Ammo_120mmrocket_HE</defName>
+    <label>120mm anti-personnel rocket (HE)</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/Rocket_120mm_HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass> <!-- 단일 png. 스택별 그래픽을 원하면 폴더 + _a/_b/_c 구성 후 Graphic_StackCount로 -->
+      <drawSize>1.2</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILE ===================== -->
+  <ThingDef Name="Base120mmrocket" ParentName="BaseBulletCE" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Rocket_120mm_HE</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <drawSize>1.4</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>40</speed>
+      <flyOverhead>false</flyOverhead> <!-- 직사 로켓 -->
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>10</damageAmountBase> <!-- 직격은 소량, 폭발/파편이 주력 -->
+      <armorPenetrationSharp>4</armorPenetrationSharp>
+      <armorPenetrationBlunt>10</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+      <!-- 1) HE 폭압 (대인) -->
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <damageAmountBase>25</damageAmountBase>
+        <explosiveRadius>3.0</explosiveRadius>
+        <!--<soundExplode>MortarBomb_Explode</soundExplode>-->
+      </li>
+      <!-- 2) CE 네이티브 파편 (shrapnel) -->
+      <li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Small>45</Fragment_Small> <!-- 80→45 너프: 대인 즉사 완화(여전히 강력) -->
+				</fragments>
+			</li>
+      <!-- 3) EMP 버스트 (대메크/실드) -->
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <explosiveDamageType>EMP</explosiveDamageType>
+        <damageAmountBase>30</damageAmountBase>
+        <explosiveRadius>2.0</explosiveRadius> <!-- 2.5→2.0 소폭 너프 -->
+      </li>
+      <!-- 고속 로켓용 CE 네이티브 복합 트레일. -->
+      <li Class="CombatExtended.CompProperties_ProjectileFleck">
+        <FleckDatas>
+          <li>
+            <fleck>Fleck_KOR_LongRocketFlame</fleck>
+            <emissionsPerTick>3</emissionsPerTick>
+            <flecksPerEmission>2</flecksPerEmission>
+            <scale>2.4</scale>
+            <cutoffTickRange>45~75</cutoffTickRange>
+            <originOffset>0.4</originOffset>
+          </li>
+          <li>
+            <fleck>Fleck_KOR_LongSmoke</fleck> <!-- 장수명 연기 = 긴 꼬리 -->
+            <emissionsPerTick>1</emissionsPerTick>
+            <flecksPerEmission>1</flecksPerEmission>
+            <rotation>0~360</rotation>
+            <scale>1.6</scale>
+          </li>
+          <li>
+            <fleck>Fleck_CERocketSmoke</fleck>
+            <emissionsPerTick>0.5</emissionsPerTick>
+            <flecksPerEmission>1</flecksPerEmission>
+            <rotation>0~360</rotation>
+            <scale>1</scale>
+            <cutoffTickRange>20~50</cutoffTickRange>
+          </li>
+        </FleckDatas>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="Base120mmrocket">
+    <defName>Bullet_120mmrocket_HE</defName>
+    <label>120mm anti-personnel rocket warhead</label>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_120mmrocket</defName>
+    <label>120mm anti-personnel rocket</label>
+    <ammoTypes>
+      <Ammo_120mmrocket_HE>Bullet_120mmrocket_HE</Ammo_120mmrocket_HE>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

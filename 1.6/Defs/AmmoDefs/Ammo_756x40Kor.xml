@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+
+  <!-- 신규 탄약군: 7.56x40mm, TARX(KJW_TARX) 불펍 라이플 전용. FMJ/AP/HP/Sabot
+       4종 + 대응 투사체 + AmmoSet으로 구성. -->
+  <ThingCategoryDef>
+		<defName>Ammo_756x40Kor</defName>
+		<label>7.56x40mm</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/KOR/756x40_FMJ/756x40_FMJ_a</iconPath>
+  </ThingCategoryDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_756x40KorBase" ParentName="AmmoBase" Abstract="True">
+    <description>A 7.56x40mmround developed by the mercenary company VEK. A modernized derivative of the old-world 7.62x39mm, chambered in the TARX-100 bullpup rifle.</description>
+    <statBases>
+      <Mass>0.012</Mass>
+      <Bulk>0.012</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_756x40Kor</li>
+    </thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_756x40KorBase">
+    <defName>Ammo_756x40Kor_FMJ</defName>
+    <label>7.56x40mmFMJ</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_756x40KorBase">
+    <defName>Ammo_756x40Kor_AP</defName>
+    <label>7.56x40mmAP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_756x40KorBase">
+    <defName>Ammo_756x40Kor_HP</defName>
+    <label>7.56x40mmHP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_756x40KorBase">
+    <defName>Ammo_756x40Kor_Sabot</defName>
+    <label>7.56x40mmSabot</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/756x40_Sabot</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <statBases>
+      <Mass>0.010</Mass>
+      <Bulk>0.012</Bulk>
+    </statBases>
+    <ammoClass>Sabot</ammoClass>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILES ===================== -->
+
+  <ThingDef Name="756x40KorbulletBase" ParentName="BaseBulletCE" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>145</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="756x40KorbulletBase">
+    <defName>Bullet_756x40Kor_FMJ</defName>
+    <label>7.56x40mmFMJ bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 현대화 7.62x39 역할: 5.56보다 강한 저지력, 7.62 NATO보다는 낮은 위력. -->
+      <!-- 2026-07-28 상향: 경쟁 CE패치 대응, +4dmg/+2.5mm RHA -->
+      <damageAmountBase>20</damageAmountBase>
+      <armorPenetrationSharp>9</armorPenetrationSharp>
+
+      <armorPenetrationBlunt>49</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="756x40KorbulletBase">
+    <defName>Bullet_756x40Kor_AP</defName>
+    <label>7.56x40mmAP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 2026-07-28 상향: +3dmg/+4mm RHA -->
+      <damageAmountBase>13</damageAmountBase>
+      <armorPenetrationSharp>17</armorPenetrationSharp>
+      <armorPenetrationBlunt>49</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="756x40KorbulletBase">
+    <defName>Bullet_756x40Kor_HP</defName>
+    <label>7.56x40mmHP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 2026-07-28 상향: +4dmg -->
+      <damageAmountBase>24</damageAmountBase>
+      <armorPenetrationSharp>4</armorPenetrationSharp>
+      <armorPenetrationBlunt>49</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="756x40KorbulletBase">
+    <defName>Bullet_756x40Kor_Sabot</defName>
+    <label>7.56x40mmSabot bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>195</speed>
+      <!-- 2026-07-28 상향: +2dmg/+6mm RHA -->
+      <damageAmountBase>10</damageAmountBase>
+      <armorPenetrationSharp>27</armorPenetrationSharp>
+      <armorPenetrationBlunt>64</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+
+  <!-- 위 4종 탄약과 투사체를 연결하는 AmmoSet. KJW_TARX의 ammoSet으로 참조. -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_756x40mmKor</defName>
+    <label>7.56x40mm VEK</label>
+    <ammoTypes>
+      <Ammo_756x40Kor_FMJ>Bullet_756x40Kor_FMJ</Ammo_756x40Kor_FMJ>
+      <Ammo_756x40Kor_AP>Bullet_756x40Kor_AP</Ammo_756x40Kor_AP>
+      <Ammo_756x40Kor_HP>Bullet_756x40Kor_HP</Ammo_756x40Kor_HP>
+      <Ammo_756x40Kor_Sabot>Bullet_756x40Kor_Sabot</Ammo_756x40Kor_Sabot>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

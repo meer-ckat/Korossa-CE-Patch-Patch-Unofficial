@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <AbilityDef>
+    <defName>KOR_Sheridan_SmokeDischarger</defName>
+    <label>연막 차장</label>
+    <description>전방에 연막탄 4발을 발사합니다. 연막은 사격 정확도를 떨어뜨리고 반자동 시선유도 미사일을 교란합니다. 문제는 정작 자신도 연막 너머로 제대로 쏠 수 없다는 것입니다.</description> <!-- 번역 하기 귀찮아ㅏㅏㅏㅏㅏㅏㅏ -->
+    <iconPath>UI/Abilities/MechSmokepop</iconPath> <!--번역도 어차피 ai 딸깍이긴 한데 걍 귀찮음-->
+    <cooldownTicksRange>1800</cooldownTicksRange>
+    <displayOrder>190</displayOrder>
+    <aiCanUse>false</aiCanUse>
+    <hostile>false</hostile>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>5</range>
+      <warmupTime>0.4</warmupTime>
+      <soundCast>Shot_IncendiaryLauncher</soundCast>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetBuildings>true</canTargetBuildings>
+        <canTargetSelf>false</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="KorossaCEPatch.CompProperties_AbilityLaunchTankSmokeGrenade">
+        <projectileDef>KOR_Sheridan_SmokeGrenade</projectileDef>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <ThingDef ParentName="BaseExplosiveBullet">
+    <defName>KOR_Sheridan_SmokeGrenade</defName>
+    <label>Sheridan smoke grenade</label>
+    <thingClass>KorossaCEPatch.TankSmokeGrenadeProjectile</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/ShellEMP</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <color>(140,135,156)</color>
+      <drawSize>0.8</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>0</speed>
+      <damageDef>Smoke</damageDef>
+      <damageAmountBase>1</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0</armorPenetrationBlunt>
+      <explosionRadius>4.5</explosionRadius>
+      <postExplosionGasType>BlindSmoke</postExplosionGasType>
+      <gravityFactor>5</gravityFactor>
+      <flyOverhead>true</flyOverhead>
+      <castShadow>true</castShadow>
+      <shadowSize>0.4</shadowSize>
+      <dangerFactor>0</dangerFactor>
+      <suppressionFactor>0</suppressionFactor>
+  </projectile>
+  <comps>
+    <li Class="CombatExtended.CompProperties_ProjectileFleck">
+      <FleckDatas>
+        <li>
+          <fleck>Fleck_CERocketSmokeTrail</fleck>
+          <emissionsPerTick>0.5</emissionsPerTick>
+          <rotation>0~360</rotation>
+          <scale>2</scale>
+          <flecksPerEmission>1</flecksPerEmission>
+        </li>
+      </FleckDatas>
+    </li>
+  </comps>
+  <modExtensions>
+      <li Class="KorossaCEPatch.TankSmokeGrenadeExtension">
+        <fuseTicks>60</fuseTicks>
+        <launchAngleDegrees>45</launchAngleDegrees>
+        <salvoCount>4</salvoCount>
+        <salvoWidth>3</salvoWidth>
+        <salvoIntervalTicks>10</salvoIntervalTicks>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

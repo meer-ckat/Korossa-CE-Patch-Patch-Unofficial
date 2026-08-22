@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 탄약군: 127mm ATGM(Korossa_TOW 등) + 셰리든 152mm 포발사 MGM-51 Shillelagh.
+       유도 투사체(Base127mmMissile, C# GuidedMissileTrajectoryWorker 사용) 포함. -->
+  <!-- ===================== AMMO CATEGORY ===================== -->
+  <ThingCategoryDef>
+    <defName>Ammo_127mmMissile</defName>
+    <label>127mm Missile</label>
+    <parent>AmmoMissiles</parent>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>Ammo_MGM_51</defName>
+    <label>152mm Missile</label>
+    <parent>AmmoMissiles</parent>
+    <iconPath>Things/Ammo/KOR/MGM_51/MGM_51_Ammo_c</iconPath>
+  </ThingCategoryDef>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_127mmMissileBase" ParentName="AmmoBase" Abstract="True">
+    <description></description>
+    <statBases>
+      <Mass>8.0</Mass>
+      <Bulk>16</Bulk>
+      <MarketValue>300</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_127mmMissile</li>
+    </thingCategories>
+    <stackLimit>5</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_127mmMissileBase">
+    <defName>Ammo_127mmMissile_HEAT</defName>
+    <label>127mm anti-tank guided missile (HEAT)</label>
+    <ammoClass>RocketHEAT</ammoClass>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/127mmATGM</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <!-- M551 Sheridan의 152mm 포발사 MGM-51 Shillelagh. -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_127mmMissileBase">
+    <!-- ThingDef defName은 숫자로 끝날 수 없어 _Missile 접미사를 사용한다. -->
+    <defName>MGM_51_Missile</defName>
+    <label>MGM-51X</label>
+    <description>미사일, 유도, 152mm, 대전차, 상부공격, 다목적, MGM-51X.\n\nMERC에서... (중략) 그렇게 되어 개발한 것이 땅에서 파낸 MGM-51을 기반으로 제작한 다목적상부공격날개분리안정철갑소이고폭유산탄점착경심철갑대전차유도미사일 MGM-51X 입니다. 좋았던 시절을 끝장내는데 효과적입니다.</description>
+    <ammoClass>RocketHEAT</ammoClass>
+    <statBases>
+      <Mass>27</Mass>
+      <Bulk>24</Bulk>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/MGM_51</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>1.2</drawSize>
+    </graphicData>
+    <thingCategories Inherit="False">
+      <li>Ammo_MGM_51</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILE ===================== -->
+  <ThingDef Name="Base127mmMissile" ParentName="BaseBulletCE" Abstract="true">
+    <thingClass>KorossaCEPatch.ShillelaghMissileProjectile</thingClass>
+    <graphicData>
+      <texPath>Things/Projectile/MGM_51/MGM_51_launch</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.2</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>120</damageAmountBase> <!-- HEAT 관통제트: 직격 데미지 -->
+      <armorPenetrationSharp>550</armorPenetrationSharp> <!-- 최상급 대전차 관통(84mm HEAT 400 대비 상향) -->
+      <armorPenetrationBlunt>120</armorPenetrationBlunt>
+      <speed>22</speed> <!-- 등속 유도라 이 속도가 유지됨(무한가속 없음) -->
+      <flyOverhead>false</flyOverhead> <!-- 직사 유도 -->
+      <gravityFactor>0.1</gravityFactor> <!-- 거의 직선 비행. 워커가 표적 높이로도 조향하지만 낙하 최소화 -->
+      <castShadow>false</castShadow> <!-- 그림자 끔: 유도로 본체는 회전하나 CE 그림자는 발사각 고정이라 불일치(그림자만 안 돎) -->
+
+      <!-- 커스텀 회전-조향 유도 (KorossaCEpatch.dll):
+           velocity를 표적 방향으로 회전만 시켜 등속 유지. 민첩성은 아래 turnRate로 조절. -->
+      <trajectoryWorker>KorossaCEPatch.GuidedMissileTrajectoryWorker</trajectoryWorker>
+      <soundAmbient>RocketPropelledLoop_Small</soundAmbient>
+    </projectile>
+    <comps>
+      <!-- HEAT 후폭발 (대인/장갑 파편) -->
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>130</damageAmountBase>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <explosiveRadius>1.5</explosiveRadius>
+        <explosionSound>MortarBomb_Explode</explosionSound>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+      <li Class="CombatExtended.CompProperties_Fragments">
+        <fragments>
+          <!-- 직격 HEAT 제트(120/550)가 주효과. 파편은 제한적인 전방 스폴만 표현. -->
+          <Fragment_Large>8</Fragment_Large>
+          <Fragment_Small>12</Fragment_Small>
+        </fragments>
+         <fragAngleRange>-5~5</fragAngleRange>
+      </li>
+      <!-- CE 네이티브 복합 로켓 트레일: 엔진 화염 + 장수명 궤적 + 진한 연기. -->
+      <li Class="KorossaCEPatch.CompProperties_ProjectileFleckAfterDeployment">
+        <FleckDatas>
+          <!-- 지속 추진 ATGM: 명중할 때까지 풍성한 엔진 화염을 방출한다. -->
+          <li>
+            <fleck>Fleck_KOR_LongATGMFlame</fleck>
+            <emissionsPerTick>2.5</emissionsPerTick>
+            <flecksPerEmission>2</flecksPerEmission>
+            <scale>2.1</scale>
+            <originOffset>0.4</originOffset>
+          </li>
+          <li>
+            <fleck>Fleck_KOR_LongSmoke</fleck> <!-- 장수명 연기 = 긴 꼬리 -->
+            <emissionsPerTick>0.75</emissionsPerTick>
+            <flecksPerEmission>1</flecksPerEmission>
+            <rotation>0~360</rotation>
+            <scale>1.6</scale>
+          </li>
+          <li>
+            <fleck>Fleck_CERocketSmoke</fleck>
+            <emissionsPerTick>0.5</emissionsPerTick>
+            <flecksPerEmission>1</flecksPerEmission>
+            <rotation>0~360</rotation>
+            <scale>1</scale>
+            <cutoffTickRange>25~60</cutoffTickRange>
+          </li>
+        </FleckDatas>
+      </li>
+    </comps>
+    <modExtensions>
+      <!-- 유도 튜닝: 회전율(틱당 도). 3 = 초당 180도. 클수록 민첩(잘 꺾음). 등속이라 과속 걱정 없음 -->
+      <li Class="KorossaCEPatch.GuidedMissileExtension">
+        <turnRateDegPerTick>3</turnRateDegPerTick>
+        <guidanceDelayTicks>3</guidanceDelayTicks>
+        <aheadDegree>30</aheadDegree> <!-- SACLOS: 진행방향 ±30도 안쪽 표적만 조향(급회전 불가) -->
+        <onlyWhenAhead>true</onlyWhenAhead>
+        <!-- 60 TPS 기준 12틱 = 0.2초. 이 순간 날개 전개와 Trail 방출을 함께 시작한다. -->
+        <deploymentTicks>20</deploymentTicks>
+        <launchGraphicPath>Things/Projectile/MGM_51/MGM_51_launch</launchGraphicPath>
+        <flightGraphicPath>Things/Projectile/MGM_51/MGM_51_fly</flightGraphicPath>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+  <ThingDef ParentName="Base127mmMissile">
+    <defName>Bullet_127mmMissile_HEAT</defName>
+    <label>127mm anti-tank guided missile warhead</label>
+  </ThingDef>
+
+  <!-- MGM_51_Missile 탄약이 실제로 발사하는 launch -> fly 전환형 투사체. -->
+  <ThingDef ParentName="Base127mmMissile">
+    <defName>Bullet_MGM_51_Missile</defName>
+    <label>MGM-51X Shillelagh missile</label>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_127mmMissile</defName>
+    <label>127mm anti-tank guided missile</label>
+    <ammoTypes>
+      <Ammo_127mmMissile_HEAT>Bullet_127mmMissile_HEAT</Ammo_127mmMissile_HEAT>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <!-- M551 Sheridan의 152mm 주포는 통상 포탄과 포발사 미사일을 같은 약실에서 사용한다.
+       CE 공용 152mm AmmoSet을 수정하지 않고 Sheridan 전용 혼합 세트를 둬서
+       다른 152mm 화포가 MGM-51을 장전하는 일을 막는다. -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_KOR_Sheridan152mm</defName>
+    <label>152mm shells and gun-launched missiles</label>
+    <ammoTypes>
+      <Ammo_152mmHowitzerShell_HEAT>Bullet_152mmHowitzerShell_HEAT_directfire</Ammo_152mmHowitzerShell_HEAT>
+      <Ammo_152mmHowitzerShell_HE>Bullet_152mmHowitzerShell_HE_directfire</Ammo_152mmHowitzerShell_HE>
+      <Ammo_152mmHowitzerShell_Incendiary>Bullet_152mmHowitzerShell_Incendiary_directfire</Ammo_152mmHowitzerShell_Incendiary>
+      <MGM_51_Missile>Bullet_MGM_51_Missile</MGM_51_Missile>
+    </ammoTypes>
+    <isMortarAmmoSet>true</isMortarAmmoSet>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

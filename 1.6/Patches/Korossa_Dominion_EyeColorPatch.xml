@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!--걍 넣어 본것, 뭐 필요 없으면 지워도 될듯?-->
+  <!-- 대상: Korossa_Dominion FactionDef (FacialAnimation 모드 필요). modExtensions에
+       KRSEyeColorPatch.FactionEyeColorExtension을 추가해 파벌 눈동자 색상 범위를 지정.
+       CE 패치가 아니라 부가적인 시각 커스터마이징. -->
+  <Operation Class="PatchOperationAdd" MayRequire="nals.facialanimation">
+    <xpath>Defs/FactionDef[defName="Korossa_Dominion"]</xpath>
+    <value>
+      <modExtensions>
+        <li Class="KRSEyeColorPatch.FactionEyeColorExtension">
+          <minColor>(0.102, 0.5529, 0.9725)</minColor>
+          <maxColor>(0.1569, 0.6078, 1.0)</maxColor>
+        </li>
+      </modExtensions>
+    </value>
+  </Operation>
+
+</Patch>

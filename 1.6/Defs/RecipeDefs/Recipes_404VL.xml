@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 레시피: .404VL FMJ 20발 제작(Gold 재료 포함, Crafting5 요구). -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_404VL_FMJ</defName>
+    <label>.404VL (FMJ) 20발 제작</label>
+    <description>.404VL FMJ 20발을 제작합니다.</description>
+    <jobString>.404VL FMJ 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Gold</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Gold</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_404VL_FMJ>20</Ammo_404VL_FMJ>
+    </products>
+    <workAmount>6500</workAmount>
+    <skillRequirements>
+      <Crafting>5</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+  <!-- 신규 레시피: .404VL AP 20발 제작(Crafting7 요구). -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_404VL_AP</defName>
+    <label>.404VL (AP) 20발 제작</label>
+    <description>.404VL AP 20발을 제작합니다.</description>
+    <jobString>.404VL AP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Gold</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Gold</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_404VL_AP>20</Ammo_404VL_AP>
+    </products>
+    <workAmount>9000</workAmount>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

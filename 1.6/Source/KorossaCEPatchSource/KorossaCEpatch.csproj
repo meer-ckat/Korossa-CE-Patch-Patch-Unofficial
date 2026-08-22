@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    VS Code / dotnet build 용 프로젝트 파일.
+    VS Code에는 "Add Reference" GUI가 없어서 참조를 여기 직접 써넣음.
+    필요 확장: "C# Dev Kit"(또는 C#/OmniSharp) + .NET SDK 설치.
+    빌드: 이 폴더에서  dotnet build -c Release
+    결과 DLL은 post-build로 1.6/Assemblies 에 자동 복사됨(게임 꺼져 있어야 함).
+
+    ※ 참조 경로가 네 PC와 다르면 아래 HintPath만 고치면 됨.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>KorossaCEpatch</AssemblyName>
+    <RootNamespace>KorossaCEPatch</RootNamespace>
+    <LangVersion>7.3</LangVersion>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <!-- 참조 DLL을 출력 폴더로 복사하지 않음(게임 DLL이라 불필요) -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- net472를 풀 프레임워크 설치 없이 빌드 가능하게 -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ===== RimWorld 본체 ===== -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ===== Harmony ===== -->
+    <Reference Include="0Harmony">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ===== Combat Extended ===== -->
+    <Reference Include="CombatExtended">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\2890901044\Assemblies\CombatExtended.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- 빌드 후 결과 DLL을 모드 Assemblies 폴더로 복사 (게임 실행 중이면 실패 → 게임 끄고 빌드) -->
+  <Target Name="CopyToMod" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)"
+          DestinationFolder="$(MSBuildProjectDirectory)\..\..\Assemblies"
+          OverwriteReadOnlyFiles="true"
+          ContinueOnError="true" />
+  </Target>
+
+</Project>

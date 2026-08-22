@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+
+  <!-- 신규 탄약군: 7.62x42mm 아음속(Subsonic), WRAITH(KJW_WRAITH) SMG용.
+       FMJ/AP/HP 3종 + 대응 투사체 + AmmoSet으로 구성. -->
+  <ThingCategoryDef>
+		<defName>Ammo_762x42mmSub</defName>
+		<label>7.62x42mm Subsonic</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/KOR/762x42mmSub_FMJ/762x42mmSub_FMJ_a</iconPath>
+  </ThingCategoryDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_762x42mmSubBase" ParentName="AmmoBase" Abstract="True">
+    <description>A 7.62x42mm subsonic round used by WRAITH operators. Designed to remain below the speed of sound, it produces minimal noise when fired from a suppressed weapon.</description>
+    <statBases>
+      <Mass>0.013</Mass>
+      <Bulk>0.013</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_762x42mmSub</li>
+    </thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_762x42mmSubBase">
+    <defName>Ammo_762x42mmSub_FMJ</defName>
+    <label>7.62x42mm Sub FMJ</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/762x42mmSub_FMJ</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_762x42mmSubBase">
+    <defName>Ammo_762x42mmSub_AP</defName>
+    <label>7.62x42mm Sub AP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/762x42mmSub_AP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_762x42mmSubBase">
+    <defName>Ammo_762x42mmSub_HP</defName>
+    <label>7.62x42mm Sub HP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/762x42mmSub_HP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILES ===================== -->
+
+  <ThingDef Name="762x42mmSubbulletBase" ParentName="BaseBulletCE" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>80</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="762x42mmSubbulletBase">
+    <defName>Bullet_762x42mmSub_FMJ</defName>
+    <label>7.62x42mm Sub FMJ bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 2026-07-28 상향: +4dmg/+1.5mm RHA -->
+      <damageAmountBase>18</damageAmountBase>
+      <armorPenetrationSharp>6</armorPenetrationSharp>
+      <armorPenetrationBlunt>23</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="762x42mmSubbulletBase">
+    <defName>Bullet_762x42mmSub_AP</defName>
+    <label>7.62x42mm Sub AP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 2026-07-28 상향: +3dmg/+3mm RHA -->
+      <damageAmountBase>12</damageAmountBase>
+      <armorPenetrationSharp>12</armorPenetrationSharp>
+      <armorPenetrationBlunt>23</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="762x42mmSubbulletBase">
+    <defName>Bullet_762x42mmSub_HP</defName>
+    <label>7.62x42mm Sub HP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- 2026-07-28 상향: +5dmg -->
+      <damageAmountBase>22</damageAmountBase>
+      <armorPenetrationSharp>3</armorPenetrationSharp>
+      <armorPenetrationBlunt>23</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+
+  <!-- 위 3종 탄약과 투사체를 연결하는 AmmoSet. KJW_WRAITH의 ammoSet으로 참조된다. -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_762x42mmSub</defName>
+    <label>7.62x42mm Subsonic</label>
+    <ammoTypes>
+      <Ammo_762x42mmSub_FMJ>Bullet_762x42mmSub_FMJ</Ammo_762x42mmSub_FMJ>
+      <Ammo_762x42mmSub_AP>Bullet_762x42mmSub_AP</Ammo_762x42mmSub_AP>
+      <Ammo_762x42mmSub_HP>Bullet_762x42mmSub_HP</Ammo_762x42mmSub_HP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

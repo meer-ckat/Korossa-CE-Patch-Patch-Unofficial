@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: CE 변환으로 사라진 원본 총구화염(embedded muzzle flash) 복구용 매핑.
+
+     원본 Korossa는 총구화염을 발사체(Bullet_*)의 CompProperties_ProjectileEffecter로
+     구현했지만, CE의 ProjectileCE는 바닐라 Projectile을 상속하지 않아 그 comp가 호출되지
+     않는다. 게다가 CE 변환은 defaultProjectile을 CE 표준 탄약으로 바꾸므로 원본 발사체
+     자체를 더 이상 쏘지 않는다.
+
+     그래서 연출의 소속을 "탄약"에서 "무기"로 옮긴다. 아래 modExtension을 읽어
+     KorossaCEpatch.dll(MuzzleFlashPatch.cs)이 CE 사격 1발마다 해당 Effecter를 재생한다.
+
+     매핑 근거: 각 무기의 *원본* verbs/li/defaultProjectile이 달고 있던 effecterDef를
+     그대로 가져왔다. 즉 CE 적용 전과 동일한 화염이 나온다.
+
+     ※ 이 파일은 무기 CE 변환(MakeGunCECompatible)보다 나중에 로드돼야 안전하므로
+       파일명을 ZZZZ_로 시작한다.
+-->
+<Patch>
+
+  <!-- KOR_MuzzleFlash : 19종 -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[
+      defName="KJW_AKU" or
+      defName="KJW_Aliolio" or
+      defName="KJW_Alioliowood" or
+      defName="KJW_Ameli" or
+      defName="KJW_FNFAL" or
+      defName="KJW_M1A" or
+      defName="KJW_M249a" or
+      defName="KJW_MPX" or
+      defName="KJW_MPX_spc" or
+      defName="KJW_OICW" or
+      defName="KJW_RIS" or
+      defName="KJW_Ravenhawk" or
+      defName="KJW_Retro_AR" or
+      defName="KJW_Retro_AR_A" or
+      defName="KJW_SCAR" or
+      defName="KJW_SPC" or
+      defName="KJW_TACTJNC" or
+      defName="KJW_TARX" or
+      defName="KJW_TJNC"
+    ]</xpath>
+    <value>
+      <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+        <effecter>KOR_MuzzleFlash</effecter>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- KOR_Big_MuzzleFlash : 13종 -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[
+      defName="KJW_AMAR_Kinetic" or
+      defName="KJW_AMHMG" or
+      defName="KJW_AMR" or
+      defName="KJW_ATM_EXO" or
+      defName="KJW_DBS" or
+      defName="KJW_HVMMG" or
+      defName="KJW_M2a" or
+      defName="KJW_SG_EXO" or
+      defName="KJW_Shotgun" or
+      defName="KJW_Supershotty" or
+      defName="KJW_VOLK" or
+      defName="KJW_VOLK_exotic" or
+      defName="Korossa_Pigmachinegun"
+    ]</xpath>
+    <value>
+      <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+        <effecter>KOR_Big_MuzzleFlash</effecter>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- KOR_SLMuzzleFlash : 6종 -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[
+      defName="KJW_Blackdown" or
+      defName="KJW_ILLEGAL" or
+      defName="KJW_MPX_TAC" or
+      defName="KJW_Urmmmiforgor" or
+      defName="KJW_WRAITH" or
+      defName="KJW_mpsd"
+    ]</xpath>
+    <value>
+      <li Class="KorossaCEPatch.KorossaMuzzleFlashExtension">
+        <effecter>KOR_SLMuzzleFlash</effecter>
+      </li>
+    </value>
+  </Operation>
+</Patch>

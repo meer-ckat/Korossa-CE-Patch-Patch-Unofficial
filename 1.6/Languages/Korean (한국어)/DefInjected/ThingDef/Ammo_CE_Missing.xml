@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CE 한국어 팩에 누락된 탄약 번역 - KORCEpatch에서 사용하는 caliber 한정 -->
+<LanguageData>
+
+  <!-- ===================== .357 Magnum ===================== -->
+
+  <Ammo_357Magnum_FMJ.label>.357 매그넘 (FMJ)</Ammo_357Magnum_FMJ.label>
+  <Ammo_357Magnum_FMJ.description>리볼버와 레버액션 소총에 사용되는 .357 매그넘 탄약입니다.</Ammo_357Magnum_FMJ.description>
+
+  <Ammo_357Magnum_AP.label>.357 매그넘 (AP)</Ammo_357Magnum_AP.label>
+  <Ammo_357Magnum_AP.description>리볼버와 레버액션 소총에 사용되는 .357 매그넘 탄약입니다.</Ammo_357Magnum_AP.description>
+
+  <Ammo_357Magnum_HP.label>.357 매그넘 (HP)</Ammo_357Magnum_HP.label>
+  <Ammo_357Magnum_HP.description>리볼버와 레버액션 소총에 사용되는 .357 매그넘 탄약입니다.</Ammo_357Magnum_HP.description>
+
+  <!-- ===================== .300 AAC Blackout ===================== -->
+
+  <Ammo_300AACBlackout_FMJ.label>.300 AAC 블랙아웃 (FMJ)</Ammo_300AACBlackout_FMJ.label>
+  <Ammo_300AACBlackout_FMJ.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_FMJ.description>
+
+  <Ammo_300AACBlackout_AP.label>.300 AAC 블랙아웃 (AP)</Ammo_300AACBlackout_AP.label>
+  <Ammo_300AACBlackout_AP.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_AP.description>
+
+  <Ammo_300AACBlackout_HP.label>.300 AAC 블랙아웃 (HP)</Ammo_300AACBlackout_HP.label>
+  <Ammo_300AACBlackout_HP.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_HP.description>
+
+  <Ammo_300AACBlackout_Incendiary.label>.300 AAC 블랙아웃 (소이)</Ammo_300AACBlackout_Incendiary.label>
+  <Ammo_300AACBlackout_Incendiary.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_Incendiary.description>
+
+  <Ammo_300AACBlackout_HE.label>.300 AAC 블랙아웃 (HE)</Ammo_300AACBlackout_HE.label>
+  <Ammo_300AACBlackout_HE.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_HE.description>
+
+  <Ammo_300AACBlackout_Sabot.label>.300 AAC 블랙아웃 (사보)</Ammo_300AACBlackout_Sabot.label>
+  <Ammo_300AACBlackout_Sabot.description>아음속 및 초음속 운용이 모두 가능한 .300 AAC 블랙아웃 탄약입니다.</Ammo_300AACBlackout_Sabot.description>
+
+  <!-- ===================== 20x102mm NATO ===================== -->
+
+  <Ammo_20x102mmNATO_AP.label>20x102mm NATO (AP)</Ammo_20x102mmNATO_AP.label>
+  <Ammo_20x102mmNATO_AP.description>대물저격총에 사용되는 20x102mm NATO 탄약입니다. 극도의 관통력을 지닌 대구경 기관포탄입니다.</Ammo_20x102mmNATO_AP.description>
+
+  <Ammo_20x102mmNATO_Incendiary.label>20x102mm NATO (소이)</Ammo_20x102mmNATO_Incendiary.label>
+  <Ammo_20x102mmNATO_Incendiary.description>대물저격총에 사용되는 20x102mm NATO 탄약입니다. 극도의 관통력을 지닌 대구경 기관포탄입니다.</Ammo_20x102mmNATO_Incendiary.description>
+
+  <Ammo_20x102mmNATO_HE.label>20x102mm NATO (HE)</Ammo_20x102mmNATO_HE.label>
+  <Ammo_20x102mmNATO_HE.description>대물저격총에 사용되는 20x102mm NATO 탄약입니다. 극도의 관통력을 지닌 대구경 기관포탄입니다.</Ammo_20x102mmNATO_HE.description>
+
+  <Ammo_20x102mmNATO_Sabot.label>20x102mm NATO (사보)</Ammo_20x102mmNATO_Sabot.label>
+  <Ammo_20x102mmNATO_Sabot.description>대물저격총에 사용되는 20x102mm NATO 탄약입니다. 극도의 관통력을 지닌 대구경 기관포탄입니다.</Ammo_20x102mmNATO_Sabot.description>
+
+</LanguageData>

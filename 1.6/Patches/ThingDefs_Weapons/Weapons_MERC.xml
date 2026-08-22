@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: MERC 특수무기 9종(Ravenhawk/Blackout/AMGE/Blackdown/AJM/DBS/TARX/
+     WRAITH/OICW)을 MakeGunCECompatible로 CE 변환, OICW는 언더배럴 25mm 그레네이드
+     추가, 끝에 9종 공통 근접 툴 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_Ravenhawk (경량형 5.56mm). CE 변환. -->
+	<!-- KJW_Ravenhawk (경량형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Ravenhawk</defName>
+		<statBases>
+			<SightsEfficiency>0.97</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기, 쿨다운↓/정확도↑ 트랙) -->
+			<ShotSpread>0.13</ShotSpread> <!-- 2026-07-28 상향: 0.15→0.13 -->
+			<SwayFactor>1.08</SwayFactor> <!-- 경량형, 흔들림↓ -->
+			<Bulk>3.4</Bulk>
+			<Mass>2.8</Mass>
+			<RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 0.65→0.55 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.7</recoilAmount> <!-- 경량형, 반동↑ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<warmupTime>0.7</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<range>55</range>
+			<soundCast>NATOsmall</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>13</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Blackout -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Blackout</defName>
+		<statBases>
+			<SightsEfficiency>0.98</SightsEfficiency> <!-- 2026-08-10 상향: 0.90→0.98 (정확도↑ 요청) -->
+			<ShotSpread>0.08</ShotSpread> <!-- 2026-08-10 하향: 0.10→0.08 (정확도↑ 요청) -->
+			<SwayFactor>0.95</SwayFactor> <!-- 2026-08-10 하향: 1.10→0.95 (정확도↑ 요청) -->
+			<Bulk>5.0</Bulk>
+			<Mass>4</Mass>
+			<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.7</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_404VL_FMJ</defaultProjectile>
+			<warmupTime>2.2</warmupTime> <!-- 마크스맨, 대물저격(2.4) 수준으로 정상화 -->
+			<range>90</range>
+			<soundCast>NATOheavy</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>3</magazineSize> <!-- 극단 하향: 한 탄창 3발 -->
+			<reloadTime>7.0</reloadTime> <!-- 극단 하향: 재장전 매우 느림 -->
+			<ammoSet>AmmoSet_404VL</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>1</aimedBurstShotCount>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_AMGE (에너지 LMG) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_AMGE</defName>
+		<statBases>
+			<SightsEfficiency>1.19</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.07</ShotSpread> <!-- 2026-07-28 상향: 0.08→0.07 -->
+			<SwayFactor>1.25</SwayFactor> <!-- LMG, 흔들림↑ -->
+			<Bulk>7.5</Bulk>
+			<Mass>4.0</Mass>
+			<RangedWeapon_Cooldown>1.45</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 1.7→1.45 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>0.7</recoilAmount> <!-- 에너지, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Rifle</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<burstShotCount>20</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>65</range>
+			<soundCast>ajmgunshots</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>150</magazineSize>
+			<reloadTime>5.0</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Rifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Blackdown -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Blackdown</defName>
+		<statBases>
+			<SightsEfficiency>1.0</SightsEfficiency> <!-- 2026-08-10 하향: 1.2→1.0 (정확도↓ 요청) -->
+			<ShotSpread>0.07</ShotSpread> <!-- 2026-08-10 상향: 0.04→0.07 (정확도↓ 요청) -->
+			<SwayFactor>1.05</SwayFactor> <!-- 2026-08-10 상향: 0.8→1.05 (정확도↓ 요청) -->
+			<Bulk>4.8</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.41</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Blackdown_FMJ</defaultProjectile>
+			<warmupTime>0.4</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>60</range>
+			<soundCast>NATOsmall_silenced</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>55</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_Blackdown_KOR</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_AJM (에너지 권총) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_AJM</defName>
+		<statBases>
+			<SightsEfficiency>1.08</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.085</ShotSpread> <!-- 2026-07-28 상향: 0.10→0.085 -->
+			<SwayFactor>0.90</SwayFactor> <!-- 권총, 흔들림↓ -->
+			<Bulk>1.2</Bulk>
+			<Mass>1.0</Mass>
+			<RangedWeapon_Cooldown>0.68</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 0.8→0.68 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>0.3</recoilAmount> <!-- 에너지, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Lasgun_Pistol</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<range>30</range>
+			<soundCast>ajmgunshots</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>8</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_Lasgun_Pistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_DBS (더블배럴 샷건) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_DBS</defName>
+		<statBases>
+			<SightsEfficiency>0.65</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.26</ShotSpread> <!-- 2026-07-28 상향: 0.30→0.26 -->
+			<SwayFactor>1.10</SwayFactor>
+			<Bulk>3.8</Bulk>
+			<Mass>3.4</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 1.25→1.06 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>2.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_DBS_KJW</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>16</range>
+			<soundCast>Shotgun_alt</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_TARX -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_TARX</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>4.8</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.6</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.4</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RIS_KJW</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<burstShotCount>8</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<range>55</range>
+			<soundCast>TARX</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_756x40mmKor</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>4</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_WRAITH (아음속탄, 중량형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_WRAITH</defName>
+		<statBases>
+			<SightsEfficiency>0.98</SightsEfficiency> <!-- 중량형, 조준↑ -->
+			<ShotSpread>0.11</ShotSpread> <!-- 중량형, 정확도↑ -->
+			<SwayFactor>1.20</SwayFactor> <!-- 중량형, 흔들림↑ -->
+			<Bulk>4.2</Bulk>
+			<Mass>3.7</Mass>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown> <!-- 중량형, 쿨다운↑ -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.3</recoilAmount> <!-- 중량형, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x42mmSub_FMJ</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<range>52</range>
+			<soundCast>Wraith</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>5</muzzleFlashScale> <!-- 소음·아음속, 총구화염↓ -->
+		</Properties>
+		<AmmoUser>
+			<magazineSize>25</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_762x42mmSub</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_OICW (하이브리드/언더배럴) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_OICW</defName>
+		<statBases>
+			<SightsEfficiency>1.13</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.08</ShotSpread> <!-- 2026-07-28 상향: 0.09→0.08 -->
+			<SwayFactor>1.18</SwayFactor> <!-- 하이브리드, 흔들림↑ -->
+			<Bulk>4.5</Bulk>
+			<Mass>3.8</Mass>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 1.3→1.1 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.1</recoilAmount> <!-- 하이브리드, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_SCAR_KJW</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<range>55</range>
+			<soundCast>NATOsmall</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>13</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- OICW 언더배럴 25x40mm로 변경 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="KJW_OICW"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_UnderBarrel">
+				<propsUnderBarrel>
+					<magazineSize>5</magazineSize>
+					<reloadTime>5.0</reloadTime>
+					<ammoSet>AmmoSet_25x40mmGrenade</ammoSet>
+				</propsUnderBarrel>
+				<verbPropsUnderBarrel>
+					<recoilAmount>2.5</recoilAmount>
+					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>KOR_oicw_bomb</defaultProjectile>
+					<warmupTime>1.35</warmupTime>
+					<range>65</range>
+					<targetParams>
+						<canTargetLocations>true</canTargetLocations>
+					</targetParams>
+					<soundCast>Shot_IncendiaryLauncher</soundCast>
+					<muzzleFlashScale>5</muzzleFlashScale>
+					<burstShotCount>1</burstShotCount>
+				</verbPropsUnderBarrel>
+				<propsFireModesUnderBarrel>
+					<aiUseBurstMode>FALSE</aiUseBurstMode>
+					<aiAimMode>AimedShot</aiAimMode>
+					<aimedBurstShotCount>1</aimedBurstShotCount>
+				</propsFireModesUnderBarrel>
+			</li>
+			<li>
+				<compClass>CompEquippable</compClass>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_Ravenhawk" or
+			defName="KJW_Blackout" or
+			defName="KJW_AMGE" or
+			defName="KJW_Blackdown" or
+			defName="KJW_AJM" or
+			defName="KJW_DBS" or
+			defName="KJW_TARX" or
+			defName="KJW_WRAITH" or
+			defName="KJW_OICW"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

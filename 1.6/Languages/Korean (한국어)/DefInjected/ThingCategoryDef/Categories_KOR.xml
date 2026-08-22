@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Ammo_756x40Kor.label>7.56x40mm VEK</Ammo_756x40Kor.label>
+  <Ammo_762x42mmSub.label>7.62x42mm 아음속</Ammo_762x42mmSub.label>
+  <Ammo_78x50mm.label>7.8x50mm 고압</Ammo_78x50mm.label>
+  <Ammo_120mmrocket.label>120mm 로켓</Ammo_120mmrocket.label>
+  <Ammo_127mmMissile.label>127mm 미사일</Ammo_127mmMissile.label>
+  <Ammo_MGM_51.label>MGM-51X 시레일러 미사일</Ammo_MGM_51.label>
+  <Ammo_Blackdown_KOR.label>블랙다운 R.300</Ammo_Blackdown_KOR.label>
+
+</LanguageData>

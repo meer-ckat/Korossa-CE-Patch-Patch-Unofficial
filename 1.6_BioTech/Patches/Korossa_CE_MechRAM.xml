@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- =========================================================================
+	     mechRAM_krs (goliath 유도 소이 미사일 발사기) CE 변환.
+	     라벨은 "RAM"이나 실제로는 HomingMissileROOSShare 유도 미사일 4연발(Flame).
+	     장비형 무기(터렛 아님) → 표준 MakeGunCECompatible.
+	     ※ 현재 원본에서 goliath equip 태그가 주석처리된 WIP 무기라 획득 경로는 없을 수 있음.
+	       그래도 CE 미대응(바닐라 Verb_Shoot)으로 남지 않게 변환해 둠.
+	     ※ MSL_incRAM 발사체(유도)는 그대로 유지 - 커스텀 호밍 클래스라 폭발은 바닐라(Flame),
+	       CE ArmorUtilityCE 패치로 CE 장갑은 이미 적용됨.
+	     Biotech 없으면 def가 없으므로 Conditional로 감쌈.
+	     ========================================================================= -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="mechRAM_krs"]</xpath>
+		<match Class="CombatExtended.PatchOperationMakeGunCECompatible">
+			<defName>mechRAM_krs</defName>
+			<statBases>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>0.20</ShotSpread>
+				<SwayFactor>1.3</SwayFactor>
+				<Bulk>12.0</Bulk>
+				<Mass>3.5</Mass>
+				<RangedWeapon_Cooldown>8.0</RangedWeapon_Cooldown>
+			</statBases>
+			<Properties>
+				<recoilAmount>1.0</recoilAmount>
+				<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>MSL_incRAM</defaultProjectile>
+				<warmupTime>5.0</warmupTime>
+				<range>35.9</range>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>Rocketmoter</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
+			</Properties>
+			<!-- AmmoUser 생략 → 무소모(메크 유도 미사일). 필요 시 나중에 AmmoSet 부여 -->
+			<FireModes>
+				<aiUseBurstMode>TRUE</aiUseBurstMode>
+				<aimedBurstShotCount>4</aimedBurstShotCount>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+		</match>
+	</Operation>
+
+</Patch>

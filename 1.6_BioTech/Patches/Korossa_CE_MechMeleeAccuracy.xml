@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan" or defName="Mech_ADlunchbox" or defName="Mech_TOWlunchbox" or defName="Mech_LUNCHBOX"]/statBases</xpath>
+		<value>
+			<MeleeHitChance>50</MeleeHitChance>
+		</value>
+	</Operation>
+
+</Patch>

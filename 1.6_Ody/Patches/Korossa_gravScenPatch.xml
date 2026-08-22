@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- 대상: Korossa_Scenario_gravship 시나리오(Odyssey DLC). 시작 시 CE 탄약
+       (300AACBlackout FMJ 180발, 762x51mmNATO FMJ 200발)을 추가 지급한다. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ScenarioDef[defName="Korossa_Scenario_gravship"]/scenario/parts</xpath>
+    <value>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def> 
+        <thingDef>Ammo_300AACBlackout_FMJ</thingDef>
+        <count>180</count>
+      </li>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def> 
+        <thingDef>Ammo_762x51mmNATO_FMJ</thingDef>
+        <count>200</count>
+      </li>
+    </value>
+  </Operation>
+</Patch>

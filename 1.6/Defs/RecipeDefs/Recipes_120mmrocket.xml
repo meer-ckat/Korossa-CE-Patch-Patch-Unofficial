@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 레시피: 120mm 대인로켓(HE) 4발 제작. AmmoBench 필요, Korossa_Mech_t1 연구 선행. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_120mmrocket_HE</defName>
+    <label>120mm 대인로켓 (HE) 4발 제작</label>
+    <description>120mm 대인로켓 HE 4발을 제작합니다.</description>
+    <jobString>120mm 대인로켓 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_Mech_t1</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>60</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>40</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+        <li>Chemfuel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_120mmrocket_HE>4</Ammo_120mmrocket_HE>
+    </products>
+    <workAmount>9000</workAmount>
+    <skillRequirements>
+      <Crafting>6</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

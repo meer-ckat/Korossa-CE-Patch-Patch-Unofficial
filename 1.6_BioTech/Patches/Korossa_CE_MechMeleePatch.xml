@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- =========================================================================
+	     메크 본체(폰) 근접 공격 CE 관통 패치
+	     - 코로사 메크들의 'head'(Demolish) 툴은 바닐라 Tool이라 CE 관통값이 없어
+	       CombatExtended.dll이 "has no support for Combat Extended" 에러를 던지고
+	       스탯창(InfoCard)이 InvalidCastException으로 뻗는 원인이 됨.
+	     - CombatExtended.ToolCE로 교체하고 CE 관통값을 부여해 해결.
+	     - 장갑차량 계열(Sheridan/lunchbox 3종)은 차체 충각(ram) 버프 적용:
+	       실제 물리(질량 기반 sqrt 스케일, MPa 위주)로 상향.
+	       LunchBox 계열은 전부 M113 실중량(약 12.3t) 기준으로 통일.
+	     - krsgoliath/haebyung은 보병형 메크라 버프 대상에서 제외, 원본 유지.
+	     - chanceFactor가 0.02 / 0.2로 갈려 두 그룹으로 처리.
+	     - 제외: Mech_HIBIKI는 외부 베이스(LightMechanoid) 툴 상속 → CE가 별도 처리.
+	     ========================================================================= -->
+
+	<!-- 그룹 A: 장갑차량 계열 버프 - Sheridan(경전차) / ADlunchbox·TOWlunchbox(M113 통일) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>충각(ram)</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>54</power>
+					<cooldownTime>3.0</cooldownTime>
+					<armorPenetrationBlunt>48</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.02</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_ADlunchbox" or defName="Mech_TOWlunchbox"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>충각(ram)</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>49</power>
+					<cooldownTime>2.8</cooldownTime>
+					<armorPenetrationBlunt>45</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.02</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>충각(ram)</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>49</power>
+					<cooldownTime>2.8</cooldownTime>
+					<armorPenetrationBlunt>45</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- 그룹 B: 보병형 메크 - krsgoliath/haebyung, 원본 값 유지 (버프 대상 아님) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_krsgoliath" or defName="Mech_haebyung"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>head</label>
+					<capacities>
+						<li>Demolish</li>
+					</capacities>
+					<power>12</power>
+					<cooldownTime>2</cooldownTime>
+					<armorPenetrationBlunt>4.13</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+					<chanceFactor>0.2</chanceFactor>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

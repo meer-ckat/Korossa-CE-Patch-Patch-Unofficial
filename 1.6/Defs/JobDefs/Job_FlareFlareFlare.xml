@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- 신규 잡: 유도미사일(SACLOS) 피격 위협을 받은 폰이 연막으로 대응하는 행동.
+       driverClass는 C# JobDriver_SACLOSInterruptSmoke이며, SACLOSInterruptSmokeAI.
+       TryReact()가 이 잡을 강제로 시작시킨다. -->
+  <JobDef>
+    <defName>KOR_SACLOSSmoke</defName>
+    
+    <driverClass>KorossaCEPatch.JobDriver_SACLOSInterruptSmoke</driverClass>
+    
+    <reportString>Alerted</reportString>
+    
+    <casualInterruptible>false</casualInterruptible>
+    
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+  </JobDef>
+
+</Defs>

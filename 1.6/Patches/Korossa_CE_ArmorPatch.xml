@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Basic Flak Vest -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases</xpath>
+    <value>
+	  <Bulk>5</Bulk>
+
+	  <WornBulk>3</WornBulk>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases/ArmorRating_Heat</xpath>
+	</Operation>
+
+	<!-- 2026-07-28: 경쟁 CE패치(Wolfein) 엔트리급 Wolfein_FlakJacket(7/12) 대비
+	     확실히 상회하도록 고정 RHA 12mm / MPa 18 부여. Remove 3종 뒤에 배치. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>22</ArmorRating_Sharp>
+			<ArmorRating_Blunt>60</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove"> <!--목 부분은 빼는 게 나을듯? 너무 안 죽음-->
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/apparel/bodyPartGroups/li[text()="Neck"]</xpath>
+	</Operation>
+
+	<!-- 내구도 600으로 상향 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_FlakVest"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>350</MaxHitPoints>
+		</value>
+	</Operation>
+		
+	
+  <!-- platecarrier -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases</xpath>
+    <value>
+	  <Bulk>4</Bulk>
+	  <WornBulk>2</WornBulk>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>12</CarryBulk>
+			<ReloadSpeed>0.15</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/Mass</xpath>
+		<value>
+			<Mass>5</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/ArmorRating_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>27</ArmorRating_Sharp>
+			<ArmorRating_Blunt>30</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- 내구도 600으로 상향 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_platecarrier"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>400</MaxHitPoints>
+		</value>
+	</Operation>
+
+  <!-- BSD_Vest -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases</xpath>
+    <value>
+		<Bulk>5</Bulk>
+		<WornBulk>3</WornBulk>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>15</CarryBulk>
+			<CarryWeight>10</CarryWeight>
+			<ReloadSpeed>0.05</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/Mass</xpath>
+		<value>
+			<Mass>7</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/ArmorRating_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>40</ArmorRating_Sharp>
+			<ArmorRating_Blunt>52</ArmorRating_Blunt>
+			<ArmorRating_Heat>28</ArmorRating_Heat>
+		</value>
+	</Operation>
+
+	<!-- 방어막 재충전 속도: 0.013(원본) → 0.025 → 2.0(극단 상향) → 0.5(너프).
+	     CompShield는 매 틱 energy += EnergyShieldRechargeRate / 60 이므로 초당 0.5.
+	     EnergyShieldEnergyMax 3.0 기준 0 → 만충까지 약 6초.
+	     (참고: 원본 0.013 = 231초, 직전 0.025 = 120초. 바닐라 방패벨트는 0.13) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.5</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>3.0</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<!-- 방어막이 완전히 깨졌을 때의 재가동 대기시간.
+	     18000틱(원본, 300초) → 12000틱(200초) → 300틱(5초, 극단 상향) → 900틱(15초, 너프).
+	     energyOnReset 3.0이라 대기 후 만충 상태로 복귀한다. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/comps/li[@Class="CompProperties_Shield"]</xpath>
+		<value>
+			<li Class="CompProperties_Shield">
+				<startingTicksToReset>900</startingTicksToReset>
+				<minDrawSize>1.5</minDrawSize>
+				<maxDrawSize>1.5</maxDrawSize>
+				<energyLossPerDamage>0.04</energyLossPerDamage>
+				<energyOnReset>3.0</energyOnReset>
+				<blocksRangedWeapons>false</blocksRangedWeapons>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- 내구도 600으로 상향 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_Vest"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>600</MaxHitPoints>
+		</value>
+	</Operation>
+
+	<!-- Juggernaut -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases</xpath>
+    <value>
+		<Bulk>5</Bulk>
+		<WornBulk>3</WornBulk>
+    </value>
+  </Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.3</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>9</CarryBulk>
+			<ReloadSpeed>0.03</ReloadSpeed>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/Mass</xpath>
+		<value>
+			<Mass>17</Mass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/ArmorRating_Sharp</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/ArmorRating_Blunt</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/ArmorRating_Heat</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>70</ArmorRating_Sharp>
+			<ArmorRating_Blunt>100</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Arms</li>
+				<li>Neck</li>
+				<li>Shoulders</li>
+				<li>Torso</li>
+				<li>Hands</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<!-- 내구도 600으로 상향 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Juggernaut"]/statBases/MaxHitPoints</xpath>
+		<value>
+			<MaxHitPoints>700</MaxHitPoints>
+		</value>
+	</Operation>
+
+  <!-- Exosuit (기본 외골격) -->
+  <!-- 대상: Korossa_Exosuit. 착용 시 CarryWeight/CarryBulk/사격 정확도 보너스 부여. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/equippedStatOffsets</xpath>
+    <value>
+      <CarryWeight>40</CarryWeight>
+      <CarryBulk>20</CarryBulk>
+      <ShootingAccuracyPawn>0.3</ShootingAccuracyPawn>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_Exosuit. Sharp/Blunt 장갑을 20/45로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>20</ArmorRating_Sharp>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>45</ArmorRating_Blunt>
+    </value>
+  </Operation>
+	<!-- 대상: Korossa_Exosuit. CE 부피(Bulk/WornBulk) 추가(대형 외골격이라 매우 큼). -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/statBases</xpath>
+		<value>
+			<Bulk>85</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+	<!-- 대상: Korossa_Exosuit. 실드 재충전 속도/최대 실드량 재설정. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.1</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>2.0</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Hands</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<!-- Exosuit_Drifter (Exosuit와 동일 패턴 반복) -->
+	<!-- 대상: Korossa_Exosuit_Drifter. 착용 시 CarryWeight/CarryBulk/사격 정확도 보너스 부여. -->
+	<Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/equippedStatOffsets</xpath>
+    <value>
+      <CarryWeight>40</CarryWeight>
+      <CarryBulk>20</CarryBulk>
+      <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>20</ArmorRating_Sharp>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>45</ArmorRating_Blunt>
+    </value>
+  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/statBases</xpath>
+		<value>
+			<Bulk>85</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.1</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>2.0</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Drifter"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Shoulders</li>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+  <!-- Exosuit_Smoke (Exosuit와 동일 패턴 반복) -->
+  <!-- 대상: Korossa_Exosuit_Smoke. 착용 시 CarryWeight/CarryBulk/사격 정확도 보너스 부여. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/equippedStatOffsets</xpath>
+    <value>
+		<CarryWeight>40</CarryWeight>
+		<CarryBulk>20</CarryBulk>
+      <ShootingAccuracyPawn>0.15</ShootingAccuracyPawn>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/statBases/ArmorRating_Sharp</xpath>
+    <value>
+      <ArmorRating_Sharp>20</ArmorRating_Sharp>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/statBases/ArmorRating_Blunt</xpath>
+    <value>
+      <ArmorRating_Blunt>45</ArmorRating_Blunt>
+    </value>
+  </Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/statBases</xpath>
+		<value>
+			<Bulk>85</Bulk>
+			<WornBulk>15</WornBulk>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.1</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>2.0</EnergyShieldEnergyMax>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Exosuit_Smoke"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Shoulders</li>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+	<!-- 고정 재료/고정 방어력 예시: Basic_Alice (Chest rig, stuffCategories 있음이지만, 고정값도 가능) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_Alice"]/statBases/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_Alice"]/statBases/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_Alice"]/equippedStatOffsets</xpath>
+		<value>
+			<CarryBulk>30</CarryBulk>
+			<ReloadSpeed>0.2</ReloadSpeed>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Basic_Alice"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- KRS_vacpack (Odyssey 아파렐): CE 방어/부피 미패치 상태였음.
+	     실드 벨트형 경량 생명유지 슈트 - 물리 방어는 가볍게(주 방어는 실드).
+	     Odyssey 없으면 def가 없으므로 Conditional로 감싸 에러 방지. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="KRS_vacpack"]/statBases</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="KRS_vacpack"]/statBases</xpath>
+			<value>
+				<ArmorRating_Sharp>6</ArmorRating_Sharp>
+				<ArmorRating_Blunt>16</ArmorRating_Blunt>
+				<ArmorRating_Heat>10</ArmorRating_Heat>
+				<Bulk>2</Bulk>
+				<WornBulk>1</WornBulk>
+			</value>
+		</match>
+	</Operation>
+
+</Patch>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Basic Flak Helmet -->
+  <!-- 2026-07-28: 경쟁 CE패치(Wolfein) Wolfein_SafetyHelmet(2.5/1) 대비 확실히
+       상회하도록 재료 배율 방식 대신 고정 RHA 8mm / MPa 10 부여. base ThingDef에
+       ArmorRating_Sharp/Blunt가 원래 없어 Remove 없이 바로 Add로 고정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_BasicFlakHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>0</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_BasicFlakHelmet"]/statBases</xpath>
+    <value>
+      <ArmorRating_Sharp>8</ArmorRating_Sharp>
+      <ArmorRating_Blunt>10</ArmorRating_Blunt>
+    </value>
+  </Operation>
+  <!-- BSD Helmet: 원본 방어 스탯은 교체하고 CE 전용 야간투시만 추가.
+       base ThingDef에 StuffEffectMultiplierArmor가 없어 재료와 무관한
+       고정 RHA/MPa로 동작함 (BSD_shirts와 동일 방식). -->
+  <!-- 대상: Korossa_BSD_helmetA. ArmorRating_Sharp를 34로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_BSD_helmetA"]/statBases/ArmorRating_Sharp</xpath>
+    <value><ArmorRating_Sharp>34</ArmorRating_Sharp></value>
+  </Operation>
+  <!-- 대상: Korossa_BSD_helmetA. ArmorRating_Blunt를 40으로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_BSD_helmetA"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>40</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Korossa_BSD_helmetA. CE 야간투시 효율(NightVisionEfficiency_Apparel) 추가. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_BSD_helmetA"]/statBases</xpath>
+    <value><NightVisionEfficiency_Apparel>0.6</NightVisionEfficiency_Apparel></value>
+  </Operation>
+  <!-- Visor Helmet -->
+  <!-- 2026-07-28: Wolfein_SafetyHelmet(2.5/1) 대비 확실히 상회하도록 고정
+       RHA 8mm / MPa 10 부여(BasicFlakHelmet과 동일 티어). -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Visorhelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>0</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_Visorhelmet"]/statBases</xpath>
+    <value>
+      <ArmorRating_Sharp>8</ArmorRating_Sharp>
+      <ArmorRating_Blunt>10</ArmorRating_Blunt>
+    </value>
+  </Operation>
+  <!-- Gas Flak Helmet -->
+  <!-- 2026-07-28: 동일하게 고정 RHA 8mm / MPa 10 부여. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_gasFlakHelmet"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>0</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_gasFlakHelmet"]/statBases</xpath>
+    <value>
+      <ArmorRating_Sharp>8</ArmorRating_Sharp>
+      <ArmorRating_Blunt>10</ArmorRating_Blunt>
+    </value>
+  </Operation>
+
+  <!--Super Funking Gas Flak Helmet -->
+  <!-- 대상: Korossa_gasFlakHelmet. 착용 시 조준정확도 소폭 감소/연막 민감도 감소(-1) 부여. -->
+  <Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_gasFlakHelmet"]/equippedStatOffsets</xpath>
+		<value>
+			<AimingAccuracy>-0.05</AimingAccuracy>
+			<SmokeSensitivity>-1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+</Patch> 

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일(Royalty DLC): 지금까지 CE 변환에서 누락돼 있던 착용형 유탄발사기 2종을 CE화한다.
+
+     Korossa_m320_flash  : 3발 충전 40mm 섬광 유탄발사기 (제작 가능 / 교역 가능)
+     Korossa_FLASH_belt  : 4발 충전 60mm 소이 유탄발사기 (제작 가능 / 교역 가능)
+
+     둘 다 원본은 바닐라 Verb_LaunchProjectileStatic + 바닐라 발사체라, CE 환경에서
+     탄도/장갑/억제 계산을 전혀 타지 않고 있었다. LAW/DRAGON/PF와 동일한 방식으로
+     VerbPropertiesCE + Verb_LaunchProjectileStaticCE로 교체한다.
+
+     ※ OneUseStatic은 발사 후 장비를 SelfConsume하므로 다회 충전식(ApparelReloadable)에는
+       쓰지 않는다. LAW(1회용)만 OneUseStatic을 쓴다.
+     ※ 원본의 forcedMissRadius는 CE에서 의미가 없어 제거하고, 대신 ShotSpread로 산포를 준다. -->
+<Patch>
+
+  <!-- ===================== m320 섬광 유탄발사기 ===================== -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_m320_flash"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <label>섬광탄 발사</label>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <defaultProjectile>Bullet_KOR_Flashbang_CE</defaultProjectile>
+          <hasStandardCommand>true</hasStandardCommand>
+          <onlyManualCast>true</onlyManualCast>
+          <range>30</range>
+          <!-- 유탄이 발밑에서 터지지 않도록 최소사거리. CE 40mm 유탄발사기와 동일. -->
+          <minRange>4</minRange>
+          <warmupTime>1.5</warmupTime>
+          <noiseRadius>4</noiseRadius>
+          <ai_AvoidFriendlyFireRadius>4</ai_AvoidFriendlyFireRadius>
+          <soundCast>Shot_IncendiaryLauncher</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>14</muzzleFlashScale>
+          <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_m320_flash"]/statBases</xpath>
+    <value>
+      <SightsEfficiency>0.70</SightsEfficiency>
+      <ShotSpread>0.22</ShotSpread>
+      <SwayFactor>1.10</SwayFactor>
+      <Bulk>4</Bulk>
+      <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+    </value>
+  </Operation>
+
+  <!-- ===================== FLASH 4연장 60mm 소이탄 ===================== -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_FLASH_belt"]/verbs</xpath>
+    <value>
+      <verbs>
+        <li Class="CombatExtended.VerbPropertiesCE">
+          <label>소이탄 발사</label>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <defaultProjectile>Bullet_KOR_Incendiary60_CE</defaultProjectile>
+          <hasStandardCommand>true</hasStandardCommand>
+          <onlyManualCast>true</onlyManualCast>
+          <range>39.9</range>
+          <minRange>5</minRange>
+          <warmupTime>1.5</warmupTime>
+          <noiseRadius>4</noiseRadius>
+          <ai_AvoidFriendlyFireRadius>5</ai_AvoidFriendlyFireRadius>
+          <ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+          <soundCast>Shot_IncendiaryLauncher</soundCast>
+          <soundCastTail>GunTail_Medium</soundCastTail>
+          <muzzleFlashScale>14</muzzleFlashScale>
+          <drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+        </li>
+      </verbs>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_FLASH_belt"]/statBases</xpath>
+    <value>
+      <SightsEfficiency>0.70</SightsEfficiency>
+      <ShotSpread>0.25</ShotSpread>
+      <SwayFactor>1.25</SwayFactor>
+      <Bulk>8</Bulk>
+      <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+    </value>
+  </Operation>
+
+  <!-- ===================== CE AmmoUser 전환 (2026-08-10) =====================
+       ApparelReloadable(충전식)을 제거하고 CE 표준 AmmoUser(실 탄약 아이템)로 교체.
+       발사체는 그대로(Bullet_KOR_Flashbang_CE / Bullet_KOR_Incendiary60_CE) 유지.
+       ※ apparel + AmmoUser 조합은 비표준이라 인게임 검증 필요 (미검증 시 되돌릴 것). -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Korossa_m320_flash"]/comps/li[@Class="CompProperties_ApparelReloadable"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_m320_flash"]/comps</xpath>
+    <value>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>3</magazineSize>
+        <reloadTime>4.0</reloadTime>
+        <ammoSet>AmmoSet_KOR_Flashbang</ammoSet>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="Korossa_FLASH_belt"]/comps/li[@Class="CompProperties_ApparelReloadable"]</xpath>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_FLASH_belt"]/comps</xpath>
+    <value>
+      <li Class="CombatExtended.CompProperties_AmmoUser">
+        <magazineSize>4</magazineSize>
+        <reloadTime>5.0</reloadTime>
+        <ammoSet>AmmoSet_KOR_Incendiary60</ammoSet>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Basic Suit 등: 다양한 재료 사용(계수 방식) -->
+  <!-- 대상: Korossa_Basic_Suit. StuffEffectMultiplierArmor(재료별 방어 배율)를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_Basic_Suit"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirts. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirts"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsA. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsA"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsB. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsB"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsC. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsC"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsD. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsD"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsE. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsE"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsF. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsF"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_casual_shirtsG. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_casual_shirtsG"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_children_apparel. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_children_apparel"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+  <!-- 대상: Korossa_mechanitor_bodysuit. StuffEffectMultiplierArmor를 1로 표준화. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Korossa_mechanitor_bodysuit"]/statBases/StuffEffectMultiplierArmor</xpath>
+    <value>
+      <StuffEffectMultiplierArmor>5</StuffEffectMultiplierArmor>
+    </value>
+  </Operation>
+
+	<!-- 대상: Korossa_Parka_open_modern. StuffEffectMultiplierArmor를 4로 상향(외투용 배율). -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_Parka_open_modern"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>4</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- 대상: Korossa_Parka_open_modern. CE 부피(Bulk/WornBulk) 스탯 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_Parka_open_modern"]/statBases</xpath>
+		<value>
+			<Bulk>10</Bulk>
+			<WornBulk>5</WornBulk>
+		</value>
+	</Operation>
+</Patch>

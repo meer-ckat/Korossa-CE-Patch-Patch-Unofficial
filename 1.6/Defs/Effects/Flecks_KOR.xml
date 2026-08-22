@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 고가시성 로켓 연기 궤적.
+       화염 밀도와 지속 추진을 우선하기 위해 연기는 약 4초 안에 사라지게 한다.
+       120mm/127mm 트레일에서 Fleck_CERocketSmokeTrail 대신 이걸 사용. -->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>Fleck_KOR_LongSmoke</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+      <shaderType>Transparent</shaderType>
+      <color>(1, 1, 1, 0.45)</color> <!-- 0.3 → 0.45: 더 진하게 -->
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0.12</fadeInTime>
+    <solidTime>0.35</solidTime>
+    <fadeOutTime>3.5</fadeOutTime>
+    <growthRate>0.8</growthRate>
+  </FleckDef>
+
+  <!-- 120mm 단거리 로켓용 장수명 화염 궤적.
+       CE 기본 RocketFlame은 총 수명이 0.08초라 탄두 주변에서 바로 사라진다.
+       약 1.5초간 밝기를 유지해 비행 경로에 추진 화염이 충분히 남도록 한다. -->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>Fleck_KOR_LongRocketFlame</defName>
+    <graphicData>
+      <texPath>Things/Mote/FireGlow</texPath>
+      <shaderType>MoteGlow</shaderType>
+      <color>(1, 0.7, 0.3, 1)</color> <!-- 알파 0.95 → 1: 더 진하게 -->
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0</fadeInTime>
+    <solidTime>0.4</solidTime>
+    <fadeOutTime>1.5</fadeOutTime>
+    <growthRate>-0.15</growthRate>
+  </FleckDef>
+
+  <!-- 시레일러/127mm ATGM 전용 추진 화염.
+       단거리 대인 로켓보다 훨씬 긴 지속 추진과 잔광을 표현한다. 투사체 쪽에서도
+       cutoff를 두지 않아 명중할 때까지 엔진 화염을 계속 방출한다. -->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>Fleck_KOR_LongATGMFlame</defName>
+    <graphicData>
+      <texPath>Things/Mote/FireGlow</texPath>
+      <shaderType>MoteGlow</shaderType>
+      <color>(1, 0.66, 0.25, 1)</color> <!-- 알파 0.95 → 1: 더 진하게 -->
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0</fadeInTime>
+    <solidTime>0.4</solidTime>
+    <fadeOutTime>1.8</fadeOutTime>
+    <growthRate>-0.05</growthRate>
+  </FleckDef>
+
+</Defs>

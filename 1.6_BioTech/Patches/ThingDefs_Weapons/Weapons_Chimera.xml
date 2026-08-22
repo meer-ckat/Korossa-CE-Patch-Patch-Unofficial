@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 메크 총기(셰리든 주포/런치박스류/골리앗/AD벌칸 등) CE 변환 및
+     Gun_TOW_mech 빔 피해타입 교정, MSL_TOWb 트레일 추가.
+     ※ Biotech 전용 Def만 다루므로 1.6_BioTech 폴더에 위치한다. -->
+<Patch>
+  <!-- 대상: KOR_Sheridan_gun (셰리든 152mm 주포). CE 변환 - 직사 152mm HE. -->
+  <!-- 셰리든 (Sheridan) -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KOR_Sheridan_gun</defName>
+    <statBases>
+      <SightsEfficiency>0.80</SightsEfficiency>
+      <ShotSpread>0.04</ShotSpread>
+      <SwayFactor>1.20</SwayFactor>
+      <Bulk>18.0</Bulk>
+      <Mass>3.5</Mass>
+      <!-- 경전차식 사격 후 이탈: 발사 후 장시간 고정되는 기존 9초를 단축. -->
+      <RangedWeapon_Cooldown>3.0</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>4.0</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_152mmHowitzerShell_HE_directfire</defaultProjectile>
+      <warmupTime>2.0</warmupTime>
+      <!-- 근거리 강제 사격 시 메카노이드 전투 Job/NRE가 반복되는 것을 방지한다. -->
+      <minRange>6</minRange>
+      <range>120</range>
+      <burstShotCount>1</burstShotCount>
+      <ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+      <soundCast>Tank_fire</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>20</muzzleFlashScale>
+      <targetParams>
+        <canTargetLocations>true</canTargetLocations>
+      </targetParams>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>1</magazineSize>
+      <!-- M81의 약실 처리와 단발 장전을 반영하되 기존 12초 병목은 완화. -->
+      <reloadTime>7</reloadTime>
+      <ammoSet>AmmoSet_KOR_Sheridan152mm</ammoSet>
+    </AmmoUser>
+			<FireModes>
+				<aiAimMode>AimedShot</aiAimMode>
+			</FireModes>
+  </Operation>
+
+  <!-- MGM-51 계열 포발사 미사일은 별도 ability가 아니라 주포 탄종으로 취급한다.
+       원본은 comps Inherit="False"이고 아래 ability 컴포넌트가 유일한
+       CompEquippable이므로 삭제하면 CE CompFireModes 초기화가 NRE를 낸다.
+       능력형 컴포넌트를 일반 장비 컴포넌트로 교체해 주포 verb를 유지한다. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="KOR_Sheridan_gun"]/comps/li[@Class="CompProperties_EquippableAbilityReloadable" and abilityDef="seashailer_launcher_kor"]</xpath>
+    <value>
+      <li>
+        <compClass>CompEquippable</compClass>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- 런치박스 (LUNCHBOX) -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>Gun_LUNCHBOX</defName>
+    <statBases>
+      <SightsEfficiency>0.85</SightsEfficiency>
+      <ShotSpread>0.13</ShotSpread>
+      <SwayFactor>0.80</SwayFactor>
+      <Bulk>8.0</Bulk>
+      <Mass>1.5</Mass>
+      <RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+		<recoilAmount>1.0</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+		<warmupTime>1.2</warmupTime>
+		<range>80</range>
+		<burstShotCount>25</burstShotCount>
+		<ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+		<soundCast>MINI</soundCast>
+		<soundCastTail>MINI_tail</soundCastTail>
+		<muzzleFlashScale>20</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>100</magazineSize>
+      <reloadTime>8</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+      <noSnapshot>true</noSnapshot>
+      <noSingleShot>true</noSingleShot>
+    </FireModes>
+  </Operation>
+
+  <!-- AD벌칸 (KOR_ADvulcan) -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KOR_ADvulcan</defName>
+    <statBases>
+      <SightsEfficiency>0.85</SightsEfficiency>
+      <ShotSpread>0.13</ShotSpread>
+      <SwayFactor>0.80</SwayFactor>
+      <Bulk>8.0</Bulk>
+      <Mass>1.5</Mass>
+      <RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.0</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>1.2</warmupTime>
+      <range>80</range>
+      <burstShotCount>25</burstShotCount>
+      <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+      <soundCast>MINI</soundCast>
+      <soundCastTail>MINI_tail</soundCastTail>
+      <muzzleFlashScale>20</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>100</magazineSize>
+      <reloadTime>8</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>true</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+      <noSnapshot>true</noSnapshot>
+      <noSingleShot>true</noSingleShot>
+    </FireModes>
+  </Operation>
+  <!-- 골리앗 (Goliath) -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>mechmg3_krs</defName>
+    <statBases>
+      <SightsEfficiency>0.95</SightsEfficiency>
+      <ShotSpread>0.09</ShotSpread>
+      <SwayFactor>0.85</SwayFactor>
+      <Bulk>8.0</Bulk>
+      <Mass>3.5</Mass>
+      <RangedWeapon_Cooldown>2.2</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.5</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+      <warmupTime>2</warmupTime>
+		<range>62</range>
+      <burstShotCount>12</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <soundCast>LMG_fire</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>100</magazineSize>
+      <reloadTime>8</reloadTime>
+      <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiAimMode>AimedShot</aiAimMode>
+      <noSnapshot>true</noSnapshot>
+      <noSingleShot>true</noSingleShot>
+    </FireModes>
+  </Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>mechsmg_krs</defName>
+		<statBases>
+			<SightsEfficiency>0.70</SightsEfficiency>
+			<ShotSpread>0.17</ShotSpread>
+			<SwayFactor>0.77</SwayFactor>
+			<Bulk>2.7</Bulk>
+			<Mass>2.5</Mass>
+			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MPX_KJW</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<burstShotCount>7</burstShotCount>
+			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<range>35</range>
+			<soundCast>SMG</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>mechAR_krs</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency>
+			<ShotSpread>0.12</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>4.8</Bulk>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.4</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_RIS_KJW</defaultProjectile>
+			<warmupTime>1.0</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<range>55</range>
+			<soundCast>NATOsmall</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_556x45mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- mechRAM_krs 원본 제거 Operation은 삭제함.
+	     Korossa_CE_MechRAM.xml이 같은 Def를 CE 변환하고 있어 정책이 상충했고,
+	     경로 정렬상 이 파일이 나중에 로드돼 CE 변환 결과가 통째로 지워지고 있었다.
+	     goliath의 equip 태그가 주석 처리된 WIP 무기라 획득 경로는 아직 없지만,
+	     나중에 살릴 때 바로 쓸 수 있도록 CE 변환된 Def를 남겨 둔다. -->
+
+  <!-- 원 모드에는 ignoreShields=true인 BeamBypassShieldskrs가 정의되어 있지만
+       Gun_TOW_mech는 실수로 일반 Beam을 사용한다. Verse.ShootBeam 방식은 유지하고
+       피해 타입만 제작자가 마련한 방어막 관통형으로 교정한다. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Gun_TOW_mech"]/verbs/li/beamDamageDef</xpath>
+    <value>
+      <beamDamageDef>BeamBypassShieldskrs</beamDamageDef>
+    </value>
+  </Operation>
+
+  <!-- TOWlunchbox의 별도 바닐라 유도탄은 CE ProjectileFleck을 사용할 수 없으므로,
+       원 모드에 이미 정의된 화염+장수명 연기 Effecter를 실제 발사체에 연결한다. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="MSL_TOWb"]/comps</xpath>
+    <value>
+      <li Class="CompProperties_ProjectileEffecter">
+        <effecterDef>KRSRocketTrailA</effecterDef>
+      </li>
+    </value>
+  </Operation>
+	
+</Patch> 

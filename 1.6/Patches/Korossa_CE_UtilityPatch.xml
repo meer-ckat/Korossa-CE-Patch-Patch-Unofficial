@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- 벨트류 : 소형 유틸리티, 소량의 벌크/운반량 -->
+  <!-- 대상: Korossa_kira(벨트). 소량의 부피/방어력 스탯 추가(소형 유틸리티 아이템). -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Korossa_kira"]/statBases</xpath>
+    <value>
+      <Bulk>1</Bulk>
+      <WornBulk>0.5</WornBulk>
+      <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+    </value>
+  </Operation>
+
+	<!-- 대상: AlienRace.ThingDef_AlienRace[Korossa](종족 정의). comps 노드 존재 여부에 따라
+	     CompPawnGizmo + CompProperties_Suppressable(CE 제압 관련 컴포넌트)를 추가한다. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]/comps</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]/comps</xpath>
+			<value>
+				<li>
+					<compClass>CombatExtended.CompPawnGizmo</compClass>
+				</li>
+				<li Class="CombatExtended.CompProperties_Suppressable" />
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]</xpath>
+			<value>
+				<comps>
+					<li>
+						<compClass>CombatExtended.CompPawnGizmo</compClass>
+					</li>
+					<li Class="CombatExtended.CompProperties_Suppressable" />
+				</comps>
+			</value>
+		</nomatch>
+	</Operation>
+
+	<!-- 대상: AlienRace.ThingDef_AlienRace[Korossa]. CE RacePropertiesExtensionCE로
+	     신체형태(bodyShape=Humanoid)를 지정한다(CE 장갑/명중판정에 사용). -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]</xpath>
+		<value>
+			<li Class="CombatExtended.RacePropertiesExtensionCE">
+				<bodyShape>Humanoid</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- RimWorld 1.6에는 이 구버전 인간 펀치 SoundDef가 더 이상 없다.
+	     미정의 참조를 제거하면 타격 대상 재질의 기본 impact 음향을 사용한다. -->
+	<!-- 대상: AlienRace.ThingDef_AlienRace[Korossa]. RimWorld 1.6에서 사라진 구버전
+	     SoundDef 참조(soundMeleeHitBuilding)를 제거해 미정의 참조 오류를 방지. -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]/race/soundMeleeHitBuilding</xpath>
+	</Operation>
+
+	<!-- 대상: AlienRace.ThingDef_AlienRace[Korossa]. CE 제압/연막 민감도 스탯 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]/statBases</xpath>
+		<value>
+			<Suppressability>1</Suppressability>
+			<SmokeSensitivity>1</SmokeSensitivity>
+		</value>
+	</Operation>
+
+	<!-- 대상: AlienRace.ThingDef_AlienRace[Korossa]. 종족 전체의 맨손 근접 tools(주먹/이빨)를
+	     CE ToolCE로 교체해 관통값(armorPenetration)을 부여한다. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="Korossa"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>left fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.05</cooldownTime>
+					<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>right fist</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.05</cooldownTime>
+					<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Teeth</label>
+					<capacities>
+						<li>Bite</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>4.49</cooldownTime>
+					<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationSharp>1</armorPenetrationSharp>
+					<armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

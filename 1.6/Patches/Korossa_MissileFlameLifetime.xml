@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- 원 모드 Effecter를 사용하는 TOW/휴대 미사일의 화염은 수명 0.26초,
+       growthRate -5라 거의 즉시 축소된다. 밀도가 높은 Effecter인 점을 감안해
+       CE 미사일 화염보다 짧은 0.5초로 늘리고 축소 속도를 완화한다.
+       (2026-08-10: 총 지속시간을 0.9초 → 0.5초로 축소 요청 반영) -->
+  <!-- 대상: KRS_RocketFlameA FleckDef. solidTime(완전 표시 유지 시간)을 0.15초로 연장. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/FleckDef[defName="KRS_RocketFlameA"]/solidTime</xpath>
+    <value>
+      <solidTime>0.15</solidTime>
+    </value>
+  </Operation>
+
+  <!-- 대상: KRS_RocketFlameA FleckDef. fadeOutTime(소멸 시간)을 0.35초로 연장. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/FleckDef[defName="KRS_RocketFlameA"]/fadeOutTime</xpath>
+    <value>
+      <fadeOutTime>0.35</fadeOutTime>
+    </value>
+  </Operation>
+
+  <!-- 대상: KRS_RocketFlameA FleckDef. growthRate(크기 변화율)를 -0.6으로 완화(급격한 축소 방지). -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/FleckDef[defName="KRS_RocketFlameA"]/growthRate</xpath>
+    <value>
+      <growthRate>-0.6</growthRate>
+    </value>
+  </Operation>
+
+</Patch>

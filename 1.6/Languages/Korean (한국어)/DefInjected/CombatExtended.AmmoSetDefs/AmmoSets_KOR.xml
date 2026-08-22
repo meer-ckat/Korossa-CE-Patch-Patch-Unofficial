@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <AmmoSet_756x40mmKor.label>7.56x40mm VEK</AmmoSet_756x40mmKor.label>
+  <AmmoSet_762x42mmSub.label>7.62x42mm 아음속</AmmoSet_762x42mmSub.label>
+  <AmmoSet_78x50mm.label>7.8x50mm 고압</AmmoSet_78x50mm.label>
+  <AmmoSet_404VL.label>.404VL</AmmoSet_404VL.label>
+  <AmmoSet_120mmrocket.label>120mm 대인로켓</AmmoSet_120mmrocket.label>
+  <AmmoSet_127mmMissile.label>127mm 대전차 반자동 시선유도미사일</AmmoSet_127mmMissile.label>
+  <AmmoSet_KOR_Sheridan152mm.label>152mm 포탄 및 포발사 미사일</AmmoSet_KOR_Sheridan152mm.label>
+  <AmmoSet_Blackdown_KOR.label>블랙다운 R.300</AmmoSet_Blackdown_KOR.label>
+
+</LanguageData>

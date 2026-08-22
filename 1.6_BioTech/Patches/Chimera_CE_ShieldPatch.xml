@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!--
+	=================================================================
+	  코로사 메크 방어막 CE 밸런스 패치
+	=================================================================
+
+	  원본 코로사에서 방어막을 가진 메크는 3종이고, 방식이 서로 다르다.
+
+	    Mech_LUNCHBOX  : CompProjectileInterceptor (돔형 요격막, 반경 4)
+	    Mech_haebyung  : CompProjectileInterceptor (돔형 요격막, 반경 2)
+	    Mech_Sheridan  : CompProperties_Shield     (개인 방어막)
+
+	  이 3종은 CE 패치가 지금까지 한 번도 건드리지 않아 전부 원본값 그대로였다.
+	  반면 BSD 플레이트 캐리어(Korossa_BSD_Vest)는
+	  1.6/Patches/Korossa_CE_ArmorPatch.xml 에서 재충전을 0.013 -> 0.5 (38배),
+	  재가동 대기를 18000틱 -> 900틱으로 크게 상향해 뒀다.
+
+	  기준선 — BSD 베스트(패치 후 실효값)
+	    총 흡수량 75 dmg (3.0 / 0.04)
+	    재생      12.5 dmg/초  (0 -> 만충 6초)
+	    재가동    900틱(15초), 만충 복귀
+
+	  문제는 총량이 아니라 회복력이었다. 예를 들어 런치박스는 돔 HP 350에
+	  rechargeHitPointsIntervalTicks 1800(= 30초당 +1 HP)이라 350을 채우는 데
+	  175분이 걸린다. 사실상 "전투당 1회용"이다.
+
+	  아래 값은 각 메크의 대역폭 비용(런치박스 4 / 해병 3 / 셰리든 5)에
+	  비례해 풀을 주고, 재생력은 BSD 급으로 맞춘 것이다.
+	  산발적인 소총 사격은 무시하지만, 집중 화력이나 대전차 화기에는 뚫린다.
+
+	  참고: CompProjectileInterceptor는 요격 시 발사체 데미지만큼 hitPoints가
+	  깎이므로 hitPoints = 흡수 가능한 총 데미지다.
+	  rechargeHitPointsIntervalTicks는 "N틱마다 +1 HP"이므로 60/N = 초당 회복량.
+	  hitPointsRestoreInstantlyAfterCharge=true라서 chargeDurationTicks가
+	  곧 "깨진 뒤 만충 복귀까지의 대기시간"이다.
+	-->
+
+	<!-- =========================================================
+	     런치박스 (Mech_LUNCHBOX) — 지원 UGV, 대역폭 4
+	     ZEALOT 고주파 무력화 필드. 방어막이 이 메크의 정체성이다.
+	     350 HP  -> 1500 HP  (BSD 20배 풀. 반경 4 돔이라 아군도 같이 보호)
+	     1800틱  -> 6틱      (30초당 +1 HP -> 초당 +10 HP)
+	     3600틱  -> 1800틱   (재가동 60초 -> 30초)
+	     ========================================================= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/hitPoints</xpath>
+		<value><hitPoints>1500</hitPoints></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/rechargeHitPointsIntervalTicks</xpath>
+		<value><rechargeHitPointsIntervalTicks>6</rechargeHitPointsIntervalTicks></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/chargeDurationTicks</xpath>
+		<value><chargeDurationTicks>1800</chargeDurationTicks></value>
+	</Operation>
+
+	<!-- =========================================================
+	     해병 (Mech_haebyung) — 장갑차, 대역폭 3
+	     무장을 덜어낸 수송/기승용. 반경 2라 자기 몸만 겨우 덮는다.
+	     100 HP -> 600 HP   (런치박스의 40%)
+	     120틱  -> 10틱     (2초당 +1 HP -> 초당 +6 HP)
+	     1800틱 -> 1200틱   (재가동 30초 -> 20초)
+	     ========================================================= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/hitPoints</xpath>
+		<value><hitPoints>600</hitPoints></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/rechargeHitPointsIntervalTicks</xpath>
+		<value><rechargeHitPointsIntervalTicks>10</rechargeHitPointsIntervalTicks></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/comps/li[@Class="CompProperties_ProjectileInterceptor"]/chargeDurationTicks</xpath>
+		<value><chargeDurationTicks>1200</chargeDurationTicks></value>
+	</Operation>
+
+	<!-- =========================================================
+	     셰리든 (Mech_Sheridan) — 전차 UGV, 대역폭 5
+	     BSD와 같은 CompProperties_Shield 방식.
+	     흡수 총량은 이미 200 dmg(2.0 / 0.01)로 BSD의 2.7배라 그대로 둔다.
+	     문제는 재생과 재가동이었다.
+
+	     EnergyShieldRechargeRate 0.026 -> 0.25
+	       = 2.6 dmg/초 -> 25 dmg/초 (0 -> 만충 77초 -> 8초)
+	         BSD가 12.5 dmg/초이므로 그 2배.
+	     startingTicksToReset 18000 -> 1800
+	       = 300초 -> 30초. energyOnReset 2.0이라 대기 후 만충 복귀.
+	     min/maxDrawSize 0.01 -> 2.6
+	       = 원본은 사실상 안 보이는 크기라 방어막이 작동 중인지 알 수 없었다.
+	         baseBodySize 2 차체를 덮도록 키운다.
+	     ========================================================= -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value><EnergyShieldRechargeRate>0.25</EnergyShieldRechargeRate></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/comps/li[@Class="CompProperties_Shield"]/startingTicksToReset</xpath>
+		<value><startingTicksToReset>1800</startingTicksToReset></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/comps/li[@Class="CompProperties_Shield"]/minDrawSize</xpath>
+		<value><minDrawSize>2.6</minDrawSize></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/comps/li[@Class="CompProperties_Shield"]/maxDrawSize</xpath>
+		<value><maxDrawSize>2.6</maxDrawSize></value>
+	</Operation>
+
+</Patch>

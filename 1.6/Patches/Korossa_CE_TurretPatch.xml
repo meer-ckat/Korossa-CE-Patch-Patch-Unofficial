@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== 모든 코로사 터렛 공통 ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Korossa_Turret"]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedtow"]/comps</xpath>
+	</Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedpig"]/comps</xpath>
+	</Operation>
+
+	<!-- 엄폐 높이를 CE 터렛 기준(0.85)으로 상향. passability/pathCost는 이미 CE와 동일.
+	     CIWS는 자체 def에서 fillPercent=1, passability=Impassable로 덮어쓰므로 영향 없음. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="Korossa_Turret"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<!-- ========== 중기관총 터렛 ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedpig"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Korossa_Pigmachinegun</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.04</ShotSpread>
+			<SwayFactor>0.96</SwayFactor>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<Mass>12</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>0.97</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x51mmNATO_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<burstShotCount>15</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<range>62</range>
+			<soundCast>MMG_fire</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>200</magazineSize>
+			<reloadTime>4.9</reloadTime>
+			<ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== TOW 터렛 ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedtow"]/statBases</xpath>
+		<value>
+			<AimingAccuracy>0.5</AimingAccuracy>
+		</value>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Korossa_TOW</defName>
+		<statBases>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+			<SightsEfficiency>3</SightsEfficiency>
+			<ShotSpread>0.0</ShotSpread>
+			<SwayFactor>0.14</SwayFactor>
+			<Bulk>20</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.13</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_127mmMissile_HEAT</defaultProjectile> <!-- 84x246mmR 무반동포 → 127mm 유도미사일 -->
+			<warmupTime>1</warmupTime>
+			<minRange>6</minRange>
+			<range>120</range>
+			<soundCast>Misslemoter</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5</reloadTime>
+			<ammoSet>AmmoSet_127mmMissile</ammoSet>
+		</AmmoUser>
+		<FireModes>
+		</FireModes>
+		<weaponTags>
+			<li>TurretGun</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== 모든 터렛 inspectorTabs 제거 ========== -->
+	<!--
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedpig"]/inspectorTabs</xpath>
+	</Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_mountedtow"]/inspectorTabs</xpath>
+	</Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Korossa_building_CIWS"]/inspectorTabs</xpath>
+	</Operation>
+    -->
+</Patch> 

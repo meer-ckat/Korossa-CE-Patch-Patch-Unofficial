@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- 대상: Mech_Sheridan PawnKindDef (Biotech DLC 필요). abilities 목록에
+       KOR_Sheridan_SmokeDischarger(연막 차장) 어빌리티를 추가한다. -->
+  <Operation Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Biotech">
+    <xpath>Defs/PawnKindDef[defName="Mech_Sheridan"]/abilities</xpath>
+    <value>
+      <li>KOR_Sheridan_SmokeDischarger</li>
+    </value>
+  </Operation>
+
+</Patch>

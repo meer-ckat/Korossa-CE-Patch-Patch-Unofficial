@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+<!-- 대상: 코로사 메크 PawnKindDef 7종(krsgoliath/haebyung/HIBIKI/LUNCHBOX/ADlunchbox/
+     TOWlunchbox/Sheridan). CE LoadoutPropertiesExtension으로 스폰 시 보유할
+     예비 탄창 수(min5/max10)를 지정한다. -->
+<Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[
+      defName="Mech_krsgoliath" or 
+      defName="Mech_haebyung" or 
+      defName="Mech_HIBIKI" or 
+      defName="Mech_LUNCHBOX" or 
+      defName="Mech_ADlunchbox" or 
+      defName="Mech_TOWlunchbox" or 
+      defName="Mech_Sheridan"
+    ]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>5</min>
+          <max>10</max> </primaryMagazineCount>
+      </li>
+    </value>
+  </Operation>
+
+  <!--딸깍-->
+
+</Patch> 

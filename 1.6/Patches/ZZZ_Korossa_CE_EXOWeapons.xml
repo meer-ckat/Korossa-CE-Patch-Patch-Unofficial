@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- 대상: EXOSUIT 중화기 7종(AMAR_Kinetic/AMR/ATM_EXO/AMHMG/HVMMG/SG_EXO/Rsevenhundred).
+       바닐라 verbs(발사 로직)를 제거해 아래 MakeGunCECompatible이 CE verb로
+       새로 정의할 수 있도록 정리한다. -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMAR_Kinetic"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMR"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_ATM_EXO"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMHMG"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_HVMMG"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_SG_EXO"]/verbs</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_Rsevenhundred"]/verbs</xpath>
+  </Operation>
+
+  <!-- 대상: EXOSUIT 중화기 6종(Rsevenhundred 제외). 원본 CompProperties_RequiredApparel
+       (바닐라식 필수 착용 체크)을 제거 - 동일 기능은 C# CERequiredApparelPatch.cs가
+       CE Verb_ShootCE 레벨에서 대신 처리한다. -->
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMAR_Kinetic"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMR"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_ATM_EXO"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_AMHMG"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_HVMMG"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+  <Operation Class="PatchOperationRemove">
+    <xpath>Defs/ThingDef[defName="KJW_SG_EXO"]/comps/li[@Class="CompProperties_RequiredApparel"]</xpath>
+  </Operation>
+
+  <!-- 대상: KJW_AMAR_Kinetic. CE 변환(.50 BMG/70발 탄창). -->
+  <!-- AMAR : .50 BMG / 70 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_AMAR_Kinetic</defName>
+    <statBases>
+      <SightsEfficiency>0.78</SightsEfficiency>
+      <ShotSpread>0.16</ShotSpread>
+      <SwayFactor>1.35</SwayFactor>
+      <Bulk>20.0</Bulk>
+      <Mass>14.0</Mass>
+      <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>3.2</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>1.1</warmupTime>
+      <burstShotCount>9</burstShotCount>
+      <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+      <range>62</range>
+		<soundCast>AAMR_fire</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>6.8</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+  </Operation>  
+
+  <!-- AMR : 20x102mm / 10 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_AMR</defName>
+    <statBases>
+      <SightsEfficiency>1.10</SightsEfficiency>
+      <ShotSpread>0.035</ShotSpread>
+      <SwayFactor>1.75</SwayFactor>
+      <Bulk>24.0</Bulk>
+      <Mass>18.0</Mass>
+      <RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>4.8</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+      <warmupTime>2.2</warmupTime>
+      <burstShotCount>2</burstShotCount>
+      <ticksBetweenBurstShots>35</ticksBetweenBurstShots>
+      <range>80</range>
+      <soundCast>AMR_gunshot_big</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>12</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>7.0</reloadTime>
+      <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>1</aimedBurstShotCount>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </Operation>
+
+  <!-- ATM EXO : 20x102mm / 10 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_ATM_EXO</defName>
+    <statBases>
+      <SightsEfficiency>1.02</SightsEfficiency>
+      <ShotSpread>0.05</ShotSpread>
+      <SwayFactor>1.55</SwayFactor>
+      <Bulk>22.0</Bulk>
+      <Mass>16.0</Mass>
+      <RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>4.0</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_20x102mmNATO_AP</defaultProjectile>
+      <warmupTime>1.8</warmupTime>
+      <burstShotCount>1</burstShotCount>
+      <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+      <range>80</range>
+      <soundCast>AMR_gunshot_big</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>11</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>10</magazineSize>
+      <reloadTime>6.5</reloadTime>
+      <ammoSet>AmmoSet_20x102mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </Operation>
+
+  <!-- AMHMG : .50 BMG / 70 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_AMHMG</defName>
+    <statBases>
+      <SightsEfficiency>0.72</SightsEfficiency>
+      <ShotSpread>0.12</ShotSpread>
+      <SwayFactor>1.85</SwayFactor>
+      <Bulk>26.0</Bulk>
+      <Mass>20.0</Mass>
+      <RangedWeapon_Cooldown>0.45</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>3.8</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>1.0</warmupTime>
+      <burstShotCount>15</burstShotCount>
+      <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+      <range>70</range>
+      <soundCast>HMG_fire</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>10</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>7.2</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <!-- 15-round full auto와 구분되는 짧은 조준 점사 -->
+      <aimedBurstShotCount>5</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+  </Operation>
+
+  <!-- HVMMG : .50 BMG / 70 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_HVMMG</defName>
+    <statBases>
+      <SightsEfficiency>0.76</SightsEfficiency>
+      <ShotSpread>0.11</ShotSpread>
+      <SwayFactor>1.55</SwayFactor>
+      <Bulk>23.0</Bulk>
+      <Mass>17.0</Mass>
+      <RangedWeapon_Cooldown>0.30</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>3.3</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+      <warmupTime>0.8</warmupTime>
+      <burstShotCount>12</burstShotCount>
+      <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+      <range>64</range>
+      <soundCast>MMG_gunshot_big</soundCast>
+      <soundCastTail>GunTail_Heavy</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>70</magazineSize>
+      <reloadTime>6.5</reloadTime>
+      <ammoSet>AmmoSet_50BMG</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aimedBurstShotCount>8</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>SuppressFire</aiAimMode>
+    </FireModes>
+  </Operation>
+
+  <!-- SG EXO : 12 gauge / 6-shot burst / 35 range / 18 rounds -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_SG_EXO</defName>
+    <statBases>
+      <SightsEfficiency>0.70</SightsEfficiency>
+      <ShotSpread>0.28</ShotSpread>
+      <SwayFactor>1.05</SwayFactor>
+      <Bulk>18.0</Bulk>
+      <Mass>12.0</Mass>
+      <RangedWeapon_Cooldown>0.55</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>2.4</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <warmupTime>0.75</warmupTime>
+      <burstShotCount>6</burstShotCount>
+      <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+      <range>35</range>
+      <soundCast>HVSG_gunshot_big</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>8</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>18</magazineSize>
+      <reloadTime>7.0</reloadTime>
+      <ammoSet>AmmoSet_12Gauge</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <!-- 6-round full auto와 구분되는 짧은 조준 점사 -->
+      <aimedBurstShotCount>3</aimedBurstShotCount>
+      <aiUseBurstMode>TRUE</aiUseBurstMode>
+      <aiAimMode>Snapshot</aiAimMode>
+    </FireModes>
+  </Operation>
+
+  <!-- Rsevenhundred : 7.62x51 NATO -->
+  <Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+    <defName>KJW_Rsevenhundred</defName>
+    <statBases>
+      <SightsEfficiency>0.95</SightsEfficiency>
+      <ShotSpread>0.07</ShotSpread>
+      <SwayFactor>0.95</SwayFactor>
+      <Bulk>5.0</Bulk>
+      <Mass>3.6</Mass>
+      <RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+    </statBases>
+    <Properties>
+      <recoilAmount>1.8</recoilAmount>
+      <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+      <hasStandardCommand>true</hasStandardCommand>
+      <warmupTime>1.4</warmupTime>
+      <burstShotCount>1</burstShotCount>
+      <ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+      <range>72</range>
+      <soundCast>snipergunsound_KRS</soundCast>
+      <soundCastTail>GunTail_Medium</soundCastTail>
+      <muzzleFlashScale>9</muzzleFlashScale>
+    </Properties>
+    <AmmoUser>
+      <magazineSize>5</magazineSize>
+      <reloadTime>4.0</reloadTime>
+      <ammoSet>AmmoSet_762x51mmNATO</ammoSet>
+    </AmmoUser>
+    <FireModes>
+      <aiUseBurstMode>FALSE</aiUseBurstMode>
+      <aiAimMode>AimedShot</aiAimMode>
+    </FireModes>
+  </Operation>
+
+</Patch>

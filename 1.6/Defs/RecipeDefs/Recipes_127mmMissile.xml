@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 레시피: 127mm 대전차 유도미사일(HEAT) 4발 제작. Korossa_Mech_t1 연구 선행. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_127mmMissile_HEAT</defName>
+    <label>make 127mm anti-tank guided missile (HEAT) x4</label>
+    <description>Craft 4 127mm anti-tank guided missiles (HEAT).</description>
+    <jobString>Making 127mm anti-tank guided missiles...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_Mech_t1</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>200</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Gold</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>80</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Gold</li>
+        <li>ComponentIndustrial</li>
+        <li>Chemfuel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_127mmMissile_HEAT>4</Ammo_127mmMissile_HEAT>
+    </products>
+    <workAmount>12000</workAmount>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+  <!-- 신규 레시피: MGM-51 Shillelagh(셰리든 152mm 포발사 미사일) 4발 제작. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>Make_MGM_51</defName>
+    <label>make MGM-51 Shillelagh guided missile x4</label>
+    <description>Craft 4 MGM-51 Shillelagh 152mm gun-launched guided missiles.</description>
+    <jobString>Making MGM-51 Shillelagh missiles...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_Mech_t1</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>200</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Gold</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>16</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>80</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Gold</li>
+        <li>ComponentIndustrial</li>
+        <li>Chemfuel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <MGM_51_Missile>4</MGM_51_Missile>
+    </products>
+    <workAmount>12000</workAmount>
+    <skillRequirements>
+      <Crafting>7</Crafting>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

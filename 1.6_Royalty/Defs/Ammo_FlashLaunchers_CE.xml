@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Korossa_m320_flash(섬광 유탄발사기) / Korossa_FLASH_belt(4연장 60mm 소이탄) 전용
+     CE 발사체.
+
+     두 장비 모두 CompProperties_ApparelReloadable(Steel/Chemfuel 충전식)이라 CE AmmoSet을
+     쓰지 않는다. 따라서 원본 KOR_flashbang / KOR_60mm를 그대로 CE화한 전용 ProjectileCE를
+     정의하고, 폭발 성능(피해 타입/반경/발화)은 원본 수치를 유지한다.
+
+     ※ 폭발은 projectile 프로퍼티만으로 처리한다. CompProperties_ExplosiveCE를 같이 달면
+       ProjectileCE.Impact가 projectile 폭발과 comp 폭발을 둘 다 실행해 2중 폭발이 된다.
+       (CE 공식 Bullet_40x46mmGrenade_HE도 projectile 프로퍼티만 사용) -->
+<Defs>
+
+  <!-- 원본 KOR_flashbang: damageDef Stun / explosionRadius 3 / speed 55.
+       speed 100 = 사거리 30을 약 0.3초에 비행(로켓 화염 잔상이 길게 남지 않도록). -->
+  <ThingDef ParentName="BaseExplosiveBullet">
+    <defName>Bullet_KOR_Flashbang_CE</defName>
+    <label>40mm flashbang grenade</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>0.6</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>Stun</damageDef>
+      <damageAmountBase>20</damageAmountBase>
+      <explosionRadius>3</explosionRadius>
+      <speed>100</speed>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <dropsCasings>true</dropsCasings>
+      <casingMoteDefname>Fleck_GrenadeLauncherAmmoCasings</casingMoteDefname>
+      <casingFilthDefname>Filth_GrenadeLauncherAmmoCasings</casingFilthDefname>
+    </projectile>
+  </ThingDef>
+
+  <!-- 원본 KOR_60mm: damageDef KORFLASH(Heat 계열) / explosionRadius 3 /
+       explosionChanceToStartFire 1 / preExplosionSpawnThingDef Filth_Fuel.
+       speed 130 = 사거리 39.9를 약 0.3초에 비행(로켓 화염 잔상이 길게 남지 않도록).
+       원본 DamageDef를 그대로 재사용해 피해 성격(화상·건물 2배·식물 40배)을 보존한다. -->
+  <ThingDef ParentName="BaseExplosiveBullet">
+    <defName>Bullet_KOR_Incendiary60_CE</defName>
+    <label>60mm incendiary grenade</label>
+    <graphicData>
+      <texPath>Things/Projectile/Rocket</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>0.8</drawSize>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>KORFLASH</damageDef>
+      <damageAmountBase>15</damageAmountBase>
+      <explosionRadius>3</explosionRadius>
+      <speed>130</speed>
+      <explosionChanceToStartFire>1</explosionChanceToStartFire>
+      <preExplosionSpawnThingDef>Filth_Fuel</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+      <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+    </projectile>
+  </ThingDef>
+
+</Defs>

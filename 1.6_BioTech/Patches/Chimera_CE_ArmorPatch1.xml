@@ -1,0 +1,376 @@
+<Patch>
+  <!-- 셰리든 (Sheridan) -->
+  <!-- M551은 중전차가 아니라 고기동 정찰/공수 경전차다.
+       코로사 M113 계열(4.0)보다 빠르고 비무장 경량 로버(5.0)보다는 느리게 설정. -->
+  <!-- 대상: Mech_Sheridan. MoveSpeed를 4.6으로 교체(속도 재설정). -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases/MoveSpeed</xpath>
+    <value><MoveSpeed>4.6</MoveSpeed></value>
+  </Operation>
+  <!-- 대상: Mech_Sheridan. 캐러밴 이동 시 속도 배율(CaravanRidingSpeedFactor) 추가. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases</xpath>
+    <value><CaravanRidingSpeedFactor>1.35</CaravanRidingSpeedFactor></value>
+  </Operation>
+
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases/ArmorRating_Sharp</xpath>
+    <value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Mech_Sheridan. CE PartialArmorExt로 부위별(Torso/Leg·Foot/센서/내부부품) 장갑 배율 세분화. -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+        <stats>
+          <li>
+            <ArmorRating_Sharp>1.0</ArmorRating_Sharp>
+            <ArmorRating_Blunt>1.0</ArmorRating_Blunt>
+            <parts>
+              <li>Torso</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+            <parts>
+              <li>Leg</li>
+              <li>Foot</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+            <parts>
+              <li>SightSensor</li>
+              <li>HearingSensor</li>
+              <li>SmellSensor</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+            <parts>
+              <li>ArtificialBrain</li>
+              <li>Reactor</li>
+              <li>FluidReprocessor</li>
+              <li>BulbTurret</li>
+            </parts>
+          </li>
+        </stats>
+      </li>
+    </value>
+  </Operation>
+  <!-- 대상: Mech_Sheridan. CE 운반 중량/부피(CarryWeight/CarryBulk) 추가. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ThingDef[defName="Mech_Sheridan"]/statBases</xpath>
+    <value>
+      <CarryWeight>400</CarryWeight>
+      <CarryBulk>350</CarryBulk>
+    </value>
+  </Operation>
+
+  <!-- 런치박스 (LUNCHBOX) -->
+  <!-- 대상: Mech_LUNCHBOX. 전체 장갑을 30/30으로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/statBases/ArmorRating_Sharp</xpath>
+    <value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Mech_LUNCHBOX. PartialArmorExt로 Leg/Foot·센서·내부부품 부위별 장갑 배율 부여. -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+        <stats>
+          <li>
+            <ArmorRating_Sharp>0.53</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.53</ArmorRating_Blunt>
+            <parts>
+              <li>Leg</li>
+              <li>Foot</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>SightSensor</li>
+              <li>HearingSensor</li>
+              <li>SmellSensor</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>ArtificialBrain</li>
+              <li>Reactor</li>
+              <li>FluidReprocessor</li>
+              <li>BulbTurret</li>
+            </parts>
+          </li>
+        </stats>
+      </li>
+    </value>
+  </Operation>
+	<!-- 대상: Mech_LUNCHBOX. CE 운반 중량/부피 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_LUNCHBOX"]/statBases</xpath>
+		<value>
+			<CarryWeight>500</CarryWeight>
+			<CarryBulk>450</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- M113 -->
+	<!-- 대상: Mech_ADlunchbox(M113 계열). 전체 장갑을 30/30으로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_ADlunchbox"]/statBases/ArmorRating_Sharp</xpath>
+    <value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_ADlunchbox"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Mech_ADlunchbox. PartialArmorExt로 부위별 장갑 배율 부여(LUNCHBOX와 동일 값). -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Mech_ADlunchbox"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+        <stats>
+          <li>
+            <ArmorRating_Sharp>0.53</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.53</ArmorRating_Blunt>
+            <parts>
+              <li>Leg</li>
+              <li>Foot</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>SightSensor</li>
+              <li>HearingSensor</li>
+              <li>SmellSensor</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>ArtificialBrain</li>
+              <li>Reactor</li>
+              <li>FluidReprocessor</li>
+              <li>BulbTurret</li>
+            </parts>
+          </li>
+        </stats>
+      </li>
+    </value>
+  </Operation>
+	<!-- 대상: Mech_ADlunchbox. CE 운반 중량/부피 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_ADlunchbox"]/statBases</xpath>
+		<value>
+			<CarryWeight>500</CarryWeight>
+			<CarryBulk>450</CarryBulk>
+		</value>
+	</Operation>
+
+  <!-- 대상: Mech_TOWlunchbox. 전체 장갑을 30/30으로 재설정. -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_TOWlunchbox"]/statBases/ArmorRating_Sharp</xpath>
+    <value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_TOWlunchbox"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Mech_TOWlunchbox. PartialArmorExt로 부위별 장갑 배율 부여(LUNCHBOX와 동일 값). -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Mech_TOWlunchbox"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+        <stats>
+          <li>
+            <ArmorRating_Sharp>0.53</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.53</ArmorRating_Blunt>
+            <parts>
+              <li>Leg</li>
+              <li>Foot</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>SightSensor</li>
+              <li>HearingSensor</li>
+              <li>SmellSensor</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+            <parts>
+              <li>ArtificialBrain</li>
+              <li>Reactor</li>
+              <li>FluidReprocessor</li>
+              <li>BulbTurret</li>
+            </parts>
+          </li>
+        </stats>
+      </li>
+    </value>
+  </Operation>
+	<!-- 대상: Mech_TOWlunchbox. CE 운반 중량/부피 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_TOWlunchbox"]/statBases</xpath>
+		<value>
+			<CarryWeight>500</CarryWeight>
+			<CarryBulk>450</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- 골리앗 (Goliath) -->
+  <!-- 대상: Mech_krsgoliath. 전체 장갑을 5/5로 재설정(Sd.Kfz.302 Goliath 5mm 연강 차체 기준). -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_krsgoliath"]/statBases/ArmorRating_Sharp</xpath>
+    <!-- Sd.Kfz. 302 Goliath의 약 5 mm 연강 차체 기준 -->
+    <value><ArmorRating_Sharp>5</ArmorRating_Sharp></value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName="Mech_krsgoliath"]/statBases/ArmorRating_Blunt</xpath>
+    <value><ArmorRating_Blunt>5</ArmorRating_Blunt></value>
+  </Operation>
+  <!-- 대상: Mech_krsgoliath. PartialArmorExt로 Leg/Foot·센서·내부부품 부위별 장갑 배율 부여. -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/ThingDef[defName="Mech_krsgoliath"]</xpath>
+    <value>
+      <li Class="CombatExtended.PartialArmorExt">
+        <stats>
+          <li>
+            <ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+            <parts>
+              <li>Leg</li>
+              <li>Foot</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+            <parts>
+              <li>SightSensor</li>
+              <li>HearingSensor</li>
+              <li>SmellSensor</li>
+            </parts>
+          </li>
+          <li>
+            <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+            <ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+            <parts>
+              <li>ArtificialBrain</li>
+              <li>Reactor</li>
+              <li>FluidReprocessor</li>
+              <li>BulbTurret</li>
+            </parts>
+          </li>
+        </stats>
+      </li>
+    </value>
+  </Operation>
+  <!-- 대상: Mech_krsgoliath. CE 운반 중량/부피 추가. -->
+  <Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_krsgoliath"]/statBases</xpath>
+		<value>
+			<CarryWeight>80</CarryWeight>
+			<CarryBulk>140</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- ============================================================
+	     해병 (haebyung) — 장갑 누락 보정
+	     원본값 Sharp 0.90 / Blunt 0.25는 바닐라 스케일(0~1 비율)이라
+	     CE(mm RHA / MPa)에서는 사실상 장갑 0이었다. 9mm 권총탄도 관통한다.
+	     M113 계열(ADlunchbox/TOWlunchbox)과 동일 차체이므로 30/30으로 통일.
+	     ============================================================ -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>30</ArmorRating_Sharp></value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>30</ArmorRating_Blunt></value>
+	</Operation>
+	<!-- 대상: Mech_haebyung. PartialArmorExt로 부위별 장갑 배율 부여(M113 계열과 동일 값). -->
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.53</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.53</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+							<li>Foot</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+						<parts>
+							<li>SightSensor</li>
+							<li>HearingSensor</li>
+							<li>SmellSensor</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.27</ArmorRating_Sharp>
+						<ArmorRating_Blunt>0.27</ArmorRating_Blunt>
+						<parts>
+							<li>ArtificialBrain</li>
+							<li>Reactor</li>
+							<li>FluidReprocessor</li>
+							<li>BulbTurret</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+	<!-- 대상: Mech_haebyung. CE 운반 중량/부피 추가(무장 제거한 수송/기승용 차량). -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_haebyung"]/statBases</xpath>
+		<value>
+			<CarryWeight>500</CarryWeight>
+			<CarryBulk>450</CarryBulk>
+		</value>
+	</Operation>
+
+	<!-- ============================================================
+	     히비키 (HIBIKI) — 장갑 누락 보정
+	     원본 statBases에 ArmorRating 자체가 없어 LightMechanoid 부모의
+	     바닐라 값을 그대로 상속받고 있었다(= CE 기준 장갑 0).
+	     경량 프로토타입 UGV(combatPower 45)이므로 CE 공식 밀리터 패치와
+	     동일한 Sharp 2.5 / Blunt 4를 쓴다. Replace가 아니라 Add여야 한다.
+	     ============================================================ -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Mech_HIBIKI"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

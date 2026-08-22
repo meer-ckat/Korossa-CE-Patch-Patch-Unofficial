@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- 대상: Korossa_Scenario_ez 시나리오. 시작 시 CE 탄약(762x39mmSoviet FMJ 120발,
+       762x51mmNATO HP 60발)을 추가 지급한다. -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/ScenarioDef[defName="Korossa_Scenario_ez"]/scenario/parts</xpath>
+    <value>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def> <thingDef>Ammo_762x39mmSoviet_FMJ</thingDef>
+        <count>120</count>
+      </li>
+      <li Class="ScenPart_StartingThing_Defined">
+        <def>StartingThing_Defined</def> <thingDef>Ammo_762x51mmNATO_HP</thingDef>
+        <count>60</count>
+      </li>
+    </value>
+  </Operation>
+</Patch>

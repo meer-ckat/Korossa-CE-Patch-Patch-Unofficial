@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+
+  <!-- 신규 탄약군: .404VL, KJW_Blackout 마크스맨 라이플 전용. FMJ/AP 2종 + 투사체
+       (베이스는 Flame 폭발, AP는 EMP로 오버라이드) + AmmoSet으로 구성. -->
+  <ThingCategoryDef>
+		<defName>Ammo_404VL</defName>
+		<label>.404VL</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/KOR/404VL_FMJ/404VL_FMJ_c</iconPath>
+  </ThingCategoryDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_404VLBase" ParentName="AmmoBase" Abstract="True">
+    <description>A .404VL round used in the Blackout rifle. The VL designation refers to the round's unique accelerating propellant geometry — it continues to build velocity after leaving the barrel.</description>
+    <statBases>
+      <Mass>0.1</Mass>
+      <Bulk>0.05</Bulk>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <thingCategories>
+      <li>Ammo_404VL</li>
+    </thingCategories>
+    <stackLimit>250</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_404VLBase">
+    <defName>Ammo_404VL_FMJ</defName>
+    <label>.404VL FMJ</label>
+    <statBases>
+      <MarketValue>1.5</MarketValue> <!-- 발당 거래가 -->
+    </statBases>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/404VL_FMJ</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_404VLBase">
+    <defName>Ammo_404VL_AP</defName>
+    <label>.404VL AP</label>
+    <statBases>
+      <MarketValue>2.0</MarketValue> <!-- 발당 거래가 -->
+    </statBases>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/404VL_AP</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILES ===================== -->
+
+  <ThingDef Name="404VLbulletBase" ParentName="BaseBulletCE" Abstract="true">
+    <graphicData>
+      <texPath>Things/Projectile/404VL</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>200</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>25</damageAmountBase>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>15</damageAmountBase>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <explosiveRadius>1.2</explosiveRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- 2026-07-28 상향: damage+16, armorPenetrationSharp(RHA)+7mm, armorPenetrationBlunt(MPa)+10,
+       2차 폭발(Flame) 효과 70%p 상향(damageAmountBase 15 x1.7 = 25.5). -->
+  <ThingDef ParentName="404VLbulletBase">
+    <defName>Bullet_404VL_FMJ</defName>
+    <label>.404VL FMJ bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageAmountBase>51</damageAmountBase>
+      <armorPenetrationSharp>17</armorPenetrationSharp>
+      <armorPenetrationBlunt>250</armorPenetrationBlunt>
+    </projectile>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>25.5</damageAmountBase>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <explosiveRadius>1.2</explosiveRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- 2026-07-28 상향: damage+16, armorPenetrationSharp(RHA)+7mm, armorPenetrationBlunt(MPa)+10,
+       2차 폭발(EMP) 효과 70%p 상향(damageAmountBase 15 x1.7 = 25.5). -->
+  <ThingDef ParentName="404VLbulletBase">
+    <defName>Bullet_404VL_AP</defName>
+    <label>.404VL AP bullet</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <!-- AP는 관통력을 얻는 대신 FMJ보다 낮은 조직 피해를 가짐. -->
+      <damageAmountBase>38</damageAmountBase>
+      <armorPenetrationSharp>31</armorPenetrationSharp>
+      <armorPenetrationBlunt>250</armorPenetrationBlunt>
+    </projectile>
+    <!-- 베이스의 Flame 폭발을 상속하지 않고 AP용 EMP 효과로 교체. -->
+    <comps Inherit="False">
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>25.5</damageAmountBase>
+        <explosiveDamageType>EMP</explosiveDamageType>
+        <explosiveRadius>1.2</explosiveRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+
+  <!-- 위 2종 탄약과 투사체를 연결하는 AmmoSet. KJW_Blackout의 ammoSet으로 참조. -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_404VL</defName>
+    <label>.404VL</label>
+    <ammoTypes>
+      <Ammo_404VL_FMJ>Bullet_404VL_FMJ</Ammo_404VL_FMJ>
+      <Ammo_404VL_AP>Bullet_404VL_AP</Ammo_404VL_AP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

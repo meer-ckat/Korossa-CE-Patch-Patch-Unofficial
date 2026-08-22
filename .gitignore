@@ -1,0 +1,27 @@
+# --- Build output (C#) ---
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.cache
+
+# --- IDE ---
+.vs/
+.idea/
+*.DotSettings.user
+
+# --- OS junk ---
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Backups / temp ---
+*~
+*.bak
+*.orig
+_export_tmp/
+_to_delete/
+
+# NOTE: 1.6/Assemblies/*.dll is intentionally tracked.
+# 게임에서 바로 쓸 수 있게 빌드된 DLL은 저장소에 포함합니다.

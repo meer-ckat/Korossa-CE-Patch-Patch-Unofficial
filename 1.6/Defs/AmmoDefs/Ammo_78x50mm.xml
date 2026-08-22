@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== AMMO THINGS ===================== -->
+
+  	<!-- 신규 탄약군: 7.8x50mm 고압탄, VOLK(KJW_VOLK/VOLK_exotic) MG 계열용.
+	     FMJ/AP/HP 3종 + 대응 투사체 + AmmoSet으로 구성. -->
+  	<ThingCategoryDef>
+		<defName>Ammo_78x50mm</defName>
+		<label>7.8x50mm</label>
+		<parent>AmmoRifles</parent>
+		<iconPath>Things/Ammo/KOR/78x50mm_FMJ/78x50mm_FMJ_c</iconPath>
+	  </ThingCategoryDef>
+
+    <ThingDef Class="CombatExtended.AmmoDef" Name="Ammo_78x50mmBase" ParentName="SmallAmmoBase" Abstract="True">
+		<description>A high-pressure 7.8x50mm round developed for the VOLK machine gun series. Standard issue for MERC fire support teams deployed to A-888 and AA.</description>
+		<statBases>
+			<Mass>0.025</Mass>
+			<Bulk>0.02</Bulk>
+		</statBases>
+		<tradeTags>
+			<li>CE_AutoEnableTrade</li>
+			<li>CE_AutoEnableCrafting</li>
+		</tradeTags>
+		<thingCategories>
+			<li>Ammo_78x50mm</li>
+		</thingCategories>
+    <stackLimit>500</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+	</ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_78x50mmBase">
+    <defName>Ammo_78x50mm_FMJ</defName>
+    <label>7.8x50mm FMJ</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/78x50mm_FMJ</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>FullMetalJacket</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_78x50mmBase">
+    <defName>Ammo_78x50mm_AP</defName>
+    <label>7.8x50mm AP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/78x50mm_AP</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>ArmorPiercing</ammoClass>
+  </ThingDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo_78x50mmBase">
+    <defName>Ammo_78x50mm_HP</defName>
+    <label>7.8x50mm HP</label>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/78x50mm_HP</texPath>
+      <drawSize>0.9</drawSize>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>HollowPoint</ammoClass>
+  </ThingDef>
+
+  <!-- ===================== PROJECTILES ===================== -->
+
+  <ThingDef Name="7.8x50mmFMJbulletBase" ParentName="BaseBulletCE" Abstract="true">
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile Class="CombatExtended.ProjectilePropertiesCE">
+			<damageDef>Bullet</damageDef>
+			<speed>165</speed>
+			<dropsCasings>true</dropsCasings>
+		</projectile>
+	</ThingDef>
+
+  <ThingDef ParentName="7.8x50mmFMJbulletBase">
+    <defName>Bullet_78x50mm_FMJ</defName>
+    <label>7.8x50mm FMJ bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>165</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <!-- 2026-07-28 상향: +5dmg/+3mm RHA/+8MPa -->
+      <damageAmountBase>26</damageAmountBase>
+      <armorPenetrationSharp>11</armorPenetrationSharp>
+      <armorPenetrationBlunt>78</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="7.8x50mmFMJbulletBase">
+    <defName>Bullet_78x50mm_AP</defName>
+    <label>7.8x50mm AP bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>165</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <!-- 2026-07-28 상향: +4dmg/+6mm RHA/+8MPa -->
+      <damageAmountBase>17</damageAmountBase>
+      <armorPenetrationSharp>24</armorPenetrationSharp> <!-- 15→18→24: 대메크 견제(화력지원조 AP) -->
+      <armorPenetrationBlunt>78</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="7.8x50mmFMJbulletBase">
+    <defName>Bullet_78x50mm_HP</defName>
+    <label>7.8x50mm HP bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <speed>165</speed>
+      <flyOverhead>false</flyOverhead>
+      <damageDef>Bullet</damageDef>
+      <!-- 2026-07-28 상향: +6dmg/+8MPa -->
+      <damageAmountBase>32</damageAmountBase>
+      <armorPenetrationSharp>5</armorPenetrationSharp>
+      <armorPenetrationBlunt>78</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+
+  <!-- ===================== AMMO SET ===================== -->
+
+  <!-- 위 3종 탄약과 투사체를 연결하는 AmmoSet. KJW_VOLK/VOLK_exotic의 ammoSet으로 참조. -->
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_78x50mm</defName>
+    <label>7.8x50mm High-Pressure</label>
+    <ammoTypes>
+      <Ammo_78x50mm_FMJ>Bullet_78x50mm_FMJ</Ammo_78x50mm_FMJ>
+      <Ammo_78x50mm_AP>Bullet_78x50mm_AP</Ammo_78x50mm_AP>
+      <Ammo_78x50mm_HP>Bullet_78x50mm_HP</Ammo_78x50mm_HP>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

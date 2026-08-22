@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 신규 레시피: 7.62x42mm Sub FMJ 500발 제작. Korossa_weapon_MERC 연구 선행. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_762x42mmSub_FMJ</defName>
+    <label>7.62x42mm Sub (FMJ) 500발 제작</label>
+    <description>7.62x42mm 서브소닉 FMJ 500발을 제작합니다.</description>
+    <jobString>7.62x42mm Sub FMJ 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_762x42mmSub_FMJ>500</Ammo_762x42mmSub_FMJ>
+    </products>
+    <workAmount>4900</workAmount>
+  </RecipeDef>
+
+  <!-- 신규 레시피: 7.62x42mm Sub AP 500발 제작. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_762x42mmSub_AP</defName>
+    <label>7.62x42mm Sub (AP) 500발 제작</label>
+    <description>7.62x42mm 서브소닉 AP 500발을 제작합니다.</description>
+    <jobString>7.62x42mm Sub AP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_762x42mmSub_AP>500</Ammo_762x42mmSub_AP>
+    </products>
+    <workAmount>6900</workAmount>
+  </RecipeDef>
+
+  <!-- 신규 레시피: 7.62x42mm Sub HP 500발 제작. -->
+  <RecipeDef ParentName="AmmoRecipeBase">
+    <defName>MakeAmmo_762x42mmSub_HP</defName>
+    <label>7.62x42mm Sub (HP) 500발 제작</label>
+    <description>7.62x42mm 서브소닉 HP 500발을 제작합니다.</description>
+    <jobString>7.62x42mm Sub HP 제작 중...</jobString>
+    <recipeUsers>
+      <li>AmmoBench</li>
+    </recipeUsers>
+    <researchPrerequisite>Korossa_weapon_MERC</researchPrerequisite>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>18</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_762x42mmSub_HP>500</Ammo_762x42mmSub_HP>
+    </products>
+    <workAmount>5400</workAmount>
+  </RecipeDef>
+
+</Defs>

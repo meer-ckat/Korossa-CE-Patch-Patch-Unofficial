@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Korossa_m320_flash / Korossa_FLASH_belt / Korossa_apparel_DRAGON을
+     CompProperties_ApparelReloadable(충전식) 대신 CE 표준 CompProperties_AmmoUser
+     (실 탄약 아이템 소지 + 재장전)로 전환하기 위한 전용 AmmoDef + AmmoSetDef.
+
+     발사체(Bullet_KOR_Flashbang_CE / Bullet_KOR_Incendiary60_CE / Bullet_KOR_Dragon_HEAT_CE)
+     자체는 변경하지 않고, 그 발사체를 쏘는 "탄약 아이템"만 새로 만들었다.
+
+     ※ 주의(2026-08-10): 이 세 무기는 원래 apparel(피착용구)이며, AmmoUser + Verb_ShootCE
+       조합은 원래 손에 드는 무기(equipment)를 대상으로 설계된 CE 표준 구성이다.
+       apparel에서도 동일하게 동작하는지 공식적으로 검증되지 않았으니 인게임 테스트로
+       재장전 기즈모/탄약 소지 여부를 반드시 확인할 것. 문제가 있으면 이전 방식
+       (ApparelReloadable + Verb_LaunchProjectileStaticCE)으로 되돌려야 한다. -->
+<Defs>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+    <defName>Ammo_KOR_Flashbang</defName>
+    <label>40mm flashbang grenade</label>
+    <description>Korossa_m320_flash 전용 40mm 섬광탄 탄약.</description>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/EMP</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.6</drawSize>
+    </graphicData>
+    <statBases>
+      <Mass>0.3</Mass>
+      <Bulk>0.6</Bulk>
+      <MarketValue>12</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>GrenadeEMP</ammoClass>
+    <stackLimit>25</stackLimit>
+  </ThingDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_KOR_Flashbang</defName>
+    <label>40mm flashbang grenade</label>
+    <ammoTypes>
+      <Ammo_KOR_Flashbang>Bullet_KOR_Flashbang_CE</Ammo_KOR_Flashbang>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+    <defName>Ammo_KOR_Incendiary60mm</defName>
+    <label>60mm incendiary grenade</label>
+    <description>Korossa_FLASH_belt 전용 60mm 소이탄 탄약.</description>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/HE</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.8</drawSize>
+    </graphicData>
+    <statBases>
+      <Mass>0.6</Mass>
+      <Bulk>1.0</Bulk>
+      <MarketValue>18</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>GrenadeIncendiary</ammoClass>
+    <stackLimit>20</stackLimit>
+  </ThingDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_KOR_Incendiary60</defName>
+    <label>60mm incendiary grenade</label>
+    <ammoTypes>
+      <Ammo_KOR_Incendiary60mm>Bullet_KOR_Incendiary60_CE</Ammo_KOR_Incendiary60mm>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoBase">
+    <defName>Ammo_KOR_DragonHEAT</defName>
+    <label>140mm DRAGON ATGM</label>
+    <description>Korossa_apparel_DRAGON 전용 140mm 대전차 유도탄 탄약.</description>
+    <graphicData>
+      <texPath>Things/Ammo/KOR/127mmATGM</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.9</drawSize>
+    </graphicData>
+    <statBases>
+      <Mass>9.0</Mass>
+      <Bulk>17</Bulk>
+      <MarketValue>320</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+    </tradeTags>
+    <ammoClass>RocketHEAT</ammoClass>
+    <stackLimit>2</stackLimit>
+    <cookOffSpeed>0.5</cookOffSpeed>
+  </ThingDef>
+
+  <CombatExtended.AmmoSetDef>
+    <defName>AmmoSet_KOR_DragonHEAT</defName>
+    <label>140mm DRAGON anti-tank guided missile</label>
+    <ammoTypes>
+      <Ammo_KOR_DragonHEAT>Bullet_KOR_Dragon_HEAT_CE</Ammo_KOR_DragonHEAT>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+
+</Defs>

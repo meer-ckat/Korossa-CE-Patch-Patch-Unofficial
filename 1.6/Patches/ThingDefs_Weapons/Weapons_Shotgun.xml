@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 샷건 2종(Shotgun/Supershotty)을 MakeGunCECompatible로 CE 변환(12게이지),
+     끝에 2종 공통 근접 툴 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_Shotgun. CE 변환 - 12게이지 7발. -->
+	<!-- KJW_Shotgun -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Shotgun</defName>
+		<statBases>
+			<SightsEfficiency>0.60</SightsEfficiency>
+			<ShotSpread>0.25</ShotSpread>
+			<SwayFactor>0.95</SwayFactor>
+			<Bulk>4.5</Bulk>
+			<Mass>3.4</Mass>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Shot_KJW</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>17.9</range>
+			<soundCast>Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Supershotty -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Supershotty</defName>
+		<statBases>
+			<SightsEfficiency>0.55</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.10</SwayFactor>
+			<Bulk>3.8</Bulk>
+			<Mass>3.4</Mass>
+			<RangedWeapon_Cooldown>1.25</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Shot_KJW</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>14</range>
+			<soundCast>Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>2.5</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_Shotgun" or
+			defName="KJW_Supershotty"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

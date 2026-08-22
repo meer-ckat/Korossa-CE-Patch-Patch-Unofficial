@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!--으악-->
+
+  <!-- 대상: 코로사 인간형 PawnKindDef 19종(BSD/Colonist/Commander/Guards/Gunner_T1~T3/
+       MG_T1~T2/Raider_Jugg/Raider_Rifle/Refugee/scav/shock_suppressor/
+       Slave/storm_drifter/storm_shock/storm_suppressor/Trader). CE
+       LoadoutPropertiesExtension으로 스폰 시 보유할 예비 탄창 수(min3/max5)를 지정. -->
+  <Operation Class="PatchOperationAddModExtension">
+    <xpath>Defs/PawnKindDef[
+      defName="Korossa_BSD" or
+      defName="Korossa_Colonist" or
+      defName="Korossa_Commander" or
+      defName="Korossa_Guards" or
+      defName="Korossa_Gunner_T1" or
+      defName="Korossa_Gunner_T2" or
+      defName="Korossa_Gunner_T3" or
+      defName="Korossa_MG_T1" or
+      defName="Korossa_MG_T2" or
+      defName="Korossa_Raider_Jugg" or
+      defName="Korossa_Raider_Rifle" or
+      defName="Korossa_Refugee" or
+      defName="Korossa_scav" or
+      defName="Korossa_shock_suppressor" or
+      defName="Korossa_Slave" or
+      defName="Korossa_storm_drifter" or
+      defName="Korossa_storm_shock" or
+      defName="Korossa_storm_suppressor" or
+      defName="Korossa_Trader"
+    ]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>5</max>
+        </primaryMagazineCount>
+      </li>
+    </value>
+  </Operation>
+
+  <!-- Korossa_mechanitor는 원본 1.6_Ody에만 정의되므로 Odyssey 미보유 시
+       위 Operation에 포함되면 xpath 매칭 실패로 로그 에러가 난다. 분리해서 MayRequire 부착. -->
+  <Operation Class="PatchOperationAddModExtension" MayRequire="Ludeon.RimWorld.Odyssey">
+    <xpath>Defs/PawnKindDef[defName="Korossa_mechanitor"]</xpath>
+    <value>
+      <li Class="CombatExtended.LoadoutPropertiesExtension">
+        <primaryMagazineCount>
+          <min>3</min>
+          <max>5</max>
+        </primaryMagazineCount>
+      </li>
+    </value>
+  </Operation>
+
+</Patch>

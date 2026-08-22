@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 권총 5종(Kimber/hicapa/noah_hicapa/By2a/Governer)을 CombatExtended.
+     PatchOperationMakeGunCECompatible로 CE 호환(Verb_ShootCE, CompAmmoUser, 탄약
+     세트, 사거리/반동/명중 스탯 부여)시키고, 마지막에 5종 공통 근접 툴(grip/muzzle)을 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_Kimber (1911류 권총). CE 변환 - .45ACP 7발 탄창. -->
+	<!-- KJW_Kimber -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Kimber</defName>
+		<statBases>
+			<SightsEfficiency>0.65</SightsEfficiency> <!-- 1911류, 미호/CE 표준 대비 소폭 상향 -->
+			<ShotSpread>0.14</ShotSpread> <!-- 1911류, 미호/CE 표준(0.14~0.16) -->
+			<SwayFactor>0.95</SwayFactor> <!-- 권총 평균치로 상향 -->
+			<Bulk>1.2</Bulk>
+			<Mass>1.2</Mass>
+			<RangedWeapon_Cooldown>1.1</RangedWeapon_Cooldown> <!-- 미호/CE 표준(1.0~1.2) -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.0</recoilAmount> <!-- 1911류, 미호/CE 표준(0.9~1.1) -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Kimber_KJW</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>25.9</range>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>7</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_hicapa -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_hicapa</defName>
+		<statBases>
+			<SightsEfficiency>0.68</SightsEfficiency> <!-- 하이카파, 미호/CE 표준 대비 소폭 상향 -->
+			<ShotSpread>0.13</ShotSpread> <!-- 하이카파, 미호/CE 표준(0.13~0.15) -->
+			<SwayFactor>0.90</SwayFactor> <!-- 권총 평균치로 상향 -->
+			<Bulk>1.3</Bulk>
+			<Mass>1.2</Mass>
+			<RangedWeapon_Cooldown>1.0</RangedWeapon_Cooldown> <!-- 미호/CE 표준(1.0~1.1) -->
+		</statBases>
+		<Properties>
+			<recoilAmount>0.95</recoilAmount> <!-- 하이카파, 미호/CE 표준(0.9~1.0) -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Kimber_KJW</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>25.9</range>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_noah_hicapa (하이카파 개조형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_noah_hicapa</defName>
+		<statBases>
+			<SightsEfficiency>0.72</SightsEfficiency> <!-- 원본 0.68 → 상향 -->
+			<ShotSpread>0.11</ShotSpread> <!-- 원본 0.13 → 상향(더 정확) -->
+			<SwayFactor>0.80</SwayFactor> <!-- 원본 0.90 → 상향(더 안정) -->
+			<Bulk>1.1</Bulk> <!-- 원본 1.2 → 경량화 -->
+			<Mass>1.0</Mass> <!-- 원본 1.1 → 경량화 -->
+			<RangedWeapon_Cooldown>0.9</RangedWeapon_Cooldown> <!-- 원본 1.0 → 상향(더 빠름) -->
+		</statBases>
+		<Properties>
+			<recoilAmount>0.85</recoilAmount> <!-- 원본 0.95 → 상향(더 적은 반동) -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_9x19mmPara_FMJ</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>25.9</range>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>31</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_9x19mmPara</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_By2a (Revolver) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_By2a</defName>
+		<statBases>
+			<SightsEfficiency>0.60</SightsEfficiency> <!-- 리볼버, 미호/CE 표준(0.58~0.62) -->
+			<ShotSpread>0.18</ShotSpread> <!-- 리볼버, 미호/CE 표준(0.17~0.20) -->
+			<SwayFactor>1.00</SwayFactor> <!-- 리볼버 평균치로 상향 -->
+			<Bulk>1.4</Bulk>
+			<Mass>1.2</Mass>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown> <!-- 리볼버, 미호/CE 표준(1.1~1.3) -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount> <!-- 리볼버, 미호/CE 표준(1.1~1.3) -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_By2_KJW</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>25.9</range>
+			<soundCast>NATOheavy</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>4.0</reloadTime>
+			<ammoSet>AmmoSet_357Magnum</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Governer -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Governer</defName>
+		<statBases>
+			<SightsEfficiency>0.60</SightsEfficiency>
+			<ShotSpread>0.18</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>1.2</Bulk>
+			<Mass>1.2</Mass>
+			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Governer_KJW</defaultProjectile>
+			<warmupTime>0.3</warmupTime>
+			<range>25.9</range>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>3.5</reloadTime>
+			<ammoSet>AmmoSet_45ACP</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_Kimber" or
+			defName="KJW_hicapa" or
+			defName="KJW_noah_hicapa" or
+			defName="KJW_By2a" or
+			defName="KJW_Governer"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

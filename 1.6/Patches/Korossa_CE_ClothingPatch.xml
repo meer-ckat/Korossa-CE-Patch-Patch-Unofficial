@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- 셔츠/유니폼류: Bulk 1.5 / WornBulk 1 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_casual_shirtsH" or defName="Korossa_old_uniform"]/statBases</xpath>
+		<value>
+			<Bulk>1.5</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<!-- CE 일반 셔츠/제복 표준과 동일한 재료 방어 계수 -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_casual_shirtsH" or defName="Korossa_old_uniform"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>1</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<!-- 겉옷(판초/후드): Bulk 2 / WornBulk 1 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_poncho"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_poncho"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>2</StuffEffectMultiplierArmor>
+			<ArmorRating_Sharp>4</ArmorRating_Sharp>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<!-- BSD 셔츠: Bulk 2 / WornBulk 1 -->
+	<!-- 대상: Korossa_BSD_shirts. CE 부피(Bulk/WornBulk) 추가. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_shirts"]/statBases</xpath>
+		<value>
+			<Bulk>2</Bulk>
+			<WornBulk>1</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_shirts"]/statBases/StuffEffectMultiplierArmor</xpath>
+		<value>
+			<StuffEffectMultiplierArmor>0.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_shirts"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>8</ArmorRating_Sharp>
+			<ArmorRating_Blunt>8</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Korossa_BSD_shirts"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<li>Shoulders</li>
+			<li>Arms</li>
+			<li>Hands</li>
+			<li>Feet</li>
+		</value>
+	</Operation>
+
+</Patch>

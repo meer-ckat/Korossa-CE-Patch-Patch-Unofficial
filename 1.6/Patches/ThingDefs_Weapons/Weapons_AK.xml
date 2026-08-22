@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: AK 계열 3종(AKU/Aliolio/Alioliowood)을 MakeGunCECompatible로 CE 변환,
+     끝에 3종 공통 근접 툴(stock/barrel/muzzle) 부여. -->
+<Patch>
+
+	<!-- 대상: KJW_AKU (AK74U 경량형). CE 변환 - 5.45x39mm 30발. -->
+	<!-- KJW_AKU (AK74U, 경량형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_AKU</defName>
+		<statBases>
+			<SightsEfficiency>0.92</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.17</ShotSpread> <!-- 2026-07-28 상향: 0.2→0.17 -->
+			<SwayFactor>1.3</SwayFactor> <!-- 경량형, 흔들림↓ -->
+			<Bulk>3.5</Bulk>
+			<Mass>2.9</Mass>
+			<RangedWeapon_Cooldown>0.51</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 0.6→0.51 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>2</recoilAmount> <!-- 경량형, 반동↑ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AKU_KJW</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<range>30</range>
+			<soundCast>SOVIET_small</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.7</reloadTime>
+			<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Aliolio (AKM, 중량형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Aliolio</defName>
+		<statBases>
+			<SightsEfficiency>1.19</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.05</ShotSpread> <!-- 2026-07-28 상향: 0.06→0.05 -->
+			<SwayFactor>1.20</SwayFactor> <!-- 중량형, 흔들림↑ -->
+			<Bulk>4.2</Bulk>
+			<Mass>3.9</Mass>
+			<RangedWeapon_Cooldown>0.85</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 1.0→0.85 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.1</recoilAmount> <!-- 중량형, 반동↓ -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Aliolio_KJW</defaultProjectile>
+			<warmupTime>0.8</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>60</range>
+			<soundCast>SOVIET_small</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_545x39mmSoviet</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- KJW_Alioliowood (목재 개머리판형) -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>KJW_Alioliowood</defName>
+		<statBases>
+			<SightsEfficiency>1.19</SightsEfficiency> <!-- 2026-07-28 상향(CE탄 무기 트랙) -->
+			<ShotSpread>0.06</ShotSpread> <!-- 2026-07-28 상향: 0.07→0.06 -->
+			<SwayFactor>1.22</SwayFactor>
+			<Bulk>4.3</Bulk>
+			<Mass>3.8</Mass>
+			<RangedWeapon_Cooldown>0.98</RangedWeapon_Cooldown> <!-- 2026-07-28 상향: 1.15→0.98 -->
+		</statBases>
+		<Properties>
+			<recoilAmount>1.4</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_762x39mmSoviet_FMJ</defaultProjectile>
+			<warmupTime>0.7</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<range>52</range>
+			<soundCast>SOVIET_small</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>15</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>30</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_762x39mmSoviet</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+
+	<!-- 근접 툴 패치 (미호 구조 모방) -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="KJW_AKU" or
+			defName="KJW_Aliolio" or
+			defName="KJW_Alioliowood"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch> 

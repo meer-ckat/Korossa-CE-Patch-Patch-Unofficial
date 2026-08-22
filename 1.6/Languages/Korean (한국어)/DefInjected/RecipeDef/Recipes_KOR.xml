@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== 7.56x40mm VEK ===================== -->
+
+  <MakeAmmo_756x40Kor_FMJ.label>7.56x40mm VEK FMJ 제조</MakeAmmo_756x40Kor_FMJ.label>
+  <MakeAmmo_756x40Kor_AP.label>7.56x40mm VEK AP 제조</MakeAmmo_756x40Kor_AP.label>
+  <MakeAmmo_756x40Kor_HP.label>7.56x40mm VEK HP 제조</MakeAmmo_756x40Kor_HP.label>
+  <MakeAmmo_756x40Kor_Sabot.label>7.56x40mm VEK 사보탄 제조</MakeAmmo_756x40Kor_Sabot.label>
+
+  <!-- ===================== 7.62x42mm 아음속 ===================== -->
+
+  <MakeAmmo_762x42mmSub_FMJ.label>7.62x42mm 아음속 FMJ 제조</MakeAmmo_762x42mmSub_FMJ.label>
+  <MakeAmmo_762x42mmSub_AP.label>7.62x42mm 아음속 AP 제조</MakeAmmo_762x42mmSub_AP.label>
+  <MakeAmmo_762x42mmSub_HP.label>7.62x42mm 아음속 HP 제조</MakeAmmo_762x42mmSub_HP.label>
+
+  <!-- ===================== 7.8x50mm 고압 ===================== -->
+
+  <MakeAmmo_78x50mm_FMJ.label>7.8x50mm 고압 FMJ 제조</MakeAmmo_78x50mm_FMJ.label>
+  <MakeAmmo_78x50mm_AP.label>7.8x50mm 고압 AP 제조</MakeAmmo_78x50mm_AP.label>
+  <MakeAmmo_78x50mm_HP.label>7.8x50mm 고압 HP 제조</MakeAmmo_78x50mm_HP.label>
+
+  <!-- ===================== .404VL ===================== -->
+
+  <MakeAmmo_404VL_FMJ.label>.404VL FMJ 제조</MakeAmmo_404VL_FMJ.label>
+  <MakeAmmo_404VL_AP.label>.404VL AP 제조</MakeAmmo_404VL_AP.label>
+
+  <!-- ===================== 127mm 대전차 유도미사일 ===================== -->
+
+  <MakeAmmo_127mmMissile_HEAT.label>127mm 대전차 유도미사일 (HEAT) 4발 제작</MakeAmmo_127mmMissile_HEAT.label>
+  <MakeAmmo_127mmMissile_HEAT.description>127mm 대전차 유도미사일(HEAT) 4발을 제작합니다.</MakeAmmo_127mmMissile_HEAT.description>
+  <MakeAmmo_127mmMissile_HEAT.jobString>127mm 대전차 유도미사일 제작 중...</MakeAmmo_127mmMissile_HEAT.jobString>
+
+  <Make_MGM_51.label>MGM-51X 시레일러 유도미사일 4발 제작</Make_MGM_51.label>
+  <Make_MGM_51.description>MGM-51X 시레일러 152mm 포발사 유도미사일 4발을 제작합니다.</Make_MGM_51.description>
+  <Make_MGM_51.jobString>MGM-51X 시레일러 미사일 제작 중...</Make_MGM_51.jobString>
+
+</LanguageData>

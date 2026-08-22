@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== 7.56x40mm VEK ===================== -->
+
+  <Ammo_756x40KorBase.description>VEK 용병 회사가 개발한 7.56x40mm 탄약입니다. 구지구의 7.62x39mm를 기반으로 현대화된 탄약으로, TARX-100 불펍 소총에 사용됩니다. 불법 소총에는 사용할 수 없습니다.</Ammo_756x40KorBase.description>
+
+  <Ammo_756x40Kor_FMJ.label>7.56x40mm VEK FMJ</Ammo_756x40Kor_FMJ.label>
+  <Ammo_756x40Kor_FMJ.description>VEK 용병 회사가 개발한 7.56x40mm 탄약입니다. 구지구의 7.62x39mm를 기반으로 현대화된 탄약으로, TARX-100 불펍 소총에 사용됩니다. 불법 소총에는 사용할 수 없습니다.</Ammo_756x40Kor_FMJ.description>
+
+  <Ammo_756x40Kor_AP.label>7.56x40mm VEK AP</Ammo_756x40Kor_AP.label>
+  <Ammo_756x40Kor_AP.description>VEK 용병 회사가 개발한 7.56x40mm 탄약입니다. 구지구의 7.62x39mm를 기반으로 현대화된 탄약으로, TARX-100 불펍 소총에 사용됩니다. 불법 소총에는 사용할 수 없습니다.</Ammo_756x40Kor_AP.description>
+
+  <Ammo_756x40Kor_HP.label>7.56x40mm VEK HP</Ammo_756x40Kor_HP.label>
+  <Ammo_756x40Kor_HP.description>VEK 용병 회사가 개발한 7.56x40mm 탄약입니다. 구지구의 7.62x39mm를 기반으로 현대화된 탄약으로, TARX-100 불펍 소총에 사용됩니다. 불법 소총에는 사용할 수 없습니다.</Ammo_756x40Kor_HP.description>
+
+  <Ammo_756x40Kor_Sabot.label>7.56x40mm VEK 사보탄</Ammo_756x40Kor_Sabot.label>
+  <Ammo_756x40Kor_Sabot.description>VEK 용병 회사가 개발한 7.56x40mm 탄약입니다. 구지구의 7.62x39mm를 기반으로 현대화된 탄약으로, TARX-100 불펍 소총에 사용됩니다. 불법 소총에는 사용할 수 없습니다.</Ammo_756x40Kor_Sabot.description>
+
+  <Bullet_756x40Kor_FMJ.label>7.56x40mm VEK FMJ 탄두</Bullet_756x40Kor_FMJ.label>
+  <Bullet_756x40Kor_AP.label>7.56x40mm VEK AP 탄두</Bullet_756x40Kor_AP.label>
+  <Bullet_756x40Kor_HP.label>7.56x40mm VEK HP 탄두</Bullet_756x40Kor_HP.label>
+  <Bullet_756x40Kor_Sabot.label>7.56x40mm VEK 사보 탄두</Bullet_756x40Kor_Sabot.label>
+
+  <!-- ===================== 7.62x42mm 아음속 ===================== -->
+
+  <Ammo_762x42mmSubBase.description>WRAITH 운용자들이 사용하는 7.62x42mm 아음속 탄약입니다. 소음기 장착 시 발사음이 극도로 억제되도록 아음속으로 설계되었습니다.</Ammo_762x42mmSubBase.description>
+
+  <Ammo_762x42mmSub_FMJ.label>7.62x42mm 아음속 FMJ</Ammo_762x42mmSub_FMJ.label>
+  <Ammo_762x42mmSub_FMJ.description>WRAITH 운용자들이 사용하는 7.62x42mm 아음속 탄약입니다. 소음기 장착 시 발사음이 극도로 억제되도록 아음속으로 설계되었습니다.</Ammo_762x42mmSub_FMJ.description>
+
+  <Ammo_762x42mmSub_AP.label>7.62x42mm 아음속 AP</Ammo_762x42mmSub_AP.label>
+  <Ammo_762x42mmSub_AP.description>WRAITH 운용자들이 사용하는 7.62x42mm 아음속 탄약입니다. 소음기 장착 시 발사음이 극도로 억제되도록 아음속으로 설계되었습니다.</Ammo_762x42mmSub_AP.description>
+
+  <Ammo_762x42mmSub_HP.label>7.62x42mm 아음속 HP</Ammo_762x42mmSub_HP.label>
+  <Ammo_762x42mmSub_HP.description>WRAITH 운용자들이 사용하는 7.62x42mm 아음속 탄약입니다. 소음기 장착 시 발사음이 극도로 억제되도록 아음속으로 설계되었습니다.</Ammo_762x42mmSub_HP.description>
+
+  <Bullet_762x42mmSub_FMJ.label>7.62x42mm 아음속 FMJ 탄두</Bullet_762x42mmSub_FMJ.label>
+  <Bullet_762x42mmSub_AP.label>7.62x42mm 아음속 AP 탄두</Bullet_762x42mmSub_AP.label>
+  <Bullet_762x42mmSub_HP.label>7.62x42mm 아음속 HP 탄두</Bullet_762x42mmSub_HP.label>
+
+  <!-- ===================== 7.8x50mm 고압 ===================== -->
+
+  <Ammo_78x50mmBase.description>VOLK 기관총 시리즈를 위해 개발된 7.8x50mm 고압 탄약입니다. A-888 및 AA 작전에 투입된 MERC 공용화기반의 표준 탄약입니다.</Ammo_78x50mmBase.description>
+
+  <Ammo_78x50mm_FMJ.label>7.8x50mm 고압 FMJ</Ammo_78x50mm_FMJ.label>
+  <Ammo_78x50mm_FMJ.description>VOLK 기관총 시리즈를 위해 개발된 7.8x50mm 고압 탄약입니다. A-888 및 AA 작전에 투입된 MERC 공용화기반의 표준 탄약입니다.</Ammo_78x50mm_FMJ.description>
+
+  <Ammo_78x50mm_AP.label>7.8x50mm 고압 AP</Ammo_78x50mm_AP.label>
+  <Ammo_78x50mm_AP.description>VOLK 기관총 시리즈를 위해 개발된 7.8x50mm 고압 탄약입니다. A-888 및 AA 작전에 투입된 MERC 공용화기반의 표준 탄약입니다.</Ammo_78x50mm_AP.description>
+
+  <Ammo_78x50mm_HP.label>7.8x50mm 고압 HP</Ammo_78x50mm_HP.label>
+  <Ammo_78x50mm_HP.description>VOLK 기관총 시리즈를 위해 개발된 7.8x50mm 고압 탄약입니다. A-888 및 AA 작전에 투입된 MERC 공용화기반의 표준 탄약입니다.</Ammo_78x50mm_HP.description>
+
+  <Bullet_78x50mm_FMJ.label>7.8x50mm 고압 FMJ 탄두</Bullet_78x50mm_FMJ.label>
+  <Bullet_78x50mm_AP.label>7.8x50mm 고압 AP 탄두</Bullet_78x50mm_AP.label>
+  <Bullet_78x50mm_HP.label>7.8x50mm 고압 HP 탄두</Bullet_78x50mm_HP.label>
+
+  <!-- ===================== .404VL ===================== -->
+
+  <Ammo_404VLBase.description>블랙아웃 소총에 사용되는 .404VL 탄약입니다. VL 명칭은 탄약의 독특한 가속 추진 구조에서 유래하며, 총구를 벗어난 후에도 계속 속도가 증가하여 목표물에게 영구적이고 치명적인 손상을 입힙니다.\n\n알려진 바에 따르면 6974개의 버전이 있고, 이 버전에는 EMP 탄두와 소이 탄두가 있습니다.</Ammo_404VLBase.description>
+
+  <Ammo_404VL_FMJ.label>.404VL FMJ</Ammo_404VL_FMJ.label>
+  <Ammo_404VL_FMJ.description>블랙아웃 소총에 사용되는 .404VL 탄약입니다. VL 명칭은 탄약의 독특한 가속 추진 구조에서 유래하며, 총구를 벗어난 후에도 계속 속도가 증가하여 목표물에게 영구적이고 치명적인 손상을 입힙니다.\n\n알려진 바에 따르면 6974개의 버전이 있고, 이 버전에는 EMP 탄두와 소이 탄두가 있습니다.</Ammo_404VL_FMJ.description>
+
+  <Ammo_404VL_AP.label>.404VL AP</Ammo_404VL_AP.label>
+  <Ammo_404VL_AP.description>블랙아웃 소총에 사용되는 .404VL 탄약입니다. VL 명칭은 탄약의 독특한 가속 추진 구조에서 유래하며, 총구를 벗어난 후에도 계속 속도가 증가하여 목표물에게 영구적이고 치명적인 손상을 입힙니다.\n\n알려진 바에 따르면 6974개의 버전이 있고, 이 버전에는 EMP 탄두와 소이 탄두가 있습니다.</Ammo_404VL_AP.description>
+
+  <Bullet_404VL_FMJ.label>.404VL FMJ 탄두</Bullet_404VL_FMJ.label>
+  <Bullet_404VL_AP.label>.404VL AP 탄두</Bullet_404VL_AP.label>
+
+  <!-- ===================== 120mm 대인로켓 ===================== -->
+
+  <Ammo_120mmrocketBase.description>크고 존나게 아름다운 120mm 대인..? 로켓입니다. 아무것도 모르는 부족민 무리나 소형 메카노이드나 아군의 뒤통수에 발사할 때 가장 치명적입니다.</Ammo_120mmrocketBase.description>
+
+  <Ammo_120mmrocket_HE.label>120mm 대인로켓 (HE)</Ammo_120mmrocket_HE.label>
+  <Ammo_120mmrocket_HE.description>크고 존나게 아름다운 120mm 대인..? 로켓입니다. 아무것도 모르는 부족민 무리나 소형 메카노이드나 아군의 뒤통수에 발사할 때 가장 치명적입니다.</Ammo_120mmrocket_HE.description>
+
+  <Bullet_120mmrocket_HE.label>120mm 대인로켓 탄두</Bullet_120mmrocket_HE.label>
+
+  <!-- ===================== 127mm 대전차 유도미사일 ===================== -->
+
+  <Ammo_127mmMissile_HEAT.label>127mm 반자동 시선유도 미사일 (HEAT)</Ammo_127mmMissile_HEAT.label>
+  <Ammo_127mmMissile_HEAT.description>127mm의 비싼 파이프에서 발사되는 비싼 일회용 파이프입니다. 성형작약 탄두는 중장갑을 관통하며, 발사 이후에도 포수 유도를 받으며 목표를 추적합니다. 그러나, 분산된 적들에게 약하며 포수의 시야가 제한되면 유도가 어려워집니다.</Ammo_127mmMissile_HEAT.description>
+
+  <Bullet_127mmMissile_HEAT.label>127mm 대전차 유도미사일 탄두</Bullet_127mmMissile_HEAT.label>
+
+  <!-- ===================== MGM-51 시레일러 ===================== -->
+
+  <MGM_51_Missile.label>MGM-51 시레일러 유도미사일</MGM_51_Missile.label>
+  <!-- 2026-07-28: base def(SACLOS_missiles.xml)에 사용자가 직접 써넣은 최신 설정
+       텍스트로 교체 - 기존엔 이 DefInjected가 그 텍스트를 가려 표시되지 않고 있었음. -->
+  <MGM_51_Missile.description>미사일, 유도, 152mm, 대전차, 상부공격, 다목적, MGM-51X.\n\nMERC에서... (중략) 그렇게 되어 개발한 것이 땅에서 파낸 MGM-51을 기반으로 제작한 다목적상부공격날개분리안정철갑소이고폭유산탄점착경심철갑대전차유도미사일 MGM-51X 입니다. 변방계에서는 중장갑 메카노이드 상대로 효과적이지만, 물론 사람 상대로도 뛰어난 성능을 발휘합니다.</MGM_51_Missile.description>
+
+  <Bullet_MGM_51_Missile.label>MGM-51 시레일러 미사일</Bullet_MGM_51_Missile.label>
+
+  <!-- ===================== Blackdown R.300 전용탄 ===================== -->
+
+  <!-- 2026-07-28: base def(Ammo_Blackdown.xml)의 Ammo_Blackdown_KORBase에
+       사용자가 직접 써넣은 최신 설정(lore) 텍스트를 반영 - 기존엔 이 자식 전용
+       DefInjected description이 그 lore를 가려 표시되지 않고 있었음.
+       lore + 탄약별 2차효과 안내를 함께 표기. -->
+  <Ammo_Blackdown_FMJ.label>블랙다운 R.300 FMJ</Ammo_Blackdown_FMJ.label>
+  <Ammo_Blackdown_FMJ.description>약쟁이 여우들과 옆집 늑대들과는 친하게 지내려하지만, 서로의 이해 관계가 맞지 않고 무력 시위가 계속된다면 어쩔 수 없이 우리의 방법을 이해시켜야 할 때가 있습니다. 특히 대기업의 보조금을 받는지 저렴한 가격으로 장갑차보다 단단한 방탄복을 사입는 옆집 늑대들을 상대로는 고전을 펼칠 수 밖에 없었고, 결국 300 AAC를 기반으로 한 미친-개단단한 탄약이 개발되었습니다.</Ammo_Blackdown_FMJ.description>
+
+  <Ammo_Blackdown_AP.label>블랙다운 R.300 AP</Ammo_Blackdown_AP.label>
+  <Ammo_Blackdown_AP.description>약쟁이 여우들과 옆집 늑대들과는 친하게 지내려하지만, 서로의 이해 관계가 맞지 않고 무력 시위가 계속된다면 어쩔 수 없이 우리의 방법을 이해시켜야 할 때가 있습니다. 특히 대기업의 보조금을 받는지 저렴한 가격으로 장갑차보다 단단한 방탄복을 사입는 옆집 늑대들을 상대로는 고전을 펼칠 수 밖에 없었고, 결국 300 AAC를 기반으로 한 미친-개단단한 탄약이 개발되었습니다.</Ammo_Blackdown_AP.description>
+
+  <Bullet_Blackdown_FMJ.label>블랙다운 R.300 FMJ 탄두</Bullet_Blackdown_FMJ.label>
+  <Bullet_Blackdown_AP.label>블랙다운 R.300 AP 탄두</Bullet_Blackdown_AP.label>
+
+</LanguageData>

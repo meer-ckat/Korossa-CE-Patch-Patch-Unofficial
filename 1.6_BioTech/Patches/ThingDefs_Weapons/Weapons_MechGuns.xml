@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 이 파일: 메크 마운트 총기 4종(HIBIKI/haebyung/coax_lunchbox/rocketpod_lunchbox)을
+     MakeGunCECompatible로 CE 변환. coax_lunchbox는 AmmoUser 생략으로 탄약 무소모,
+     rocketpod_lunchbox는 마운트 터렛(warmupTime 0 + defaultCooldownTime)으로 처리. -->
+<Patch>
+
+	<!-- 대상: Gun_HIBIKI (Mech_HIBIKI 주무기). CE 변환 - 12게이지 미니샷건. -->
+	<!-- Gun_HIBIKI (Mech_HIBIKI 주무기, 미니 샷건) : 바닐라 Verb_Shoot/Bullet_MiniShotgun 이던 것을 CE 12게이지로 전환 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HIBIKI</defName>
+		<statBases>
+			<SightsEfficiency>0.65</SightsEfficiency>
+			<ShotSpread>0.28</ShotSpread> <!-- 근거리 산탄 -->
+			<SwayFactor>0.90</SwayFactor>
+			<Bulk>5.0</Bulk> <!-- 메크 탑재 -->
+			<Mass>1.5</Mass>
+			<RangedWeapon_Cooldown>1.7</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.8</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_Shot_KJW</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<burstShotCount>6</burstShotCount>
+			<range>13</range> <!-- 미니 샷건, 근거리(바닐라 12.9) -->
+			<soundCast>Shotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>7</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>36</magazineSize>
+			<reloadTime>10.0</reloadTime>
+			<ammoSet>AmmoSet_12Gauge</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- Gun_haebyung (Mech_haebyung 주무기, M2HB) : 바닐라 Verb_Shoot/Bullet_M2_haebyung → CE .50 BMG로 전환 -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_haebyung</defName>
+		<statBases>
+			<SightsEfficiency>0.80</SightsEfficiency>
+			<ShotSpread>0.14</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+			<Bulk>10.0</Bulk>
+			<Mass>1.5</Mass>
+			<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.5</recoilAmount> <!-- 메크 마운트, 반동 통제 -->
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<burstShotCount>8</burstShotCount>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<range>61</range>
+			<soundCast>HMG_fire</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>8.0</reloadTime>
+			<ammoSet>AmmoSet_50BMG</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- Gun_coax_lunchbox (Sheridan 동축 MG) : CE 5.56 탄도를 사용하되 탄약 무소모.
+	     <AmmoUser> 블록을 생략하면 CompAmmoUser가 안 붙어 탄창/재장전/소모가 없고
+	     defaultProjectile(CE 5.56)을 무한 발사함 (CE의 디아볼루스식 무소모 처리).
+	     정확도는 CE 스탯으로 상향(바닐라 Accuracy 값은 CE에서 미사용). -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_coax_lunchbox</defName>
+		<statBases>
+			<SightsEfficiency>0.90</SightsEfficiency> <!-- 정확도 상향 -->
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.0</SwayFactor>
+			<Bulk>6.0</Bulk>
+			<Mass>2.6</Mass>
+			<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.2</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_556x45mmNATO_FMJ</defaultProjectile>
+			<!-- 마운트 터렛 verb의 warmupTime은 0이어야 함! >0이면 주무기(152mm) 스탠스를
+			     뺏어 발사준비/취소를 반복시킴(로켓포드와 동일 문제). -->
+			<warmupTime>0</warmupTime>
+			<!-- 마운트 터렛은 버스트 사이 쿨다운을 verb의 defaultCooldownTime에서 읽음.
+			     없으면 0 → 버스트 후 즉시 재발사 = 무한 연사. 반드시 지정할 것. -->
+			<defaultCooldownTime>2.3</defaultCooldownTime>
+			<range>50</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<soundCast>Pistol</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<!-- AmmoUser 의도적 생략 → 탄약 무소모 -->
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>TRUE</aiUseBurstMode>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+	<defName>KOR_Sheridan_M2HB</defName>
+	<statBases>
+		<SightsEfficiency>0.78</SightsEfficiency>
+		<ShotSpread>0.12</ShotSpread>
+		<SwayFactor>0.90</SwayFactor>
+		<Bulk>8.0</Bulk>
+		<Mass>38.0</Mass>
+		<RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+	</statBases>
+	<Properties>
+		<recoilAmount>1.5</recoilAmount>
+		<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+		<hasStandardCommand>true</hasStandardCommand>
+		<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+		<!-- 마운트 터렛 verb의 warmupTime은 0이어야 함! >0이면 주무기(152mm)/coax와
+		     스탠스를 다투어 발사준비/취소를 무한반복시킴(rocketpod/coax와 동일 문제). -->
+		<warmupTime>0</warmupTime>
+		<!-- 마운트 터렛은 버스트 사이 쿨다운을 verb의 defaultCooldownTime에서 읽는다.
+		     없으면 0 → 버스트 후 즉시 재발사(무한 연사). RangedWeapon_Cooldown은
+		     터렛 방식에선 적용되지 않으므로 이 값으로 대신 지정. -->
+		<defaultCooldownTime>1.5</defaultCooldownTime>
+		<minRange>2</minRange>
+		<range>75</range>
+		<burstShotCount>8</burstShotCount>
+		<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+		<soundCast>MINI</soundCast>
+		<soundCastTail>MINI_tail</soundCastTail>
+		<muzzleFlashScale>8</muzzleFlashScale>
+		<targetParams>
+		<canTargetLocations>true</canTargetLocations>
+		</targetParams>
+	</Properties>
+	<AmmoUser>
+		<magazineSize>100</magazineSize>
+		<reloadTime>8</reloadTime>
+		<ammoSet>AmmoSet_50BMG</ammoSet>
+	</AmmoUser>
+	<FireModes>
+		<aimedBurstShotCount>4</aimedBurstShotCount>
+		<aiUseBurstMode>true</aiUseBurstMode>
+		<aiAimMode>AimedShot</aiAimMode>
+		<noSingleShot>true</noSingleShot>
+	</FireModes>
+	</Operation>
+
+	<!-- 기존 동축기관총과 별개인 차장용 M2HB 터렛을 셰리든에 추가한다.
+	     renderNodeProperties(PawnRenderNode_TurretGun/Worker) 필수: 이게 없으면
+	     CompTurretGun의 gun은 발사 기능만 있고 폰 위에 그려지지 않는다(바닐라
+	     Biotech Diabolus/Apocriton의 Gun_ChargeBlasterTurret 마운트 방식 확인함).
+	     Korossa 원본 Gun_coax_lunchbox가 이 블록 없이 blank 텍스처만 쓰는 것도
+	     같은 이유 - 애초에 렌더 노드가 없어 그려지지 않으니 아무 텍스처나 무관.
+	     drawData의 회전별 오프셋(dataNorth/South/East/West)은 실제 인게임에서
+	     Sheridan 몸체 그림과 맞춰 미세조정이 필요할 수 있음(우선 0,0 기본값).
+
+	     ★ baseLayer 정정(2026-07-27): 직전 커밋에서 "20이 ApparelBody(20)와
+	     겹쳐서 주무기가 안 보인다"고 판단해 8로 낮췄었는데, Assembly-CSharp.dll
+	     디컴파일로 확인한 결과 오진이었음. PawnRenderNodeProperties_Carried
+	     (주무기 노드) 생성자의 실제 기본값은 baseLayer=90으로, 20/8 어느 쪽과도
+	     겹치지 않음 - 애초에 주무기가 안 보인 적이 없었고, 계속 안 보였던 건
+	     M2HB 쪽이었음. 8은 "Wounds - pre apparel"(8)과 같은 낮은 레벨이라
+	     몸체 실루엣보다 아래에 깔려 오히려 더 안 보이게 만들었을 가능성이 큼.
+	     검증된 바닐라 Diabolus 사례값인 20으로 되돌렸었으나, 실사용자 확인 결과
+	     실제로는 주무기(Carried, baseLayer=90)에 가려서 안 보이는 것으로 확인됨.
+	     20 < 90이라 주무기가 위에 그려져 M2HB를 덮었던 것 - Diabolus는 주무기가
+	     없어 90짜리 경쟁자가 애초에 없었을 뿐. Carried의 90보다 위로 올려야
+	     M2HB가 주무기 위에(앞에) 그려짐. 95로 설정(Status overlay=100보다는 낮게). -->
+	<Operation Class="PatchOperationAdd">
+	<xpath>Defs/ThingDef[defName="Mech_Sheridan"]/comps</xpath>
+	<value>
+		<li Class="CompProperties_TurretGun">
+		<turretDef>KOR_Sheridan_M2HB</turretDef>
+		<angleOffset>0</angleOffset>
+		<renderNodeProperties>
+			<li>
+				<nodeClass>PawnRenderNode_TurretGun</nodeClass>
+				<workerClass>PawnRenderNodeWorker_TurretGun</workerClass>
+				<parentTagDef>Body</parentTagDef>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<baseLayer>97</baseLayer>
+				<pawnType>Any</pawnType>
+			</li>
+		</renderNodeProperties>
+		</li>
+	</value>
+	</Operation>
+
+	<!-- Gun_rocketpod_lunchbox (ADlunchbox 로켓포드, 마운트 터렛) : 120mm 대인로켓을 '소모'하도록 CE 패치.
+	     스폰 보급/자동 재장전은 C#(TurretAmmoSupplyPatch.cs)이 담당 - 스폰 시 탄창 장전 + 예비 18발 지급. -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_rocketpod_lunchbox</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.16</ShotSpread>
+			<SwayFactor>1.1</SwayFactor>
+			<Bulk>12.0</Bulk>
+			<Mass>2.6</Mass>
+			<RangedWeapon_Cooldown>2.3</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.0</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_120mmrocket_HE</defaultProjectile>
+			<!-- 터렛 verb는 warmupTime이 0이어야 함! >0이면 폰 스탠스를 점유해서
+			     주무기 조준을 계속 취소시킴(발사준비/취소 무한반복).
+			     발사 간격은 defaultCooldownTime으로 조절 (CompTurretGun 방식). -->
+			<warmupTime>0</warmupTime>
+			<defaultCooldownTime>4</defaultCooldownTime>
+			<range>43</range>
+			<burstShotCount>2</burstShotCount>
+			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+			<linkedBodyPartsGroup>BulbTurret</linkedBodyPartsGroup>
+			<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+			<soundCast>Rocketmoter</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>4</magazineSize>
+			<reloadTime>10</reloadTime>
+			<ammoSet>AmmoSet_120mmrocket</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>false</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+</Patch>
